@@ -43,7 +43,7 @@
                     <div class="col-2">
                         <div class="header-icon">
                             <ul class="list-inline d-flex justify-content-end">
-                                <li class="list-inline-item cart"><i class="fas fa-shopping-cart fa-lg"></i></li>
+                                <li class="list-inline-item cart"><a href="cart"><i class="fas fa-shopping-cart fa-lg"></i></a></li>
                                 <li class="list-inline-item user">
                                     <a href="articles" title="Resister"><i class="far fa-user fa-lg"></i></a>
                                 </li>
@@ -65,12 +65,67 @@
            </p>
         </div>
     </div>
-    <!-- HEADER -->
-    <!-- SIDEBAR -->
-    <!-- SIDEBAR -->
-    <!-- PRODUCTCATEGORY -->
+
+    <div class="product-list">
+        <div class="cart-table">
+            <table>
+                <colgroup>
+                    <col span="1" stlye="width: 10%;">
+                    <col span="1" style="width: 40%;">
+                    <col span="1" style="width: 20%;">
+                    <col span="1" style="width: 20%;">
+                    <col span="1" stlye="width: 10%;">
+                 </colgroup>
+                </colgroup>
+                <tr>
+                    <th>Select</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                    <th>Remove</th>
+                </tr>
     
-    <!-- PRODUCTCATEGORY -->
+               <tr align="center">
+                    <td><input type="checkbox" checked="checked"></td>
+                    <td>
+                        <div class="cart-info">
+                            <a href="/collections/all/products/in-ear-earphone?variant=35499736006816" class="cart-image">
+                                <img src="//cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-5_87c12970-4390-44ce-b87d-bb3f3bef7833_medium.jpg?v=1596620955">
+                            </a>
+                            <div class="cart-title">
+                                <a href="" class="product-name h6">In-Ear Earphone</a>
+                                <br>
+                                <small>12.5 mm / Grey / Plastic</small>
+                                <br>
+                                <p>Price: $910</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td><input type="button" value="-" class="button" >
+                        <input type="number" value="1" class="quantity">
+                        <input type="button" value="+" class="button"></td>
+                    <td>$50.00</td>
+                    <td><i class="fa fa-trash"></i></td>
+                </tr> 
+            </table>
+            <div class="btn-action">
+                <a class="btn" href="/collections/all">Continue shopping</a>
+            </div>
+        </div>   
+      
+        <div class="order-summary">
+            <p class="title">Order summary</p>
+            <p class="price">
+                <span class="sub-title h6">Subtotal:</span>
+                <span class="sub-total-money h6">$</span>
+            </p>
+            <div class="btn-action">
+                <a class="btn" href="">Proceed to checkout</a>
+            </div>
+            
+        </div>
+    </div>
+    
     <!-- FOOTER -->
     <div class="footer">
         <div class="footer-content">
@@ -96,7 +151,7 @@
                         <a href=""><i class="fab fa-twitter fa-lg"></i></a>
                     </li>
                     <li class="list-inline-item">
-                        <a href=""><i class="fab fa-facebook-square fa-lg"></i></a>
+                        <a href=""><i class="fab fa-facebook fa-lg"></i></a>
                     </li>
                     <li class="list-inline-item">
                         <a href=""><i class="fab fa-pinterest fa-lg"></i></a>

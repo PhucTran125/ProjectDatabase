@@ -7,6 +7,7 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style-product.css">
 </head>
 <body>
@@ -86,11 +87,56 @@
                    
                 </ul>
             </div>
-            <div class="widget color">
+            <div class="color">
                 <h4>Shop By Color</h4>
                 <ul>
                     <li>
-                        <input type="checkbox" value="white" >
+                        <input type="checkbox" id="white">
+                        <a href="">
+                            <label for="white">
+                                <span style="background:white"></span>
+                            </label>
+                        </a>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="blue">
+                        <a href="">
+                            <label for="blue">
+                                <span style="background:blue"></span>
+                            </label>
+                        </a>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="black">
+                        <a href="">
+                            <label for="black">
+                                <span style="background:black"></span>
+                            </label>
+                        </a>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="red">
+                        <a href="">
+                            <label for="red">
+                                <span style="background:red"></span>
+                            </label>
+                        </a>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="green">
+                        <a href="">
+                            <label for="green">
+                                <span style="background:#00ff00"></span>
+                            </label>
+                        </a>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="orange">
+                        <a href="">
+                            <label for="orange">
+                                <span style="background:#e18b34"></span>
+                            </label>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -99,31 +145,31 @@
                 <ul>
                     <li>
                         <input type="checkbox" id="price1" />
-                        <label for="price1">$100-$200</label>
+                        <label for="price1">$100 - $200</label>
                     </li>
                     <li>
                         <input type="checkbox" id="price2" />
-                        <label for="price2">$200-$300</label>
+                        <label for="price2">$200 - $300</label>
                     </li>
                     <li>
                         <input type="checkbox" id="price3" />
-                        <label for="price3">$300-$400</label>
+                        <label for="price3">$300 - $400</label>
                     </li>
                     <li>
                         <input type="checkbox" id="price4" />
-                        <label for="price4">$400-$500</label>
+                        <label for="price4">$400 - $500</label>
                     </li>
                     <li>
                         <input type="checkbox" id="price5" />
-                        <label for="price5">$500-600$</label>
+                        <label for="price5">$500 - $600</label>
                     </li>
                     <li>
                         <input type="checkbox" id="price6" />
-                        <label for="price6">$600-$700</label>
+                        <label for="price6">$600 - $700</label>
                     </li>
                     <li>
                         <input type="checkbox" id="price7" />
-                        <label for="price7">$700-$1000</label>
+                        <label for="price7">$700 - $1000</label>
                     </li>
                 </ul>
             </div>
@@ -171,22 +217,61 @@
             </div>
         </div>
 
-        <div class="product-bar">
-            <div class="toolbar">
-                <label>VIEW</label>                
-            </div>
-            <div class="row">
-                <div class="card col-3" style="width: 18rem;">
-                    <img class="card-img-top" src=".." alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title">title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="product-section">
+            <div class="toolbar d-flex justify-content-end">
+                <div class="dropdown">
+                    <label>SORT BY: </label>
+                    <button class="dropbtn">
+                        Featured
+                    </button>
+                    <div class="dropdown-content" >
+                        <a href="#" class="active" >Featured</a>
+                        <a href="#">Price, low to high</a>
+                        <a href="#">Price, high to low</a>
+                        <a href="#">A-Z</a>
+                        <a href="#">Z-A</a>
+                        <a href="#">Date, old to new</a>
+                        <a href="#">Price, new to old</a>
                     </div>
-                </div>  
-                <h1>
-                </h1>
-                
+                </div>
+            </div>
+            <div class="row product-collection">
+                    <div class="col-3 item">
+                       <div class="item-image" style="margin-bottom:20px;">
+                           <a href="#">
+                               <img src="//cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-9_8b8e52b3-4453-46bf-bee6-d56b3bfbf01d_large.jpg?v=1596620967" style="width:100%;">
+                           </a>
+                       </div>
+                       <div class="item-rating" style="margin-bottom: 10px;">
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                       </div>
+                       <div class="item-title"style="margin-bottom:5px;" >
+                           <a href="#">Bluetooh Earphone</a>
+                       </div>
+                       <div class="item-price">$910.00</div>
+                    </div>
+                    <div class="col-3 item">
+                        <div class="item-image" style="margin-bottom:20px;">
+                            <a href="#">
+                                <img src="//cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-10_bf74d6bd-48d3-4849-88c5-4ba2ec1e3c7b_large.jpg?v=1596620973" style="width:100%;">
+                            </a>
+                        </div>
+                        <div class="item-rating" style="margin-bottom: 10px;">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-full"></i>
+                        </div>
+                        <div class="item-title"style="margin-bottom:5px;" >
+                            <a href="#">Comfort Earphone</a>
+                        </div>
+                        <div class="item-price">$910.00</div>
+                     </div>
             </div>
         </div>
     </div>
