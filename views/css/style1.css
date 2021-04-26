@@ -43,12 +43,15 @@
     color: black;
 }
 /* Ảnh 1 */
+.img1 {
+    position: relative;
+}
 .bg-img .slider-content {
-    /* left: 6%; */
+    left: 6%;
     right: auto;
     width: 40%;
     position: absolute;
-    /* top: 50%; */
+    top: 4%;
     left: 0;
     right: 0;
     margin-left: 100px;

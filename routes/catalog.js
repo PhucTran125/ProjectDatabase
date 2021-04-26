@@ -1,8 +1,9 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
+const catalogController = require('../app/controllers/CatalogController');
 
-router.get('/', (req, res) => {
-    res.render('product.ejs')
-})
+// catalogController.index
+router.get('/:slug', catalogController.show);
+router.get('/', catalogController.index);
 
-module.exports = router
+module.exports = router;
