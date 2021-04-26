@@ -1,5 +1,6 @@
 const express = require('express')
 const articleRouter = require('./routes/articles')
+const cartRouter = require('./routes/cart')
 const app = express()
 
 
@@ -13,9 +14,10 @@ app.set('view engine', 'ejs')
 
 
 app.use('/articles', articleRouter)
+app.use('/cart', cartRouter)
 
 app.get('/', (req, res) => {
-    res.render('newindex')
+    res.render('product')
 })
 
 // Listen to port 3000
