@@ -245,7 +245,7 @@ input[type=checkbox]{
     text-align:center;
 }
 .product-collection .item .item-title a{
-    font-size: 18px;
+    font-size: 16px;
     color:#fc846b;
     transition: 0.4s;
 }

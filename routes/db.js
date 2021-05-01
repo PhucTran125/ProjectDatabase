@@ -12,14 +12,19 @@ router.get('/', async (req, res, next) => {
         res.sendStatus(500);
     }
 });
+router.get('/sort-low-to-high', async (req, res, next) => {
+    Product.sortProductByCostAsc(function(err, rows){
+        if(err) res.json(err);
+        else {
+            res.json(rows);
+        };
+    });
+});
 router.get('/getAll', async (req, res, next) => {
     Product.getAllProduct(function(err, rows){
         if(err) res.json(err);
         else {
-            res.json(rows);
-            // let table = [];
-
-            // res.render('product', {rows});
+           res.render('product', {rows});
         };
     });
 });
@@ -27,8 +32,9 @@ router.get('/:id?', async (req, res, next) => {
     Product.getProductById(req.params.id, function(err, rows){
         if(err) res.json(err);
         else {
+            // document.getElementById('phuc').innerHTML = `${row.ProductID}`
             // res.json(rows);
-            res.render('product', {user: "Tom"});
+            res.render('product', {rows});
         }
     });
 });

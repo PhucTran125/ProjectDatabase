@@ -226,8 +226,8 @@
                     </button>
                     <div class="dropdown-content" >
                         <a href="#" class="active" >Featured</a>
-                        <a href="#">Price, low to high</a>
-                        <a href="#">Price, high to low</a>
+                        <a href="javascript: sortLowToHigh()">Price, low to high</a>
+                         <a href="#">Price, high to low</a>
                         <a href="#">A-Z</a>
                         <a href="#">Z-A</a>
                         <a href="#">Date, old to new</a>
@@ -236,47 +236,29 @@
                 </div>
             </div>
             <div class="row product-collection">
+                <% for(var i = 0; i < rows.length; i++){ %>
                     <div class="col-3 item">
                        <div class="item-image" style="margin-bottom:20px;">
                            <a href="#">
-                               <img src="//cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-9_8b8e52b3-4453-46bf-bee6-d56b3bfbf01d_large.jpg?v=1596620967" style="width:100%;">
+                               <img src="<%= rows[i].thumbnail_photo%>" style="width: 100%;; visibility: visible;">
                            </a>
                        </div>
                        <div class="item-rating" style="margin-bottom: 10px;">
-                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>   
                            <i class="fa fa-star"></i>
                            <i class="fa fa-star"></i>
                            <i class="fa fa-star"></i>
                            <i class="fa fa-star"></i>
                        </div>
                        <div class="item-title"style="margin-bottom:5px;" >
-                           <a href="#">Bluetooh Earphone</a>
+                           <a href="#"><%= rows[i].ProductName%></a>
                        </div>
-                       <div class="item-price">$910.00</div>
+                       <div class="item-price">$<%= rows[i].Price%></div>
                     </div>
-                    <div class="col-3 item">
-                        <div class="item-image" style="margin-bottom:20px;">
-                            <a href="#">
-                                <img src="//cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-10_bf74d6bd-48d3-4849-88c5-4ba2ec1e3c7b_large.jpg?v=1596620973" style="width:100%;">
-                            </a>
-                        </div>
-                        <div class="item-rating" style="margin-bottom: 10px;">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-full"></i>
-                        </div>
-                        <div class="item-title"style="margin-bottom:5px;" >
-                            <a href="#">Comfort Earphone</a>
-                        </div>
-                        <div class="item-price">$910.00</div>
-                     </div>
+                <% } %>
             </div>
         </div>
     </div>
-    
-
     <!-- FOOTER -->
     <div class="footer">
         <div class="footer-content">
