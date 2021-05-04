@@ -70,18 +70,21 @@
         <div class="row d-flex justify-content-center mt-4 mb-4">
             <div class="size">
                 <div class="card-signin my-5">
-                    <form class="form-signin" action="/account/login" method="POST">
+                    <form class="form-signin" action="" method="POST">
                         <% if(message) {%>
                             <h4 class="alert alert-danger m-4"><%= message %></h4>
                         <%}%>
-                        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>     
+                        <input type="text" name="firstName" id="firstname" class="form-control" placeholder="First name"required autofocus>
+                        <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name" required>
+                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone" required>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>     
                         <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                        <input type="password" name="passwordConfirm" id="passwordConfirm" class="form-control" placeholder="Confirm Password" required>
+                        <input type="text" name="city" id="city" class="form-control" placeholder="City" required>
+                        <input type="text" name="country" id="country" class="form-control" placeholder="Country" required>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
                         <p>
-                            <a href="#" onclick="showForgotPass(); return false">Forgot your password?</a>
-                        </p>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                        <p>
-                            <a href="/account/register" id="customer_register_link">Create account</a>
+                            <a href="/account/login" id="customer_login_link">Already have an account</a>
                         </p>
                         <p>
                             <a href="/">Return to Store</a>

@@ -1,7 +1,7 @@
 const catalogRouter = require('./catalog');
 const siteRouter = require('./site');
 const apiRouter = require('./db');
-const logRouter = require('./login');
+const logRouter = require('./account');
 // const apiRouter = require('./db');
 
 function route(app) {

@@ -56,7 +56,6 @@ nav {
     height: auto;
     
 }
-
 .header-content-cart{
     height:113.6px;
 }
@@ -84,52 +83,51 @@ nav {
     color:white;
     text-align:center;
 }
-/* main-content */
-.main-content .row .size {
-    width: 32%;
+/* header */
+body{
+    /* background-color: #fc846b; */
+    font-family: sans-serif;
 }
-.main-content .row .size .card-signin form .btn {
-    background: #373737;
-    color: #fc846b;
-    border-radius: 35px;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    /* font-family: Poppins; */
-    font-weight: 500;
-    text-transform: capitalize;
-    font-size: 17px;
-    padding: 12px 50px;
-    border-color: transparent;
-}
-.main-content .row .size .card-signin form .btn:hover {
-    background-color: #fc846b;
-    color: #ffffff;
-}
-.main-content .row .size .card-signin form input {
-    padding: 14px;
-    margin-bottom: 20px;
-    border-radius: 30px;
-    max-width: 100%;
-    height: 100%;
-    font-size: 17px;
-}
-.main-content .row .size .card-signin form input:focus {
-    box-shadow: 1px black;
-}
-.main-content .row .size .card-signin form p {
+.login{
+    width: 300px;
+    height: 700px;
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 10px;
     text-align: center;
+    margin:0 auto;
 }
-.main-content .row .size .card-signin form p a {
-    color: black;
-    font-size: 17px;
-    font-weight: 400;
-    text-decoration: none;
-    outline: none;
-    background: transparent;
+.login h2{
+    display: inline-block;
+    color: #373737;  
 }
-.main-content .row .size .card-signin form p #customer_register_link {
-    text-decoration: underline;
+.login input{
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    margin-top: 5px;
 }
+
+
+.login button{
+    width: 220px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: #373737;
+    color: #fc846b;
+}
+.login p{
+   display: inline-block;
+   float: left;
+   padding-left: 40px;
+   margin: 0px;
+   
+}
+
 /* footer */
 .footer {
     background-image: url(//cdn.shopify.com/s/files/1/0437/0454/9536/files/footer-bg_1920X.jpg?v=1596001099);
