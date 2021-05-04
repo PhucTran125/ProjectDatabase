@@ -1,0 +1,67 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.product-name {
+    background-image: url(//cdn.shopify.com/s/files/1/0437/0454/9536/t/26/assets/breadcrumb_bg_image.jpg?v=4568109122593610553);
+    padding: 40px;
+    color: white;
+    text-align: center;
+    align-items: center;   
+}
+.category{
+    height: 1020px;
+    width: 540px;
+
+}
+.category img{
+    margin-top: 8px;
+  vertical-align: middle;
+}
+.category a{
+    text-decoration: none;
+    color:black;
+    font: Poppins;
+    padding: 40px 20px 20px;
+}
+.category ul li{
+    list-style: none;
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+  
+}
+.column{
+    flex: 33%;
+  max-width: 33%;
+ 
+}
+
+.infomation label{
+   color: #373737;
+    font: Poppins;
+
+}
+.infomation p{
+    color: #FC846B;
+}
+.infomation button{
+    background-color: #373737;
+    color: #FC846B;
+    border-radius: 30px;
+    border: none;
+    height: 40px;
+    width: 400px;
+}
+.infomation table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    height: 300px;
+  }
+  .column a{
+      text-decoration: none;
+  }
+ 
