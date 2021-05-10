@@ -54,3 +54,27 @@ create table Categories(
 );
 
 insert into Categories(Category_id, Category_name) values ('1', 'Wireless Headphone'), ('2', 'Wireless Earphone'), ('3', 'Noise Cancellation'), ('4', 'Gaming'), ('5', 'Sports'), ('6', 'True Wireless Earbuds'), ('7', 'In-Ear'), ('8', 'DJ Headphone');
+
+create table Product_Cart(
+	CartID int not null,
+    ProductID int not null,
+    NumProduct int not null,
+    constraint CartEnroll_fk  foreign key (CartID) references Cart(CartID),
+    constraint ProductEnroll_fk foreign key (ProductID) references Products(ProductID)
+);
+
+create table PaymentMethod(
+	PaymentMethodID int not null auto_increment primary key,
+    PaymentMethodName varchar(30)
+);
+
+insert into PaymentMethod(PaymentMethodID, PaymentMethodName) values ('1', 'Cash'), ('2', 'Internet Banking'), ('3', 'Paypal'), ('4', 'ViettelPay');
+
+create table Cart(
+	CartID int not null auto_increment primary key,
+    UpdateAt datetime not null,
+    CreateAt datetime not null
+);
+
+insert into Cart(CartID, UpdateAt, CreateAt) values ('1', '2021-05-04 12:45:56', '2021-05-04 12:45:56');
+insert into Product_Cart(CartID, ProductID, NumProduct) values ('1', '1', '1'), ('1', '3', '1');

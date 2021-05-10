@@ -49,7 +49,7 @@ create table WishList(
 );
 
 create table Cart(
-	CartID int not null primary key,
+	CartID int auto_increment not null primary key,
     CreatedAt datetime not null,
     UpdateAt datetime not null
 );
@@ -62,15 +62,19 @@ create table User_table(
     Email varchar(50) not null,
     Password varchar(500) not null,
     City varchar(80) not null, 
-    Country varchar(20) not null
+    Country varchar(20) not null,
+    WishListID int not null,
+    CartID int not null,
+    constraint WishList_fk foreign key (WishListID) references WishList(WishListID),
+	constraint Cart_fk foreign key (CartID) references Cart(CartID)
 );
 
 alter table user_table drop column VerificationCode;
 
 insert into WishList(WishListID) value ('1');
 insert into Cart(CartID) value ('1');
-insert into User_table(FirstName, LastName, Phone, Email, Password, City, Country) 
-value ('Phuc', 'Tran', '0966078010', 'phuctran125.hust@gmail.com', '12052000', 'Hai Phong', 'Viet Nam');
+insert into User_table(FirstName, LastName, Phone, Email, Password, City, Country, WishListID, CartID) 
+value ('Phuc', 'Tran', '0966078010', 'phuctran125.hust@gmail.com', '12052000', 'Hai Phong', 'Viet Nam', '1', '1');
 
 insert into Products(UszProductID, ProductName, ProductSortDesc, ProductDesc, Price, Color, Material, ProductStock, ProductState, thumbnail_photo, slug, Brand_id, Category_id) values 
 ('1', 'Sony-WH-CH510', '30MM DYNAMIC DRIVERS FOR SUPREME SOUND', '30MM DYNAMIC DRIVERS FOR SUPREME SOUND', '2990', 'Black', 'Synthetic resins, leather', '20', 'In stock', 'https://i.imgur.com/uOtwR2n.jpg', 'sony-ch-510-headphone', '2', '1'),

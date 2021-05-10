@@ -1,5 +1,7 @@
 const db = require('../../config/db/database');
 const bcrypt = require('bcryptjs');
+const authenticate = require('../../config/auth/auth');
+const jwt = require('jsonwebtoken');
 
 class AccountController {
     //[POST] /login
@@ -11,7 +13,7 @@ class AccountController {
                 return res.status(400).render('login', {message: 'Please provide an email and password'});
             }
             db.connection.query('SELECT * FROM User_table WHERE Email = ?', [email], async function(error, results){
-                console.log(results);
+                // console.log(results);
                 if (results.length == 0){
                     return res.status(400).render('login', {message: 'No user with this email'});
                 }
@@ -21,6 +23,7 @@ class AccountController {
                         return res.status(400).render('login', {message: 'Password incorrect'})
                     }
                     else {
+                        req.session.userID = results[0].Email;
                         return res.redirect('/');
                     }
                 });
@@ -50,16 +53,41 @@ class AccountController {
                 // 8: how many time you want to hash password
                 console.log(hashedPassword);
 
-                db.connection.query('INSERT INTO User_table SET ?', {FirstName: firstName, LastName: lastName, Phone: phone, Email: email, Password: hashedPassword, City: city, Country: country}, (error, results) => {
+                db.connection.query('INSERT INTO User_table SET ?', {FirstName: firstName, LastName: lastName, Phone: phone, Email: email, Password: hashedPassword, City: city, Country: country, WishListID: results.length + 1, CartID: results.length + 1}, (error, results) => {
                     if (error) {
                         console.log(error);
                     } else {
                         console.log(results);
-                        return res.redirect('login');
+                        req.session.userID = email;
+                        return res.redirect('/');
                     }
                 });
             }
         });
+    };
+    logout(req, res, next) {
+        req.session.destroy(err => {
+            if (err) {
+                return res.redirect('/')
+            }
+
+            res.clearCookie(process.env.SESS_NAME);
+            res.redirect('/');
+        })
+    };
+    redirectLogin(req, res, next) {
+        if (!req.session.userID) {
+            res.redirect('/account/login');
+        } else {
+            next();
+        }
+    };
+    redirectHome(req, res, next) {
+        if (req.session.userID) {
+            res.redirect('/');
+        } else {
+            next();
+        } 
     };
 }
 

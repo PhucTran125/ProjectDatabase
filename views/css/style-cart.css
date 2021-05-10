@@ -90,17 +90,17 @@ nav {
     color:white;
     text-align:center;
 }
-
+/* header */
 .product-list{
     margin:50px;
     overflow:hidden;
 }
 .product-list .cart-table{
-    width:70%;
+    width:75%;
     float:left;
 }
 .product-list .order-summary{
-    width:30%;
+    width:25%;
     float:left;
     padding-left:30px;
 }

@@ -2,9 +2,12 @@ const catalogRouter = require('./catalog');
 const siteRouter = require('./site');
 const apiRouter = require('./db');
 const logRouter = require('./account');
-// const apiRouter = require('./db');
+const cartRouter = require('./cart');
 
 function route(app) {
+
+    app.use('/my-cart', cartRouter);
+
     app.use('/account', logRouter);
 
     app.use('/api/test', apiRouter);

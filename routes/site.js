@@ -3,9 +3,12 @@ const router = express.Router();
 const siteController = require('../app/controllers/SiteController');
 
 // siteController.home
+router.get('/detail', (req, res) => {
+    res.render('product-detail');
+})
 router.get('/pages-info', siteController.pages);
 router.get('/blog', siteController.blog);
 router.get('/login', siteController.login);
 router.get('/', siteController.home);
 
-module.exports = router;
+module.exports = router;    

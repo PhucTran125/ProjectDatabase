@@ -1,7 +1,9 @@
 const db = require('../../config/db/database');
 
 var User = {
-    router.get
+    findByEmail:function (email, callback) {
+        return db.connection.query('SELECT * FROM User_table WHERE Email = ?', [email], callback);
+    }
 };
 
 module.exports = User;
