@@ -48,12 +48,13 @@ class CatalogController {
     };
     //[GET] /catalog/product/slug
     show(req, res) {
+        console.log("phuc beo");
         var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
         var slug = fullUrl.split("/").pop();
         Product.getProductBySlug(slug, function(err, rows) {
             if(err) res.json(err);
             else {
-                res.render('product-detail');
+                res.render('product-detail', {rows});
             }
         })
     };  

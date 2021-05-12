@@ -11,4 +11,4 @@ router.get('/blog', siteController.blog);
 router.get('/login', siteController.login);
 router.get('/', siteController.home);
 
-module.exports = router;    
+module.exports = router;

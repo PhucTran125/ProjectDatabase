@@ -22,6 +22,20 @@ var Product = {
     sortProductByNameDesc:function(callback){
         return db.connection.query('select * from products order by ProductName desc', callback);
     },
+    checkOutStock:function(productID, value){
+        db.connection.query('select * from Products where ProductID = ?',[productID], function(err, results){
+            if (err) {
+                console.log(err);
+            } else {
+                const numOfProductNow = results[0].ProductStock;
+                if (value < numOfProductNow) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        });
+    },
 };
 
 module.exports = Product;

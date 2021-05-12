@@ -84,9 +84,34 @@
                     <th>Subtotal</th>
                     <th>Remove</th>
                 </tr>
-                
+
+                <script>
+                    var count;
+                    var value;
+                    var totalCost = <%= totalCost%>;
+                    function plus(id, price){
+                        count = ++document.getElementById(id).value;
+                        value = "$" + count*price;
+                        document.getElementById(id + 100).innerHTML = value;
+                        totalCost += price;
+                        document.getElementById("totalCost").innerHTML = "$" + totalCost;
+                    }
+                    function minus(id, price){
+                        if (document.getElementById(id).value > 1) {
+                            count = --document.getElementById(id).value;
+                            value = "$" + count*price;
+                            document.getElementById(id + 100).innerHTML = value;
+                            totalCost = totalCost - price;
+                            document.getElementById("totalCost").innerHTML = "$" + totalCost;
+                        }   
+                    }
+                    function del(id) {
+                        var remove = document.getElementById(id + 200);
+                        remove.classList.add("d-none");
+                    }
+                </script>
                 <% for (var i = 0; i < rows.length; i++){ %>
-                    <tr align="center">
+                    <tr align="center" id="<%= i + 200%>">
                         <td><input type="checkbox" checked="checked"></td>
                         <td>
                             <div class="cart-info">
@@ -103,43 +128,31 @@
                             </div>
                         </td>
                         <td>
-                            <script>
-                                var count = 1;
-                                var countEl = document.getElementById("<%= i%>");
-                                function plus(){
-                                    count++;
-                                    countEl.value = count;
-                                }
-                                function minus(){
-                                    if (count > 1) {
-                                        count--;
-                                        countEl.value = count;
-                                    }   
-                                }
-                            </script>
-                            <input type="button" value="-" class="button" onclick="minus()">
+                            <!-- cái này đúng ko sai đâu đừng xóa -->
+                            <input type="button" value="-" class="button" onclick="minus(<%= i%>, <%= rows[i].Price%>)">
                             <input type="text" value="1" class="quantity" id="<%= i%>">
-                            <input type="button" value="+" class="button" onclick="plus()">
+                            <input type="button" value="+" class="button" onclick="plus(<%= i%>, <%= rows[i].Price%>)">
                         </td>
-                        <td>$50.00</td>
-                        <td><a onclick="plus()"><i class="fa fa-trash"></i></a></td>
+                        <td><span id="<%= i + 100%>">$<%= rows[i].Price%></span></td>
+                        <td><a onclick="del(<%= i %>)"><i class="fa fa-trash"></i></a></td>
                     </tr> 
                 <% } %>
             </table>
+            <button id="get-button" class="class">Click</button>
             <div class="btn-action">
                 <a class="btn" href="/collections/all">Continue shopping</a>
             </div>
-        </div>   
-        <% var totalCost = 0; 
-            for(var i = 0; i < rows.length; i++){
-                totalCost += rows[i].Price;
-            } 
-        %>
+        </div>
+        <% var cost = 0;
+        for (var i = 0; i < rows.length; i++) {
+            cost += rows[i].Price;
+        }
+        %>  
         <div class="order-summary">
             <p class="title">Order summary</p>
             <p class="price">
                 <span class="sub-title h6">Subtotal:</span>
-                <span class="sub-total-money h6">$<%= totalCost %></span>
+                <span class="sub-total-money h6" id="totalCost">$<%= cost %></span>
             </p>
             <div class="btn-action">
                 <a class="btn" href="">Proceed to checkout</a>
@@ -206,5 +219,6 @@
         </div>
     </div>
     <!-- FOOTER -->
+    <script src="function.js"></script>
 </body>
 </html>

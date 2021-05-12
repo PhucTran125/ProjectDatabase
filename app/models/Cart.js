@@ -10,22 +10,8 @@ var Cart = {
     removeFromCart:function(id, callback){
         return db.connection.query('DELETE FROM Product_Cart WHERE  ProductID =?', [id], callback); 
     },
-    checkOutStock:function(productID, value){
-        db.connection.query('select * from Products where ProductID = ?',[productID], function(err, results){
-            if (err) {
-                console.log(err);
-            } else {
-                const numOfProductNow = results[0].ProductStock;
-            }
-        });
-        if (value < numOfProductNow) {
-            return true;
-        } else {
-            return false;
-        }
-    },
     increProduct:function(cartID, productID, value, callback){
-        return db.connection.query('update Product_Cart set NumProduct = ? where (CartID, ProductID) = (?, ?)',[value, cartID, productID]);
+        return db.connection.query('update Product_Cart set NumProduct = ? where (CartID, ProductID) = (?, ?)',[value + 1, cartID, productID]);
     },
 };
 
