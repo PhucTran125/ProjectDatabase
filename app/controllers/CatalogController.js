@@ -46,6 +46,16 @@ class CatalogController {
             }
         })
     };
+    //[GET] /catalog/apple
+    brandApple(req, res){
+        Product.shopbyBrandApple(function(err, rows){
+            if(err) res.json(err);
+            else {
+                res.render('product', {rows});
+            }
+        });
+    }
+
     //[GET] /catalog/product/slug
     show(req, res) {
         res.send('product detail!!!');

@@ -22,6 +22,12 @@ var Product = {
     sortProductByNameDesc:function(callback){
         return db.connection.query('select * from products order by ProductName desc', callback);
     },
+    shopbyBrandApple:function(callback){
+        return db.connection.query('select * from products,brands where products.Brand_id=brands.Brand_id and brands.Brand_name like"Apple"',callback)
+    },
+    shopbyCategoryWirelessHeadphone(callback){
+        return db.connection.query('select *',callback);
+    },
 };
 
 module.exports = Product;

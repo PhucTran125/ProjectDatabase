@@ -73,16 +73,28 @@
                 <h4>Category</h4>
                 <ul>
                     <li>
-                        <a href="collections/wireless">Wireless</a>
+                        <a href="/catalog/apple">Wireless Headphone</a>
                     </li>
                     <li>
-                        <a href="collections/bluetooth">Noise Isolated</a>
+                        <a href="collections/bluetooth">Wireless Earphone</a>
                     </li>
                     <li>
-                        <a href="collections/in-ear">Noise-canceling</a>
+                        <a href="collections/in-ear">Noise Cancellation</a>
                     </li>
                     <li>
-                        <a href="collections/sport-earbuds">Sport Earbuds</a>
+                        <a href="collections/sport-earbuds">Gaming</a>
+                    </li>
+                    <li>
+                        <a href="collections/sport-earbuds">Sports</a>
+                    </li>
+                    <li>
+                        <a href="collections/sport-earbuds">True Wireless Earbuds</a>
+                    </li>
+                    <li>
+                        <a href="collections/sport-earbuds">In-Ear</a>
+                    </li>
+                    <li>
+                        <a href="collections/sport-earbuds">DJ Headphone</a>
                     </li>
                    
                 </ul>
@@ -144,32 +156,46 @@
                 <h4>Shop By Price</h4>
                 <ul>
                     <li>
-                        <input type="checkbox" id="price1" />
-                        <label for="price1">$100 - $200</label>
+                        <label class="price-number">$100 - $200
+                            <input type="checkbox" name="price" id="100-200" value="100-200" onclick="">
+                            <span class="checkmark"></span>
+                        </label>
                     </li>
                     <li>
-                        <input type="checkbox" id="price2" />
-                        <label for="price2">$200 - $300</label>
+                        <label class="price-number">$100 - $200
+                            <input type="checkbox" name="price" id="100-200" value="100-200" onclick="">
+                            <span class="checkmark"></span>
+                        </label>
                     </li>
                     <li>
-                        <input type="checkbox" id="price3" />
-                        <label for="price3">$300 - $400</label>
+                        <label class="price-number">$100 - $200
+                            <input type="checkbox" name="price" id="100-200" value="100-200" onclick="">
+                            <span class="checkmark"></span>
+                        </label>
                     </li>
                     <li>
-                        <input type="checkbox" id="price4" />
-                        <label for="price4">$400 - $500</label>
+                        <label class="price-number">$100 - $200
+                            <input type="checkbox" name="price" id="100-200" value="100-200" onclick="">
+                            <span class="checkmark"></span>
+                        </label>
                     </li>
                     <li>
-                        <input type="checkbox" id="price5" />
-                        <label for="price5">$500 - $600</label>
+                        <label class="price-number">$100 - $200
+                            <input type="checkbox" name="price" id="100-200" value="100-200" onclick="">
+                            <span class="checkmark"></span>
+                        </label>
                     </li>
                     <li>
-                        <input type="checkbox" id="price6" />
-                        <label for="price6">$600 - $700</label>
+                        <label class="price-number">$100 - $200
+                            <input type="checkbox" name="price" id="100-200" value="100-200" onclick="">
+                            <span class="checkmark"></span>
+                        </label>
                     </li>
-                    <li>
-                        <input type="checkbox" id="price7" />
-                        <label for="price7">$700 - $1000</label>
+                     <li>
+                        <label class="price-number">$100 - $200
+                            <input type="checkbox" name="price" id="100-200" value="100-200" onclick="">
+                            <span class="checkmark"></span>
+                        </label>
                     </li>
                 </ul>
             </div>
@@ -177,41 +203,94 @@
                 <h4>Shop By Brand</h4>
                 <ul>
                     <li>
-                        <input type="checkbox" id="autofy" />
-                        <label for="autofy">Autofy</label>
+                        <label class="brand-name">Apple
+                            <input type="checkbox" name="brand" id="apple"  value="apple" onclick="brand()">
+                            <span class="checkmark"></span>
+                        </label>
                     </li>
                     <li>
-                        <input type="checkbox" id="beat" />
-                        <label for="beat">Beat</label>
+                        <label class="brand-name">Sony
+                            <input type="checkbox" name="brand" id="sony"  value="sony" onclick="">
+                            <span class="checkmark"></span>
+                        </label>
                     </li>
                     <li>
-                        <input type="checkbox" id="nemu" />
-                        <label for="nemu">Nemu</label>
-                    </li>
-                </ul>
-            </div>
-            <div class="widget size">
-                <h4>Shop By Size</h4>
-                <ul>
-                    <li>
-                        <input type="checkbox" id="size1" />
-                        <label for="size1">2.5 mm</label>
+                        <label class="brand-name">AKG
+                            <input type="checkbox" name="brand" id="akg"  value="akg" onclick="">
+                            <span class="checkmark"></span>
+                        </label>
                     </li>
                     <li>
-                        <input type="checkbox" id="size2" />
-                        <label for="size2">3.5 mm</label>
+                        <label class="brand-name">Beats
+                            <input type="checkbox" name="brand" id="beats"  value="beats" onclick="">
+                            <span class="checkmark"></span>
+                        </label>
                     </li>
                     <li>
-                        <input type="checkbox" id="size3" />
-                        <label for="size3">12 mm</label>
+                        <label class="brand-name">Bose
+                            <input type="checkbox" name="brand" id="bose"  value="bose" onclick="">
+                            <span class="checkmark"></span>
+                        </label>
                     </li>
                     <li>
-                        <input type="checkbox" id="size4" />
-                        <label for="size4">12.5 mm</label>
+                        <label class="brand-name">JBL
+                            <input type="checkbox" name="brand" id="jbl"  value="jbl" onclick="">
+                            <span class="checkmark"></span>
+                        </label>
                     </li>
                     <li>
-                        <input type="checkbox" id="size5" />
-                        <label for="size5">13 mm</label>
+                        <label class="brand-name">Jabra
+                            <input type="checkbox" name="brand" id="jabra"  value="jabra" onclick="">
+                            <span class="checkmark"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="brand-name">Marshall
+                            <input type="checkbox" name="brand" id="marshall"  value="marshall" onclick="">
+                            <span class="checkmark"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="brand-name">Razer
+                            <input type="checkbox" name="brand" id="brazer"  value="brazer" onclick="">
+                            <span class="checkmark"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="brand-name">Logitech
+                            <input type="checkbox" name="brand" id="logitech"  value="logitech" onclick="">
+                            <span class="checkmark"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="brand-name">Master & Dynamic
+                            <input type="checkbox" name="brand" id="master-dynamic"  value="master-dynamic" onclick="">
+                            <span class="checkmark"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="brand-name">HiFiMAN
+                            <input type="checkbox" name="brand" id="hifiman"  value="hifiman" onclick="">
+                            <span class="checkmark"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="brand-name">Bowers & Wilkins
+                            <input type="checkbox" name="brand" id="bowers-wilkins"  value="bowers-wilkins" onclick="">
+                            <span class="checkmark"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="brand-name">JVC
+                            <input type="checkbox" name="brand" id="jvc"  value="jvc" onclick="">
+                            <span class="checkmark"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="brand-name">Klipsch
+                            <input type="checkbox" name="brand" id="klipsch"  value="klipsch" onclick="">
+                            <span class="checkmark"></span>
+                        </label>
                     </li>
                 </ul>
             </div>
@@ -219,17 +298,17 @@
 
         <div class="product-section">
             <div class="toolbar d-flex justify-content-end">
+                <label>SORT BY: </label>
                 <div class="dropdown">
-                    <label>SORT BY: </label>
                     <button class="dropbtn">
                         Featured
                     </button>
                     <div class="dropdown-content" >
-                        <a href="#" class="active" >Featured</a>
-                        <a href="javascript: sortLowToHigh()">Price, low to high</a>
-                         <a href="#">Price, high to low</a>
-                        <a href="#">A-Z</a>
-                        <a href="#">Z-A</a>
+                        <a href="/catalog" class="active" >Featured</a>
+                        <a href="/catalog/cost-low-to-high">Price, low to high</a>
+                        <a href="/catalog/cost-high-to-low">Price, high to low</a>
+                        <a href="/catalog/A-Z">A-Z</a>
+                        <a href="/catalog/Z-A">Z-A</a>
                         <a href="#">Date, old to new</a>
                         <a href="#">Price, new to old</a>
                     </div>

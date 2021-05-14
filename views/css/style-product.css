@@ -131,17 +131,36 @@ h4{
     color:#fc846b;
     text-decoration:none;
 }
-.widget input[type=checkbox]+label{
+input {
+    position: absolute;
+    cursor:pointer;
+    opacity:0;
+    width:0;
+    height:0;
 }
-.widget input[type=checkbox]+label:before{
-    content:'';
-    border:2px solid #e4e4e4;
-    height:16px;
-    width:16px;
-    border-radius:50%;
-    display:inline-block;
-    margin-right:10px;
+
+.widget label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
 }
+.checkmark {
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+
+}
+.widget label input:checked + .checkmark{
+    border-width:7px;
+    border-color:#fc4c4b;
+}
+
 .color ul li span{
     cursor:pointer;
     float:left;
@@ -159,9 +178,7 @@ h4{
 .color ul li a:hover{
     border:2px solid red;
 }
-input[type=checkbox]{
-    display:none;
-}
+
 .color label{
     display:block;
 }
@@ -180,9 +197,12 @@ input[type=checkbox]{
     padding:9px;
     margin-bottom:30px;
     width:100%;
-    align-items:center;
-}
 
+}
+.toolbar label{
+    margin-right:10px;
+    margin-top:8px;
+}
 .dropbtn {
     background-color:white;
     font-size: 16px;

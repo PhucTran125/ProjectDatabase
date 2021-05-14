@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/shipping.css">
+</head>
+<body>
+    <div class="information">
+        <img src="https://cdn.shopify.com/s/files/1/0437/0454/9536/t/26/assets/logo.png?v=8319783983011445918" alt="Logo" srcset="">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Cart</a></li>
+            <li class="breadcrumb-item"><a href="#">Information</a></li>
+            <li class="breadcrumb-item active"aria-curent="page" >Shipping</li>
+            <li class="breadcrumb-item"><span>Payment</span></li>
+        </ul>
+
+        <div class="content">
+            <table>
+                <colgroup>
+                    <col span="1" style="width: 20%;">
+                    <col span="1" style="width: 75%;">
+                    <col span="1" style="width: 5%;">
+                </colgroup>
+                <tr>
+                    <td class="header">Contact</td>
+                    <td class="description">vtl1852000@gmail.com</td>
+                    <td><a href="#">Change</a></td>
+                </tr>
+                <tr class="lower-row">
+                    <td class="header">Shipping to</td>
+                    <td class="description">72A Nguyen Trai, Thuong Dinh, Thanh Xuan, Ha Noi</td>
+                    <td><a href="#">Change</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="shipping-method">
+            <h5 style="margin-bottom:30px;">Shipping method</h5>
+
+            <div class="content">
+                <table>
+                    <colgroup>
+                        <col span="1" style="width: 10%;">
+                        <col span="1" style="width: 85%;">
+                        <col span="1" style="width: 5%;">
+                    </colgroup>
+                    <tr>
+                        <td>
+                            <label class="check">
+                                <input type="radio" checked="checked" name="option" value="standard">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td class="description">Standard</td>
+                        <td class="price">$20.00</td>
+                    </tr>
+                    <tr class="lower-row">
+                        <td>
+                            <label class="check">
+                                <input type="radio" name="option" value="slow">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td class="description">Slow</td>
+                        <td class="price">$15.00</td>
+                    </tr>
+
+                    <tr class="lower-row">
+                        <td>
+                            <label class="check">
+                                <input type="radio" name="option" value="fast">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td class="description">Fast</td>
+                        <td class="price">$30.00</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+
+        <div class="checking">
+            <button class="btn" type="submit">Continue to Payment</button>
+            <a class="return" href="">Return to Information</a>
+        </div>
+
+    </div>
+        
+    <div class="side">
+        <div class="product-table" style="width:100%;">
+            <table>
+                <colgroup>
+                    <col span="1" style="width: 15%;">
+                    <col span="1" style="width: 55%;">
+                    <col span="1" style="width: 10%;">
+                    <col span="1" style="width: 20%;">
+                </colgroup>
+                <tr>
+                    <td>
+                        <img src="//cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-5_87c12970-4390-44ce-b87d-bb3f3bef7833_medium.jpg?v=1596620955">
+                    </td>
+                    
+                    <td class="info" style="padding-left:10px;">
+                        <span class="product-name" style="font-weight:600;">Comfort Earphone</span>
+                        <br>
+                        <span class="product-description" style="font-size:12px" >2.5 mm / Black / Silicon</span>
+                    </td>
+                    
+                    <td class="quantity" style="text-align:center;">1</td>
+                    
+                    <td class="price">$910.00</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="discount">
+            <form class="form-info" action="" method="POST">
+                <input style="float:left; width:75%;margin:0;" type="text" name="discount-code" id="discount-code" class="form-control" placeholder="discount-code">
+                <button  class="btn" type="submit">Apply</button>
+            </form>    
+        </div>
+        
+        <div class="sub-money" style="width:100%;">
+            <table style="width:100%">
+                <tr>
+                  <td class="sub-title">Subtotal</td>
+                  <td class="price">$910.00</td>
+                </tr>
+                <tr>
+                  <td class="sub-title">Shipping</td>
+                  <td class="price">$20.00</td>
+                </tr>
+              </table> 
+        </div>
+        <div class="total">
+            <div class="sub-title"style="text-align: left; width:49%; display: inline-block;">Total</div>
+            <div class="price" style="width:50%;display:inline-block;font-size:25px;">$930.00</div>
+        </div>
+    </div>
+
+</body>
+</html>

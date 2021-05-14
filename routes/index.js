@@ -5,6 +5,10 @@ const logRouter = require('./account');
 // const apiRouter = require('./db');
 
 function route(app) {
+    app.use('/payment',(req,res) =>{
+        res.render('payment');
+    });
+    
     app.use('/account', logRouter);
 
     app.use('/api/test', apiRouter);
