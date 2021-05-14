@@ -1,0 +1,40 @@
+.side-bar{
+    width: 20%;
+    float: left;
+    background-color: #fc846b;
+    padding: 10px;
+    
+}
+h4{
+    border-bottom: 1px solid rgba(55, 55, 55, 0.15);
+    font-family:'Times New Roman', Times, serif;
+    margin-bottom:15px;
+    padding-bottom:10px;
+    font-weight: bold;
+    font-size:22.5px;
+
+}
+.main-content .side-bar ul{
+    list-style: none;
+    padding:0;
+}
+.main-content .side-bar ul li{
+    padding:6px 0;
+    width:100%
+}
+.main-content .side-bar  a ,label{
+    color:black;
+    font-size:18px;
+    line-height:1.7;
+    transition:0.4s;
+    cursor:pointer;
+    text-decoration: none;
+}
+.main-content .side-bar  ul li a:hover{
+    color:#fc846b;
+    text-decoration:none;
+}
+.main-content .side-bar label:hover{
+    color:#fc846b;
+    text-decoration:none;
+}

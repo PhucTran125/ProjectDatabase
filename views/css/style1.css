@@ -39,6 +39,9 @@
 .header-icon ul li.cart {
     margin-inline-end: 40px;
 }
+.header-icon ul li.user {
+    margin-inline-end: 40px;
+}
 .header-icon ul li a {
     color: black;
 }

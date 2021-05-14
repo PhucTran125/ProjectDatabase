@@ -1,6 +1,3 @@
-.header-content {
-   
-}
 .head-menubar {
     padding-top: 35px;
     padding-bottom: 15px;
@@ -60,7 +57,6 @@ nav {
     
 }
 
-/* trsng cart */
 .header-content-cart{
     height:113.6px;
 }
@@ -88,173 +84,53 @@ nav {
     color:white;
     text-align:center;
 }
-
-.main-content{
-    margin:50px;
+/* main-content */
+.main-content .row .size {
+    width: 32%;
 }
-.main-content .side-bar{
-    width:25%;
-    float:left;
+.main-content .row .size .card-signin form .btn {
+    background: #373737;
+    color: #fc846b;
+    border-radius: 35px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    /* font-family: Poppins; */
+    font-weight: 500;
+    text-transform: capitalize;
+    font-size: 17px;
+    padding: 12px 50px;
+    border-color: transparent;
 }
-.widget{
-    margin-bottom:40px;
+.main-content .row .size .card-signin form .btn:hover {
+    background-color: #fc846b;
+    color: #ffffff;
 }
-h4{
-    border-bottom: 1px solid rgba(55, 55, 55, 0.15);
-    font-family:'Times New Roman', Times, serif;
-    margin-bottom:15px;
-    padding-bottom:10px;
-    font-weight: bold;
-    font-size:22.5px;
-
+.main-content .row .size .card-signin form input {
+    padding: 14px;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    max-width: 100%;
+    height: 100%;
+    font-size: 17px;
 }
-.main-content .side-bar ul{
-    list-style: none;
-    padding:0;
+.main-content .row .size .card-signin form input:focus {
+    box-shadow: 1px black;
 }
-.main-content .side-bar .widget ul li{
-    padding:6px 0;
-    width:100%
+.main-content .row .size .card-signin form p {
+    text-align: center;
 }
-.main-content .side-bar .widget ul li a,.widget ul li label{
-    color:black;
-    font-size:18px;
-    line-height:1.7;
-    transition:0.4s;
-    cursor:pointer;
-}
-.main-content .side-bar .widget ul li a:hover{
-    color:#fc846b;
-    text-decoration:none;
-}
-.main-content .side-bar .widget label:hover{
-    color:#fc846b;
-    text-decoration:none;
-}
-.widget input[type=checkbox]+label{
-}
-.widget input[type=checkbox]+label:before{
-    content:'';
-    border:2px solid #e4e4e4;
-    height:16px;
-    width:16px;
-    border-radius:50%;
-    display:inline-block;
-    margin-right:10px;
-}
-.color ul li span{
-    cursor:pointer;
-    float:left;
-    width:16px;
-    height:16px;
-    border-radius:50%;
-}
-.color ul li a{
-    display:inline-block;
-    border:2px solid #e4e4e4;
-    padding:3px;
-    border-radius:50%;
-    transition:0.4s;
-}
-.color ul li a:hover{
-    border:2px solid red;
-}
-input[type=checkbox]{
-    display:none;
-}
-.color label{
-    display:block;
-}
-.color ul li{
-    display:inline-block;
-}
-
-.main-content .product-section{
-    width:75%;
-    float:left;
-    padding-left: 20px;
-}
-.main-content .product-section .toolbar{
-    background-color:rgba(0,0,0,0.05);
-    border:1px solid #e4e4e4;
-    padding:9px;
-    margin-bottom:30px;
-    width:100%;
-    align-items:center;
-}
-
-.dropbtn {
-    background-color:white;
-    font-size: 16px;
-    padding:7px 28px 7px 12px;
-    border: none;
-    text-align:left;
-    width:160px;
-    border:1px solid #e4e4e4;
-  }
-  
-.dropdown {
-    position:relative;
-    display:inline-block;
-}
-  
-.dropdown-content {
-    position:absolute;
-    display: none;
-    background-color:white;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-.dropdown-content a {
+.main-content .row .size .card-signin form p a {
     color: black;
-    padding: 7px 12px;
+    font-size: 17px;
+    font-weight: 400;
     text-decoration: none;
-    display: block;
-    transition:0.4s;
+    outline: none;
+    background: transparent;
 }
-  
-.dropdown-content a:hover {
-    background-color:#fc846b;
-    color:white;
-
+.main-content .row .size .card-signin form p #customer_register_link {
+    text-decoration: underline;
 }
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-  
-
-/*.toolbar .btn:after{
-    font-size:10px;
-    content:"\f078";
-    right:9px;
-    top:50%;
-    transform:translateY(-50%);
-    font-family:"Font Awsome 5 Free";
-    font-weight:bold;
-    position:absolute;
-}*/
-.main-content .product-section .product-collection{
-    width:100%;
-    overflow:hidden;
-}
-
-.product-collection .item{
-    padding:0 15px 20px;
-    text-align:center;
-}
-.product-collection .item .item-title a{
-    font-size: 16px;
-    color:#fc846b;
-    transition: 0.4s;
-}
-.product-collection .item .item-title a:hover{
-    text-decoration: none;
-    color:black;
-}
-
-/* Footer */
+/* footer */
 .footer {
     background-image: url(//cdn.shopify.com/s/files/1/0437/0454/9536/files/footer-bg_1920X.jpg?v=1596001099);
     background-size: cover;

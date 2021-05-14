@@ -7,10 +7,10 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/style-cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style-login.css">
 </head>
 <body>
-    <!-- HEADER -->
     <div class="header-content-cart">
         <div class="head-menubar-cart d-flex align-items-center">
             <div class="container-bg">
@@ -43,7 +43,7 @@
                     <div class="col-2">
                         <div class="header-icon">
                             <ul class="list-inline d-flex justify-content-end">
-                                <li class="list-inline-item cart"><a href="cart"><i class="fas fa-shopping-cart fa-lg"></i></a></li>
+                                <li class="list-inline-item cart"><i class="fas fa-shopping-cart fa-lg"></i></li>
                                 <li class="list-inline-item user">
                                     <a href="articles" title="Resister"><i class="far fa-user fa-lg"></i></a>
                                 </li>
@@ -54,113 +54,46 @@
             </div>
         </div>
     </div>
+
     <div class="headphone-image">
         <div class="shopping-cart">
-           <h1 style="font-family: 'Times New Roman', Times, serif;">YOUR SHOPPING CART</h1>
+           <h1 style="font-family: 'Times New Roman', Times, serif;">ACCOUNT</h1>
            <p>
                <span>
                 <a style="color:white" href="/" title="Back to the front page">Home</a>
                </span>
-               / Your shopping cart
+               / Account
            </p>
         </div>
     </div>
-
-    <div class="product-list">
-        <div class="cart-table">
-            <table>
-                <colgroup>
-                    <col span="1" stlye="width: 10%;">
-                    <col span="1" style="width: 40%;">
-                    <col span="1" style="width: 20%;">
-                    <col span="1" style="width: 20%;">
-                    <col span="1" stlye="width: 10%;">
-                 </colgroup>
-                </colgroup>
-                <tr>
-                    <th>Select</th>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Subtotal</th>
-                    <th>Remove</th>
-                </tr>
-
-                <script>
-                    var count;
-                    var value;
-                    var totalCost = <%= totalCost%>;
-                    function plus(id, price){
-                        count = ++document.getElementById(id).value;
-                        value = "$" + count*price;
-                        document.getElementById(id + 100).innerHTML = value;
-                        totalCost += price;
-                        document.getElementById("totalCost").innerHTML = "$" + totalCost;
-                    }
-                    function minus(id, price){
-                        if (document.getElementById(id).value > 1) {
-                            count = --document.getElementById(id).value;
-                            value = "$" + count*price;
-                            document.getElementById(id + 100).innerHTML = value;
-                            totalCost = totalCost - price;
-                            document.getElementById("totalCost").innerHTML = "$" + totalCost;
-                        }   
-                    }
-                    function del(id) {
-                        var remove = document.getElementById(id + 200);
-                        remove.classList.add("d-none");
-                    }
-                </script>
-                <% for (var i = 0; i < rows.length; i++){ %>
-                    <tr align="center" id="<%= i + 200%>">
-                        <td><input type="checkbox" checked="checked"></td>
-                        <td>
-                            <div class="cart-info">
-                                <a href="#" class="cart-image">
-                                    <img src="<%= rows[i].thumbnail_photo%>">
-                                </a>
-                                <div class="cart-title">
-                                    <a href="" class="product-name h6"><%= rows[i].ProductName %></a>
-                                    <br>
-                                    <small><%= rows[i].Color %> / <%= rows[i].Material %></small>
-                                    <br>
-                                    <p>Price: $<%= rows[i].Price %></p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <!-- cái này đúng ko sai đâu đừng xóa -->
-                            <input type="button" value="-" class="button" onclick="minus(<%= i%>, <%= rows[i].Price%>)">
-                            <input type="text" value="1" class="quantity" id="<%= i%>">
-                            <input type="button" value="+" class="button" onclick="plus(<%= i%>, <%= rows[i].Price%>)">
-                        </td>
-                        <td><span id="<%= i + 100%>">$<%= rows[i].Price%></span></td>
-                        <td><a onclick="del(<%= i %>)"><i class="fa fa-trash"></i></a></td>
-                    </tr> 
-                <% } %>
-            </table>
-            <button id="get-button" class="class">Click</button>
-            <div class="btn-action">
-                <a class="btn" href="/collections/all">Continue shopping</a>
+    <div class="container main-content">
+        <div class="row d-flex justify-content-center mt-4 mb-4">
+            <div class="size">
+                <div class="card-signin my-5">
+                    <form class="form-signin" action="" method="POST">
+                        <% if(message) {%>
+                            <h4 class="alert alert-danger m-4"><%= message %></h4>
+                        <%}%>
+                        <input type="text" name="firstName" id="firstname" class="form-control" placeholder="First name"required autofocus>
+                        <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name" required>
+                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone" required>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>     
+                        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                        <input type="password" name="passwordConfirm" id="passwordConfirm" class="form-control" placeholder="Confirm Password" required>
+                        <input type="text" name="city" id="city" class="form-control" placeholder="City" required>
+                        <input type="text" name="country" id="country" class="form-control" placeholder="Country" required>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+                        <p>
+                            <a href="/account/login" id="customer_login_link">Already have an account</a>
+                        </p>
+                        <p>
+                            <a href="/">Return to Store</a>
+                        </p>
+                    </form>
+                </div>
             </div>
-        </div>
-        <% var cost = 0;
-        for (var i = 0; i < rows.length; i++) {
-            cost += rows[i].Price;
-        }
-        %>  
-        <div class="order-summary">
-            <p class="title">Order summary</p>
-            <p class="price">
-                <span class="sub-title h6">Subtotal:</span>
-                <span class="sub-total-money h6" id="totalCost">$<%= cost %></span>
-            </p>
-            <div class="btn-action">
-                <a class="btn" href="">Proceed to checkout</a>
-            </div>
-            
         </div>
     </div>
-    
     <!-- FOOTER -->
     <div class="footer">
         <div class="footer-content">
@@ -219,6 +152,6 @@
         </div>
     </div>
     <!-- FOOTER -->
-    <script src="function.js"></script>
+
 </body>
 </html>
