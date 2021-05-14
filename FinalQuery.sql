@@ -59,6 +59,7 @@ create table Product_Cart(
 	CartID int not null,
     ProductID int not null,
     NumProduct int not null,
+    primary key(CartID, ProductID),
     constraint CartEnroll_fk  foreign key (CartID) references Cart(CartID),
     constraint ProductEnroll_fk foreign key (ProductID) references Products(ProductID)
 );

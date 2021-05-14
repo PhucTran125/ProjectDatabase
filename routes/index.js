@@ -9,10 +9,6 @@ function route(app) {
     app.use('/admin-page', adminRouter)
 
     app.use('/my-cart', cartRouter);
-
-    app.use('/payment',(req,res) =>{
-        res.render('payment');
-    });
     
     app.use('/account', logRouter);
 
