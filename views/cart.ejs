@@ -27,7 +27,7 @@
                                             <a class="nav-link" href="/">Home</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link product" href="#">Catalog</a>
+                                            <a class="nav-link product" href="/catalog">Catalog</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="#">Blog</a>
@@ -65,8 +65,20 @@
            </p>
         </div>
     </div>
-
-    <div class="product-list">
+    <!-- MAIN -->
+    <div class="none-product d-none" id="none-product" style="margin:50px; overflow: hidden">
+        <div class="container">
+            <div class="main" style="padding: 50px 0; text-align: center;">
+                <img src="//cdn.shopify.com/s/files/1/0437/0454/9536/t/26/assets/empty-cart.png?v=2503369804438330024" alt="">
+                <h5>No Items in cart</h5>
+                <p>Add items you want to shop</p>
+                <p>
+                    <a href="/catalog" class="btn">Start Shopping</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="product-list" id="have-product">
         <div class="cart-table">
             <table>
                 <colgroup>
@@ -90,29 +102,92 @@
                     var value;
                     var totalCost = <%= totalCost%>;
                     function plus(id, price){
-                        count = ++document.getElementById(id).value;
+                        count = ++document.getElementById(id).textContent;
                         value = "$" + count*price;
                         document.getElementById(id + 100).innerHTML = value;
                         totalCost += price;
-                        document.getElementById("totalCost").innerHTML = "$" + totalCost;
+                        if (checked(id) == false) {
+                            // id + 100 is subtoTal
+                            // id + 200 is remove
+                            // id + 300 is checkbox
+                            var nowTotalCost = totalCost - parseInt(document.getElementById(id + 100).textContent.slice(1));
+                            document.getElementById("totalCost").innerHTML = "$" + nowTotalCost;
+                        } else {
+                            document.getElementById("totalCost").innerHTML = "$" + totalCost;
+                        }
+                        // update in database
+                        const idProduct = document.getElementsByClassName("quantity")[id].getAttribute("data-id");
+                        const countProduct = document.getElementsByClassName("quantity")[id].textContent;
+                        axios.patch('/my-cart/update', {
+                                id: idProduct,
+                                quantity: countProduct,
+                        })
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                        alert("Update successfully!");
                     }
                     function minus(id, price){
-                        if (document.getElementById(id).value > 1) {
-                            count = --document.getElementById(id).value;
+                        if (document.getElementById(id).textContent > 1) {
+                            count = --document.getElementById(id).textContent;
                             value = "$" + count*price;
                             document.getElementById(id + 100).innerHTML = value;
                             totalCost = totalCost - price;
-                            document.getElementById("totalCost").innerHTML = "$" + totalCost;
+                            if (checked(id) == false) {
+                                // id + 100 is subtoTal
+                                // id + 200 is remove
+                                // id + 300 is checkbox
+                                var nowTotalCost = totalCost - parseInt(document.getElementById(id + 100).textContent.slice(1));
+                                document.getElementById("totalCost").innerHTML = "$" + nowTotalCost;
+                            } else {
+                                document.getElementById("totalCost").innerHTML = "$" + totalCost;
+                            }
+                            // update in database
+                            const idProduct = document.getElementsByClassName("quantity")[id].getAttribute("data-id");
+                            const countProduct = document.getElementsByClassName("quantity")[id].textContent;
+                            axios.patch('/my-cart/update', {
+                                id: idProduct,
+                                quantity: countProduct,
+                            })
+                            .then(function (response) {
+                                console.log(response);
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                            alert("Update successfully!");
                         }   
                     }
                     function del(id) {
-                        var remove = document.getElementById(id + 200);
-                        remove.classList.add("d-none");
+                        document.getElementById(id + 200).classList.add("d-none");
+                        const idProduct = document.getElementsByClassName("quantity")[id].getAttribute("data-id");
+                        // const countProduct = document.getElementsByClassName("quantity")[id].textContent;
+                        axios.patch('/my-cart/delete', {
+                                id: idProduct,
+                                quantity: 0,
+                        })
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                        alert("Delete successfully!");
+                    }
+                    function checked(id) {
+                        var d = document.getElementById(id + 300) ;
+                        if (d.checked) {
+                            return true;
+                        }
+                        return false;
                     }
                 </script>
                 <% for (var i = 0; i < rows.length; i++){ %>
                     <tr align="center" id="<%= i + 200%>">
-                        <td><input type="checkbox" checked="checked"></td>
+                        <td><input type="checkbox" id="<%= i + 300%>" checked></td>
                         <td>
                             <div class="cart-info">
                                 <a href="#" class="cart-image">
@@ -130,29 +205,25 @@
                         <td>
                             <!-- cái này đúng ko sai đâu đừng xóa -->
                             <input type="button" value="-" class="button" onclick="minus(<%= i%>, <%= rows[i].Price%>)">
-                            <input type="text" value="1" class="quantity" id="<%= i%>">
+                            <!-- <input type="text" value="1" class="quantity" data-id="<%= rows[i].ProductID%>" id="<%= i%>"> -->
+                            <div class="quantity" data-id="<%= rows[i].ProductID%>" id="<%= i%>"><%= rows[i].NumProduct %> </div>
                             <input type="button" value="+" class="button" onclick="plus(<%= i%>, <%= rows[i].Price%>)">
                         </td>
-                        <td><span id="<%= i + 100%>">$<%= rows[i].Price%></span></td>
+                        <td><span id="<%= i + 100%>">$<%= subCost[i]%></span></td>
                         <td><a onclick="del(<%= i %>)"><i class="fa fa-trash"></i></a></td>
                     </tr> 
                 <% } %>
             </table>
-            <button id="get-button" class="class">Click</button>
             <div class="btn-action">
-                <a class="btn" href="/collections/all">Continue shopping</a>
+                <a class="btn" href="/catalog">Continue shopping</a>
             </div>
         </div>
-        <% var cost = 0;
-        for (var i = 0; i < rows.length; i++) {
-            cost += rows[i].Price;
-        }
-        %>  
+        
         <div class="order-summary">
             <p class="title">Order summary</p>
             <p class="price">
                 <span class="sub-title h6">Subtotal:</span>
-                <span class="sub-total-money h6" id="totalCost">$<%= cost %></span>
+                <span class="sub-total-money h6" id="totalCost">$<%= totalCost %></span>
             </p>
             <div class="btn-action">
                 <a class="btn" href="">Proceed to checkout</a>
@@ -160,7 +231,14 @@
             
         </div>
     </div>
-    
+    <!-- check if cart = 0 -->
+    <script>
+        var numOfProduct = <%= rows.length %>;
+        if (numOfProduct == 0) {
+            document.querySelector("#none-product").classList.remove("d-none");
+            document.querySelector("#have-product").classList.add("d-none");
+        }
+    </script>
     <!-- FOOTER -->
     <div class="footer">
         <div class="footer-content">
@@ -219,6 +297,41 @@
         </div>
     </div>
     <!-- FOOTER -->
-    <script src="function.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- <script>
+        $(function () {
+            // const classname = document.querySelectorAll('.quantity');
+            //     Array.from(classname).forEach(function (element) {
+            //         element.addEventListener('click', function() {
+            //             alert('hello')
+            //             console.log(document.querySelector('.quantity').getAttribute("value"));
+            //         });
+            //     });
+            // });
+            $('.button').on('click', function(){
+                const id = document.getElementsByClassName("quantity")[0].getAttribute("data-id");
+                console.log(id);
+                const count = document.getElementsByClassName("quantity")[0].textContent;
+                console.log(count)
+                axios.patch('/my-cart/update/{{id}}', {
+                    quantity: this.value
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+                // axios({
+                //     method: 'get',
+                //     url: '/my-cart',
+                //     data: {
+                //         user: 'test',
+                //         lastName: 'test1'
+                // }
+});
+            });
+           
+    </script> -->
 </body>
 </html>

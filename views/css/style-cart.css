@@ -91,6 +91,19 @@ nav {
     text-align:center;
 }
 /* header */
+.none-product .container .main h5 {
+    color: #fc846b;
+    margin: 40px 0 15px;
+    font-family: Playfair Display;
+    font-weight: 700;
+    text-transform: capitalize;
+    font-size: 20px;
+}
+.none-product .container .main p {
+    font-size: 18px;
+    font-weight: inherit;
+    margin-top: 15px;
+}
 .product-list{
     margin:50px;
     overflow:hidden;

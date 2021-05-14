@@ -23,7 +23,11 @@ class AccountController {
                         return res.status(400).render('login', {message: 'Password incorrect'})
                     }
                     else {
-                        req.session.userID = results[0].Email;
+                        req.session.userID = {
+                            id: results[0].UserID, 
+                            email: results[0].Email, 
+                            cartid: results[0].CartID
+                        };
                         return res.redirect('/');
                     }
                 });
