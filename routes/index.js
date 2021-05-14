@@ -10,6 +10,10 @@ function route(app) {
 
     app.use('/my-cart', cartRouter);
 
+    app.use('/payment',(req,res) =>{
+        res.render('payment');
+    });
+    
     app.use('/account', logRouter);
 
     app.use('/api/test', apiRouter);

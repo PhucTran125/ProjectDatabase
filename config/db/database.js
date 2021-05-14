@@ -3,7 +3,7 @@ const mysql = require('mysql2');
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'lambacky',
     database: 'dbproject'
 });
 
@@ -11,8 +11,12 @@ function connect() {
    
     connection.connect(function(err) {
         if(err) {
+<<<<<<< HEAD
             console.log("Error");
             // console.log(err);
+=======
+            console.log(err);
+>>>>>>> lam
         } else console.log('Connected!');
     });
 }
