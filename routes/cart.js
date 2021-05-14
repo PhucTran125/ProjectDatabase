@@ -1,8 +1,9 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
+const cartController = require('../app/controllers/CartController');
 
-router.get('/', (req, res) => {
-    res.render('cart')
-})
+router.patch('/delete', cartController.delete)
+router.patch('/update', cartController.update);
+router.get('/', cartController.showCart);
 
-module.exports = router
+module.exports = router;

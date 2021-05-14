@@ -2,18 +2,39 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const encoder = bodyParser.urlencoded();
-const accountController = require('../app/controllers/AccountController')
+const accountController = require('../app/controllers/AccountController');
+const authenticateUser = require('../config/auth/auth');
+const jwt = require('jsonwebtoken');
+const User = require('../app/models/User');
 
-router.get('/login', function(req, res){
+// router.get('/test', function(req, res){
+//     console.log(req.session);
+// })
+
+router.get('/login', accountController.redirectHome, function(req, res){
     res.render('login', {message : ''});
 });
-router.post('/login', encoder, accountController.login);
+router.post('/login', accountController.redirectHome, accountController.login);
 
 router.get('/register', function(req, res){
 	res.render('register', {message : ''});
 });
-router.post('/register', encoder, accountController.register);
+router.post('/register', accountController.register);
 
+router.get('/logout', accountController.logout);
+// test
+// router.get('/profile', (req, res) => {
+//     const token = req.cookies.access_token;
+//     // res.json(token);
+//     const decode = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+//     const { email } = decode;
+//     User.findByEmail(email, function (err, rows) {
+//         if(err) res.json(err);
+//             else {
+//                 res.json(rows);
+//             }
+//     })
+// });
 module.exports = router;
 
 

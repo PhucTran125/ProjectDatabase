@@ -1,7 +1,9 @@
+
 class SiteController {
     //[GET] /
     home(req, res) {
-        res.render('home');
+        const sess = req.session.userID;
+        res.render('home', {sess});
     }
 
     //[GET] /blog

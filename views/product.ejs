@@ -43,9 +43,11 @@
                     <div class="col-2">
                         <div class="header-icon">
                             <ul class="list-inline d-flex justify-content-end">
-                                <li class="list-inline-item cart"><i class="fas fa-shopping-cart fa-lg"></i></li>
+                                <li class="list-inline-item cart">
+                                    <a href="/my-cart"><i class="fas fa-shopping-cart fa-lg"></i></a>
+                                </li>
                                 <li class="list-inline-item user">
-                                    <a href="articles" title="Resister"><i class="far fa-user fa-lg"></i></a>
+                                    <a href="/account/login" title="Resister"><i class="far fa-user fa-lg"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -239,7 +241,7 @@
                 <% for(var i = 0; i < rows.length; i++){ %>
                     <div class="col-3 item">
                        <div class="item-image" style="margin-bottom:20px;">
-                           <a href="#">
+                           <a href="/catalog/product/<%= rows[i].slug %>">
                                <img src="<%= rows[i].thumbnail_photo%>" style="width: 100%;; visibility: visible;">
                            </a>
                        </div>
