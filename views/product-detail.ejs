@@ -66,6 +66,8 @@
         </div>
     </div>
     <!-- HEADER -->
+
+    <!--MAIN CONTENT-->
     <div class="main-content">
         <div class="side-bar">
             <div class="widget category">
@@ -84,14 +86,45 @@
                         <a href="collections/sport-earbuds">Sport Earbuds</a>
                     </li>
                 </ul>
+               
             </div>
-            <!-- <div class="hot-deal">
+            <div class="hot-deal">
                 <h4>Hot deal</h4>
-                <img src="https://cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-42_40206bfd-45c1-4077-acc8-3d9bfc2d51a5_350X.jpg?v=1596620997" alt="">
+                <img style="height: 250px; width: 250px;" src="https://cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-42_40206bfd-45c1-4077-acc8-3d9bfc2d51a5_350X.jpg?v=1596620997" alt="">
                 <br>
                 <br>
-                <a style="text-align: center;" href="">V50 EARPHONE</a>
-            </div> -->
+                <a  href="">V50 EARPHONE</a>
+                <br>
+                <br>
+                <br>
+            </div> 
+            <div class="best-seller">
+                <h4>Best Seller</h4>
+        
+            <table>
+                <tr>
+                  <td> <a href="">V45 Earphone</a></td>
+                  <td> <img src="https://cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-27_301aa288-d998-445a-8c2f-7c9a35c52bb8_small.jpg?v=1596621004" alt=""> </td>
+                </tr>
+                
+                <tr>
+                
+                    <td><a href="">V50 Earphone</a></td>
+                    <td><img src="https://cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-42_40206bfd-45c1-4077-acc8-3d9bfc2d51a5_small.jpg?v=1596620997" alt=""></td>
+                </tr>
+                
+                <tr>
+                   <td><a href="">Trendy Earbub</a></td>
+                   <td><img src="https://cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-38_23f820d8-ef3a-4223-9734-3e6f29817b89_small.jpg?v=1596620991" alt=""></td>
+                </tr>
+                
+                <tr>
+                   <td> <a href="">V42 Earphone</a></td>
+                    <td><img src="https://cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-3_ecb7b899-fa05-422d-9a3f-75098acf2299_small.jpg?v=1596620951" alt=""></td>
+                </tr>
+                
+            </table>
+            </div>
         </div>
         <div class="product-info">
             <div class="detail">
@@ -99,91 +132,134 @@
                     <img src="https://cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-42_40206bfd-45c1-4077-acc8-3d9bfc2d51a5_350X.jpg?v=1596620997" alt="">
                 </div>
                 <div class="product-detail">
-                    <h2><%= rows[0].ProductName %></h2>
+                    <h4><%= rows[0].ProductName %></h4>
+                    <table>
+                        <tr>
+                            <td>Price</td>
+                            <td style="color: #fc846b;" >$9.500</td>
+                        </tr>
+                    
+                        <tr>
+                            <td>Color</td>
+                            <td style="color: #fc846b;">
+                            <div class="color-options">
+                               
+                               <div class="color-item">
+                                    <label  for="1st-color"><%= rows[0].Color %></label>
+                                    <input name="color"  type="radio" id="1st-color">
+                                </div>
+                                <div class="color-item">
+                                    <label for="2nd-color"><%= rows[0].Color %></label>
+                                    <input name="color"  type="radio" id="2nd-color">
+                                </div>
+                                <div class="color-item">
+                                    <label for="3rd-color"><%= rows[0].Color %></label>
+                                    <input name="color"  type="radio" id="3rd-color">
+                                </div>
+                            </div>
+                            
+                            </td>
+                        </tr>
+                       
+                    
+                        <tr>
+                            <td>Material</td>
+                            <td style="color: #fc846b;">
+                                <div class="color-options">
+                               
+                                    <div class="color-item">
+                                         <label  for="1st-ma"><%= rows[0].Material %></label>
+                                         <input name="ma"  type="radio" id="1st-ma">
+                                     </div>
+                                     <div class="color-item">
+                                         <label for="2nd-ma"><%= rows[0].Material %></label>
+                                         <input name="ma"  type="radio" id="2nd-ma">
+                                     </div>
+                                     <div class="color-item">
+                                         <label for="3rd-ma"><%= rows[0].Material %></label>
+                                         <input name="ma"  type="radio" id="3rd-ma">
+                                     </div>
+                                 </div>
+                            </td>
+                        </tr>
+                       
+                        <tr>
+                            <td>Brand</td>
+                            <td style="color: #fc846b;"><%= rows[0].Brand_id %></td>
+                        </tr>
+                       
+                        <tr>
+                            <td>Product Type</td>
+                            <td style="color: #fc846b;">type</td>
+                        </tr>
+                       
+                        <tr>
+                            <td>Avaiability</td>
+                            <td style="color: #fc846b;"><%= rows[0].ProductState %></td>
+                        </tr>
+
+                    </table>
+                    <br>
+                    <button>Add to cart</button>
+                    
+                    <button>Buy it now</button>
+                    </div>
+
+                </div>
+                
+                <div class="description">
+                
+                    <h4>PRODUCT DESCRIPTION</h4><br>
+        <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos.Donec pretium egestas sapien et mollis.</p>
+        <h4>Sample Unordered List</h4><br>
+        <ul class="unorder-list">
+            <li>Comodous in tempor ullamcorper miaculis</li>
+            <li>Pellentesque vitae neque mollis urna mattis laoreet</li>
+            <li>Divamus sit amet purus justo</li>
+            <li>Proin molestie egestas orci ac suscipit risus posuere loremous</li>
+        </ul>
+        <h4>Sample Ordered List</h4><br>
+        <ol class="order-list">
+            <li>Comodous in tempor ullamcorper miaculis.</li>
+            <li>Pellentesque vitae neque mollis urna mattis laoreet</li>
+            <li>Divamus sit amet purus justo</li>
+            <li>Proin molestie egestas orci ac suscipit risus posuere loremous</li>
+        </ol>
+        <h4>Sample Paragraph Text</h4>
+        <p>Praesent vestibulum congue tellus at fringilla. Curabitur vitae semper sem, eu convallis est. Cras felis nunc commodo eu convallis vitae interdum non nisl. Maecenas ac est sit amet augue pharetra convallis nec danos dui. Cras suscipit quam et turpis eleifend vitae malesuada magna congue. Damus id ullamcorper neque. Sed vitae mi a mi pretium aliquet ac sed elit. Pellentesque nulla eros accumsan quis justo at tincidunt lobortis denimes loremous. Suspendisse vestibulum lectus in lectus volutpat, ut dapibus purus pulvinar. Vestibulum sit amet auctor ipsum.</p>
+         
+                </div>
+                <h4>Relate Product</h4>
+                <div class="relate">
+                    
+                    <div class="column">
+                        <img style="width: 200px; height: 200px;" src="https://cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-42_40206bfd-45c1-4077-acc8-3d9bfc2d51a5.jpg?v=1596620997" alt="">
+                        <a style="text-align: center;" href="">V50 Earphone</a>
+                        <p>$900</p>
+                    </div>
+                    <div class="column">
+                        <img style="width: 200px; height: 200px;" src="https://cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-38_23f820d8-ef3a-4223-9734-3e6f29817b89.jpg?v=1596620991" alt="">
+                        <a style="text-align: center;" href="">Trendy Earbub</a>
+                        <p>$900</p>
+                    </div>
+                    <div class="column">
+                        <img style="width: 200px; height: 200px;" src="https://cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-3_ecb7b899-fa05-422d-9a3f-75098acf2299.jpg?v=1596620951" alt="">
+                        <a style="text-align: center;" href="">V42 Earphone</a>
+                        <p>$1.100</p>
+                    </div>
+                    <div class="column">
+                        <img style="width: 200px; height: 200px;" src="https://cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-42_40206bfd-45c1-4077-acc8-3d9bfc2d51a5.jpg?v=1596620997" alt="">
+                        <a style="text-align: center;" href="">V56 Earphone</a>
+                        <p>$900</p>
+
                 </div>
             </div>
+        </div>
         </div>   
     </div>
     
     
-    <!-- <div class="row2">
-    <div class="column2">
-        <div class="best-seller" >
-            <h3>Best Seller</h3>
-        
-            <table>
-                <tr>
-                  <td> <a href="">V45 Earphone</a></td>
-                  <td> <img src="https://cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-27_301aa288-d998-445a-8c2f-7c9a35c52bb8_small.jpg?v=1596621004" alt=""> </td>
-                </tr>
-                    <br>
-                <tr>
-                
-                    <td><a href="">V50 Earphone</a></td>
-                    <td><img src="https://cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-42_40206bfd-45c1-4077-acc8-3d9bfc2d51a5_small.jpg?v=1596620997" alt=""></td>
-                </tr>
-                    <br>
-                <tr>
-                   <td><a href="">Trendy Earbub</a></td>
-                   <td><img src="https://cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-38_23f820d8-ef3a-4223-9734-3e6f29817b89_small.jpg?v=1596620991" alt=""></td>
-                </tr>
-                    <br>
-                <tr>
-                   <td> <a href="">V42 Earphone</a></td>
-                    <td><img src="https://cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-3_ecb7b899-fa05-422d-9a3f-75098acf2299_small.jpg?v=1596620951" alt=""></td>
-                </tr>
-                    <br>
-            </table>
-
-        </div>
-    </div>
-    <div class="column2">
-        <div class="description">
-        <h3>Product Description</h3><br>
-        <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos.Donec pretium egestas sapien et mollis.</p>
-        <h4>Sample Unordered List</h4><br>
-        <ul class="unorder-list"><br>
-            <li>Comodous in tempor ullamcorper miaculis</li><br>
-            <li>Pellentesque vitae neque mollis urna mattis laoreet</li><br>
-            <li>Divamus sit amet purus justo</li><br>
-            <li>Proin molestie egestas orci ac suscipit risus posuere loremous</li><br>
-        </ul><br>
-        <h4>Sample Ordered List</h4><br>
-        <ol class="order-list">
-            <li>Comodous in tempor ullamcorper miaculis.</li><br>
-            <li>Pellentesque vitae neque mollis urna mattis laoreet</li><br>
-            <li>Divamus sit amet purus justo</li><br>
-            <li>Proin molestie egestas orci ac suscipit risus posuere loremous</li><br>
-        </ol><br>
-        <h4>Sample Paragraph Text</h4><br>
-        <p>Praesent vestibulum congue tellus at fringilla. Curabitur vitae semper sem, eu convallis est. Cras felis nunc commodo eu convallis vitae interdum non nisl. Maecenas ac est sit amet augue pharetra convallis nec danos dui. Cras suscipit quam et turpis eleifend vitae malesuada magna congue. Damus id ullamcorper neque. Sed vitae mi a mi pretium aliquet ac sed elit. Pellentesque nulla eros accumsan quis justo at tincidunt lobortis denimes loremous. Suspendisse vestibulum lectus in lectus volutpat, ut dapibus purus pulvinar. Vestibulum sit amet auctor ipsum.</p>
-         <br>
-
-    </div>
-    </div>
-    </div>
-    <div class="row3">
-        <div class="column3">
-            <img style="width: 300px; height: 300px;" src="https://cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-42_40206bfd-45c1-4077-acc8-3d9bfc2d51a5.jpg?v=1596620997" alt="">
-            <a style="text-align: center;" href="">V50 Earphone</a>
-            <p>$900</p>
-        </div>
-        <div class="column3">
-            <img style="width: 300px; height: 300px;" src="https://cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-38_23f820d8-ef3a-4223-9734-3e6f29817b89.jpg?v=1596620991" alt="">
-            <a style="text-align: center;" href="">Trendy Earbub</a>
-            <p>$900</p>
-        </div>
-        <div class="column3">
-            <img style="width: 300px; height: 300px;" src="https://cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-3_ecb7b899-fa05-422d-9a3f-75098acf2299.jpg?v=1596620951" alt="">
-            <a style="text-align: center;" href="">V42 Earphone</a>
-            <p>$1.100</p>
-        </div>
-        <div class="column3">
-            <img style="width: 300px; height: 300px;" src="https://cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-42_40206bfd-45c1-4077-acc8-3d9bfc2d51a5.jpg?v=1596620997" alt="">
-            <a style="text-align: center;" href="">V56 Earphone</a>
-            <p>$900</p>
-        </div>
-    </div> -->
+    
     <!-- FOOTER -->
     <div class="footer">
         <div class="footer-content">

@@ -3,8 +3,10 @@ const siteRouter = require('./site');
 const apiRouter = require('./db');
 const logRouter = require('./account');
 const cartRouter = require('./cart');
+const adminRouter = require('./admin-page');
 
 function route(app) {
+    app.use('/admin-page', adminRouter)
 
     app.use('/my-cart', cartRouter);
 

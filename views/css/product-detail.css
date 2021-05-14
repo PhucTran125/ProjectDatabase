@@ -228,37 +228,72 @@ h4{
   }
   .column a{
       text-decoration: none;
+      color: black;
   }
-  .row2
-  {
-      display: flex;
-      flex-direction: row;
-      align-items: stretch;
+  
 
-  }
-  .column2{
-      flex: 30%;
-      max-width: 50%;
-  }
-  .row3{
+.main-content .side-bar .hot-deal a{
+    color:black;
+    font-size:18px;
+    line-height:1.7;
+    transition:0.4s;
+    cursor:pointer;
+    text-align: center;
+}
+.main-content .side-bar .hot-deal a:hover{
+    color:#fc846b;
+    text-decoration:none;
+}
+
+.main-content .side-bar .best-seller table tr td a{
+    color:black;
+    font-size:18px;
+    line-height:1.7;
+    transition:0.4s;
+    cursor:pointer;
+    text-align: center;
+}
+.main-content .side-bar .best-seller table tr td a:hover{
+    color:#fc846b;
+    text-decoration:none;
+}
+.main-content .side-bar .best-seller table tr td{
+    padding: 10px;
+    margin: 10px;
+}
+.main-content .product-info .detail .product-detail  td{
+    padding: 5px;
+    margin: 5px;
+}
+
+.main-content .product-info .detail .product-detail h4, table{
+    padding: 10px;
+    margin: 10px;
+}
+
+.main-content .product-info .detail .product-detail button{
+    background-color: #373737;
+    color: #FC846B;
+    border-radius: 30px;
+    border: none;
+    height: 40px;
+    width: 400px;
+    margin: 10px;
+}
+.relate{
     display: flex;
     flex-direction: row;
     align-items: stretch;
-  }
-  .column3{
-      flex:25%;
+}
+.column{
+    flex:25%;
       max-width: 24%;
-  }
-  .column3 a{
-      text-decoration: none;
-      align-self: center;
-  }
-  .column3 p{
       text-align: center;
-  }
-
-
-
+      
+}
+.hot-deal{
+    text-align: center;
+}
   /* Footer */
 .footer {
     background-image: url(//cdn.shopify.com/s/files/1/0437/0454/9536/files/footer-bg_1920X.jpg?v=1596001099);
@@ -354,3 +389,20 @@ input.mail:focus {
     padding: 20px 0;
     margin-top: 70px;
 }
+
+.color-options {
+    display: flex;
+    
+}
+.color-item {
+    margin-left: 0.2rem;
+    padding: .2rem .24rem;
+    border: 1px solid #fc846b;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.color-item:hover {
+    color: white;
+    background: #fc846b;
+}
+.
