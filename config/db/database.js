@@ -11,12 +11,7 @@ function connect() {
    
     connection.connect(function(err) {
         if(err) {
-<<<<<<< HEAD
-            console.log("Error");
-            // console.log(err);
-=======
             console.log(err);
->>>>>>> lam
         } else console.log('Connected!');
     });
 }
