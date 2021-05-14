@@ -69,6 +69,7 @@ create table User_table(
 	constraint Cart_fk foreign key (CartID) references Cart(CartID)
 );
 
+ALTER TABLE user_table AUTO_INCREMENT=1;
 alter table user_table drop column VerificationCode;
 
 insert into WishList(WishListID) value ('1');
@@ -80,3 +81,5 @@ insert into Products(UszProductID, ProductName, ProductSortDesc, ProductDesc, Pr
 ('1', 'Sony-WH-CH510', '30MM DYNAMIC DRIVERS FOR SUPREME SOUND', '30MM DYNAMIC DRIVERS FOR SUPREME SOUND', '2990', 'Black', 'Synthetic resins, leather', '20', 'In stock', 'https://i.imgur.com/uOtwR2n.jpg', 'sony-ch-510-headphone', '2', '1'),
 ('2', 'Sony-WH-1000XM4', 'QUIETER. BETTER. FASTER. STRONGER.', 'How do you ensure betterment of the best? By continuing to do what you have been doing best whilst adding feature and ensuring there are no shortcoming, meet the worthy follow-up Sony-WH-1000XM4.', '24990', 'Black', 'Synthetic resins, leather', '18', 'In stock', 'https://i.imgur.com/A9v7r7B.jpg', 'sony-wh-1000mx4-headphone', '2', '3'),
 ('3', 'Beats by Dre - Powerbeats Pro', 'POWERFUL SOUND FOR POWER WORKOUTS', 'For an athlete, music is an important motivator. The Powerbeats Pro delivers a powerful and balanced sound. With its dynamic range and noise isolation, you can now listen and experience the best of your music.', '20490', 'Black', 'Synthetic resins', '28', 'In stock', 'https://i.imgur.com/oGRVGU2.jpg', 'beats-by-dre-powerbeats-pro', '4', '5');
+
+update Product_Cart set NumProduct = '1' where CartID = '1' and ProductID = '3'

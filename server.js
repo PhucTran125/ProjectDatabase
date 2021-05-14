@@ -7,6 +7,7 @@ const db = require('./config/db/database');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const session = require('express-session');
+const axios = require('axios').default;
 
 // const  {
 //     SESS_NAME = 'semail',
