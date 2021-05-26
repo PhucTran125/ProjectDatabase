@@ -27,7 +27,7 @@
                                             <a class="nav-link" href="/">Home</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link product" href="#">Catalog</a>
+                                            <a class="nav-link product" href="/catalog">Catalog</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="#">Blog</a>
@@ -230,15 +230,17 @@
                 axios.patch('/catalog/filter', {
                         brand: checkBrandArr,
                         price: checkPriceArr,
-                        color: checkColorArr
+                        color: checkColorArr,
+                        url: window.location.href,
                 })
                 .then(function (response) {
                     console.log(response);
                     console.log(response.data.length);
                     $("#product-area").children().hide();
+                    console.log("here")
                     for (let i = 0; i < response.data.length; i++) {
                         $("#product-area").append('<div class="col-3 list-inline-item filter-item" id="filter-item" style="padding:0 15px 20px; text-align:center; margin-right: 0"><div class="item-image" style="margin-bottom:20px;"><a href="/catalog/product"><img id="img-wrap" src="'+ response.data[i].thumbnail_photo +'" style="width: 100%;; visibility: visible;"></a></div><div class="item-rating" style="margin-bottom: 10px;"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><div class="item-title"style="margin-bottom:5px;"><a id="item-name" href="#" style="font-size: 16px; color:#fc846b; transition: 0.4s;">'+ response.data[i].ProductName +'</a></div><div id="item-price" class="item-price">$'+ response.data[i].Price +'</div></div>');
-                        document.getElementById("filter-item").setAttribute("id", ""+ response.data[i].Brand_name +"");
+                        // document.getElementById("filter-item").setAttribute("id", ""+ response.data[i].Brand_name +"");
                         $("#item-name").hover(function() {
                             $(this).css({"text-decoration": "none", "color": "black"});
                         }, function() {
@@ -316,7 +318,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row product-collection">
+            <div class="row product-collection" id="product-area">
                 <% for(var i = 0; i < rows.length; i++){ %>
                     <div class="col-3 column <%=rows[i].Brand_name%>" >
                        <div class="item-image" style="margin-bottom:20px;">

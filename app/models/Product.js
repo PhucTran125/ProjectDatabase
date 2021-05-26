@@ -40,8 +40,11 @@ var Product = {
         });
     },
     getProductByCategory:function(slug, callback){
-        return db.connection.query('select * from Products, Categories, Product_Category where Products.ProductID = Product_Category.ProductID and Categories.Category_id = Product_Category.Category_id and lower(Categories.Category_name) = ?', [slug], callback);
+        return db.connection.query('select * from Products, Brands, Categories, Product_Category where Products.Brand_id = Brands.Brand_id and Products.ProductID = Product_Category.ProductID and Categories.Category_id = Product_Category.Category_id and lower(Categories.Category_name) = ?', [slug], callback);
     },
+    getProductByBrand:function(brand, callback){
+        return db.connection.query('select * from Products, Brands where Products.ProductID = Brands.ProductID and Brands.Brand_name = ?', [brand], callback);
+    }
 };
 
 module.exports = Product;
