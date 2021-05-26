@@ -129,16 +129,28 @@
         <div class="product-info">
             <div class="detail">
                 <div class="product-image">
-                    <img src="https://cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-42_40206bfd-45c1-4077-acc8-3d9bfc2d51a5_350X.jpg?v=1596620997" alt="">
+                    <img src="<%= rows[0].thumbnail_photo %> " alt="">
                 </div>
                 <div class="product-detail">
                     <h4><%= rows[0].ProductName %></h4>
-                    <table>
+                    <div class="short-desc">
+                        <p>
+                            <%= rows[0].ProductSortDesc%> 
+                        </p>
+                    </div>
+                    <div class="all-info">
+                        <div class="Price">
+                            <label>Price:</label>
+                            <div style="display: inline-block;">
+                                <span><%= rows[0].Price %>.00 $</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <table>
                         <tr>
                             <td>Price</td>
                             <td style="color: #fc846b;" >$9.500</td>
                         </tr>
-                    
                         <tr>
                             <td>Color</td>
                             <td style="color: #fc846b;">
@@ -160,8 +172,6 @@
                             
                             </td>
                         </tr>
-                       
-                    
                         <tr>
                             <td>Material</td>
                             <td style="color: #fc846b;">
@@ -197,8 +207,7 @@
                             <td>Avaiability</td>
                             <td style="color: #fc846b;"><%= rows[0].ProductState %></td>
                         </tr>
-
-                    </table>
+                    </table> -->
                     <br>
                     <button>Add to cart</button>
                     

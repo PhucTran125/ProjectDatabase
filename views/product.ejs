@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -74,83 +74,65 @@
             <div class="widget category">
                 <h4>Category</h4>
                 <ul>
-                    <li>
-                        <a href="/catalog/apple">Wireless Headphone</a>
-                    </li>
-                    <li>
-                        <a href="collections/bluetooth">Wireless Earphone</a>
-                    </li>
-                    <li>
-                        <a href="collections/in-ear">Noise Cancellation</a>
-                    </li>
-                    <li>
-                        <a href="collections/sport-earbuds">Gaming</a>
-                    </li>
-                    <li>
-                        <a href="collections/sport-earbuds">Sports</a>
-                    </li>
-                    <li>
-                        <a href="collections/sport-earbuds">True Wireless Earbuds</a>
-                    </li>
-                    <li>
-                        <a href="collections/sport-earbuds">In-Ear</a>
-                    </li>
-                    <li>
-                        <a href="collections/sport-earbuds">DJ Headphone</a>
-                    </li>
-                   
+                    <% for(let i = 0; i < cate.length; i++) { %>
+                    <% var slug = cate[i].Category_name.toLowerCase(); %> 
+                    <% slug = slug.replace(/\s/g, '-');%>
+                        <li>
+                            <a href="/catalog/collections/<%- slug%>"><%- cate[i].Category_name%></a>
+                        </li>
+                    <% } %>
                 </ul>
             </div>
             <div class="color">
                 <h4>Shop By Color</h4>
                 <ul>
                     <li>
-                        <input type="checkbox" id="white">
-                        <a href="">
+                        <input type="checkbox" id="white" onclick="filterColor(this.id)">
+                        <span class="s1">
                             <label for="white">
-                                <span style="background:white"></span>
+                                <span class="s2" style="background:white"></span>
                             </label>
-                        </a>
+                        </span>
                     </li>
                     <li>
-                        <input type="checkbox" id="blue">
-                        <a href="">
+                        <input type="checkbox" id="blue" onclick="filterColor(this.id)">
+                        <span class="s1">
                             <label for="blue">
-                                <span style="background:blue"></span>
+                                <span class="s2" style="background:blue"></span>
                             </label>
-                        </a>
+                        </span>
                     </li>
                     <li>
-                        <input type="checkbox" id="black">
-                        <a href="">
+                        <input type="checkbox" id="black" onclick="filterColor(this.id)">
+                        <span class="s1">
                             <label for="black">
-                                <span style="background:black"></span>
+                                <span class="s2" style="background:black"></span>
                             </label>
-                        </a>
+                        </span>
                     </li>
                     <li>
-                        <input type="checkbox" id="red">
-                        <a href="">
+                        <input type="checkbox" id="red" onclick="filterColor(this.id)">
+                        <span class="s1">
                             <label for="red">
-                                <span style="background:red"></span>
+                                <span class="s2" style="background:red"></span>
                             </label>
-                        </a>
+                        </span>
                     </li>
                     <li>
-                        <input type="checkbox" id="green">
-                        <a href="">
+                        <input type="checkbox" id="green" onclick="filterColor(this.id)">
+                        <span class="s1">
                             <label for="green">
-                                <span style="background:#00ff00"></span>
+                                <span class="s2" style="background:#1c531c"></span>
                             </label>
-                        </a>
+                        </span>
                     </li>
                     <li>
-                        <input type="checkbox" id="orange">
-                        <a href="">
+                        <input type="checkbox" id="orange" onclick="filterColor(this.id)">
+                        <span class="s1">
                             <label for="orange">
-                                <span style="background:#e18b34"></span>
+                                <span class="s2" style="background:#c0762b"></span>
                             </label>
-                        </a>
+                        </span>
                     </li>
                 </ul>
             </div>
@@ -158,44 +140,38 @@
                 <h4>Shop By Price</h4>
                 <ul>
                     <li>
-                        <label class="price-number">$100 - $200
-                            <input type="checkbox" name="price" id="100-200" value="100-200" onclick="">
+                        <label class="price-number">< $500
+                            <input type="checkbox" name="price" id="0-500" class="byPrice" onclick="filterPrice(this.id)">
                             <span class="checkmark"></span>
                         </label>
                     </li>
                     <li>
-                        <label class="price-number">$100 - $200
-                            <input type="checkbox" name="price" id="100-200" value="100-200" onclick="">
+                        <label class="price-number">$500 - $1000
+                            <input type="checkbox" name="price" id="500-1000" class="byPrice" onclick="filterPrice(this.id)">
                             <span class="checkmark"></span>
                         </label>
                     </li>
                     <li>
-                        <label class="price-number">$100 - $200
-                            <input type="checkbox" name="price" id="100-200" value="100-200" onclick="">
+                        <label class="price-number">$1000 - $1500
+                            <input type="checkbox" name="price" id="1000-1500" class="byPrice" onclick="filterPrice(this.id)">
                             <span class="checkmark"></span>
                         </label>
                     </li>
                     <li>
-                        <label class="price-number">$100 - $200
-                            <input type="checkbox" name="price" id="100-200" value="100-200" onclick="">
+                        <label class="price-number">$1500 - $2000
+                            <input type="checkbox" name="price" id="1500-2000" class="byPrice" onclick="filterPrice(this.id)">
                             <span class="checkmark"></span>
                         </label>
                     </li>
                     <li>
-                        <label class="price-number">$100 - $200
-                            <input type="checkbox" name="price" id="100-200" value="100-200" onclick="">
+                        <label class="price-number">$2000 - $2500
+                            <input type="checkbox" name="price" id="2000-2500" class="byPrice" onclick="filterPrice(this.id)">
                             <span class="checkmark"></span>
                         </label>
                     </li>
                     <li>
-                        <label class="price-number">$100 - $200
-                            <input type="checkbox" name="price" id="100-200" value="100-200" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                     <li>
-                        <label class="price-number">$100 - $200
-                            <input type="checkbox" name="price" id="100-200" value="100-200" onclick="">
+                        <label class="price-number">> $2500
+                            <input type="checkbox" name="price" id="2500-3000" class="byPrice" onclick="filterPrice(this.id)">
                             <span class="checkmark"></span>
                         </label>
                     </li>
@@ -204,99 +180,120 @@
             <div class="widget brand">
                 <h4>Shop By Brand</h4>
                 <ul>
-                    <li>
-                        <label class="brand-name">Apple
-                            <input type="checkbox" name="brand" id="apple"  value="apple" onclick="brand()">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">Sony
-                            <input type="checkbox" name="brand" id="sony"  value="sony" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">AKG
-                            <input type="checkbox" name="brand" id="akg"  value="akg" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">Beats
-                            <input type="checkbox" name="brand" id="beats"  value="beats" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">Bose
-                            <input type="checkbox" name="brand" id="bose"  value="bose" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">JBL
-                            <input type="checkbox" name="brand" id="jbl"  value="jbl" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">Jabra
-                            <input type="checkbox" name="brand" id="jabra"  value="jabra" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">Marshall
-                            <input type="checkbox" name="brand" id="marshall"  value="marshall" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">Razer
-                            <input type="checkbox" name="brand" id="brazer"  value="brazer" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">Logitech
-                            <input type="checkbox" name="brand" id="logitech"  value="logitech" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">Master & Dynamic
-                            <input type="checkbox" name="brand" id="master-dynamic"  value="master-dynamic" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">HiFiMAN
-                            <input type="checkbox" name="brand" id="hifiman"  value="hifiman" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">Bowers & Wilkins
-                            <input type="checkbox" name="brand" id="bowers-wilkins"  value="bowers-wilkins" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">JVC
-                            <input type="checkbox" name="brand" id="jvc"  value="jvc" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">Klipsch
-                            <input type="checkbox" name="brand" id="klipsch"  value="klipsch" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
+                    <% for (let i = 0; i < brand.length; i++) { %>
+                        <li>
+                            <label class="brand-name"><%= brand[i] %> 
+                                <input type="checkbox" name="brand" class="byBrand" id="<%= brand[i] %>"  value="<%= brand[i] %>" onclick="filterBrand(this.id)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </li>
+                    <% } %>
                 </ul>
             </div>
         </div>
+        <!-- function for side bar --> 
+        <script>
+            var checkBrandArr = [];
+            var checkPriceArr = [];
+            var checkColorArr = [];
+            function filterBrand(id) {
+                console.log(id)
+                if (document.getElementById(id).checked == true) {
+                    checkBrandArr.push(id);
+                }
+                else {
+                    checkBrandArr = checkBrandArr.filter(function(e) {return e != id});
+                }
+                filter();
+            }
+            function filterPrice(id) {
+                console.log(id)
+                if (document.getElementById(id).checked == true) {
+                    checkPriceArr.push(id);
+                }
+                else {
+                    checkPriceArr = checkPriceArr.filter(function(e) {return e != id});
+                }
+                filter();
+            }
+            function filterColor(id) {
+                console.log(id)
+                if (document.getElementById(id).checked == true) {
+                    checkColorArr.push(id);
+                }
+                else {
+                    checkColorArr = checkColorArr.filter(function(e) {return e != id});
+                }
+                filter();
+            }
+            function filter() {
+                axios.patch('/catalog/filter', {
+                        brand: checkBrandArr,
+                        price: checkPriceArr,
+                        color: checkColorArr
+                })
+                .then(function (response) {
+                    console.log(response);
+                    console.log(response.data.length);
+                    $("#product-area").children().hide();
+                    for (let i = 0; i < response.data.length; i++) {
+                        $("#product-area").append('<div class="col-3 list-inline-item filter-item" id="filter-item" style="padding:0 15px 20px; text-align:center; margin-right: 0"><div class="item-image" style="margin-bottom:20px;"><a href="/catalog/product"><img id="img-wrap" src="'+ response.data[i].thumbnail_photo +'" style="width: 100%;; visibility: visible;"></a></div><div class="item-rating" style="margin-bottom: 10px;"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><div class="item-title"style="margin-bottom:5px;"><a id="item-name" href="#" style="font-size: 16px; color:#fc846b; transition: 0.4s;">'+ response.data[i].ProductName +'</a></div><div id="item-price" class="item-price">$'+ response.data[i].Price +'</div></div>');
+                        document.getElementById("filter-item").setAttribute("id", ""+ response.data[i].Brand_name +"");
+                        $("#item-name").hover(function() {
+                            $(this).css({"text-decoration": "none", "color": "black"});
+                        }, function() {
+                            $(this).css("color", "#fc846b");
+                        })
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            }
+
+            
+            // const classname = document.querySelectorAll('.byBrand');
+            // Array.from(classname).forEach(function(element) {
+            //     element.addEventListener('change', function() {
+            //         if (element.checked == true) {
+            //             document.getElementById("product-collection").classList.add("d-none");
+            //             var id = element.getAttribute("id");
+            //             checkArr.push(id);
+                        
+            //         } else {
+            //             var id = element.getAttribute("id");
+            //             checkArr = checkArr.filter(function(e) {return e != id});
+            //             // var id = element.getAttribute("id");
+            //             // console.log(id)
+            //             // document.getElementById(id).style.visibility = "hidden";
+            //             // location.reload();
+            //         }
+            //         axios.patch('/catalog/byBrand', {
+            //             id: checkArr,
+            //         })
+            //         .then(function (response) {
+            //             console.log(response);
+            //             console.log(response.data.length);
+            //             $("#product-area").children().hide();
+            //             for (let i = 0; i < response.data.length; i++) {
+            //                 $("#product-area").append('<div class="col-3 list-inline-item filter-item" id="filter-item" style="padding:0 15px 20px; text-align:center; margin-right: 0"><div class="item-image" style="margin-bottom:20px;"><a href="/catalog/product"><img id="img-wrap" src="'+ response.data[i].thumbnail_photo +'" style="width: 100%;; visibility: visible;"></a></div><div class="item-rating" style="margin-bottom: 10px;"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><div class="item-title"style="margin-bottom:5px;"><a id="item-name" href="#" style="font-size: 16px; color:#fc846b; transition: 0.4s;">'+ response.data[i].ProductName +'</a></div><div id="item-price" class="item-price">$'+ response.data[i].Price +'</div></div>');
+            //                 document.getElementById("filter-item").setAttribute("id", ""+ response.data[i].Brand_name +"");
+            //                 $("#item-name").hover(function() {
+            //                     $(this).css({"text-decoration": "none", "color": "black"});
+            //                 }, function() {
+            //                     $(this).css("color", "#fc846b");
+            //                 })
+            //             }
+            //         })
+            //         .catch(function (error) {
+            //             console.log(error);
+            //         });
+            //     });
+            // })
+
+            // var classPrice = document.querySelectorAll('.byPrice');
+            // Array.from(clas)
+        </script>
 
         <div class="product-section">
             <div class="toolbar d-flex justify-content-end">
@@ -306,40 +303,79 @@
                         Featured
                     </button>
                     <div class="dropdown-content" >
-                        <a href="/catalog" class="active" >Featured</a>
-                        <a href="/catalog/cost-low-to-high">Price, low to high</a>
-                        <a href="/catalog/cost-high-to-low">Price, high to low</a>
-                        <a href="/catalog/A-Z">A-Z</a>
-                        <a href="/catalog/Z-A">Z-A</a>
-                        <a href="#">Date, old to new</a>
-                        <a href="#">Price, new to old</a>
+                        <a href="/catalog" id="Featured" class="dropdown-item">Featured</a>
+                        <!-- <button id="Featured" class="dropdown-item" >Featured</button> -->
+                        <button id="PriceAsc" class="dropdown-item">Price, low to high</button>
+                        <button id="PriceDesc" class="dropdown-item">Price, high to low</button>
+                        <button id="AtoZ" class="dropdown-item">A-Z</button>
+                        <button id="ZtoA" class="dropdown-item">Z-A</button>
+                        <!-- <a href="#" id="AtoZ" class="dropdown-item">A-Z</a>
+                        <a href="#" id="ZtoA" class="dropdown-item">Z-A</a> -->
+                        <button id="DateOldToNew" class="dropdown-item">Date, old to new</button>
+                        <button id="DateNewToOld" class="dropdown-item">Price, new to old</button>
                     </div>
                 </div>
             </div>
-            <div class="row product-collection">
-                <% for(var i = 0; i < rows.length; i++){ %>
-                    <div class="col-3 item">
-                       <div class="item-image" style="margin-bottom:20px;">
-                           <a href="/catalog/product/<%= rows[i].slug %>">
-                               <img src="<%= rows[i].thumbnail_photo%>" style="width: 100%;; visibility: visible;">
-                           </a>
-                       </div>
-                       <div class="item-rating" style="margin-bottom: 10px;">
-                           <i class="fa fa-star"></i>   
-                           <i class="fa fa-star"></i>
-                           <i class="fa fa-star"></i>
-                           <i class="fa fa-star"></i>
-                           <i class="fa fa-star"></i>
-                       </div>
-                       <div class="item-title"style="margin-bottom:5px;" >
-                           <a href="#"><%= rows[i].ProductName%></a>
-                       </div>
-                       <div class="item-price">$<%= rows[i].Price%></div>
-                    </div>
-                <% } %>
+            <div id="product-area" class="list-inline" style="margin-bottom: 30px;">
+                <div class="row product-collection" id="product-collection">
+                    <% for(var i = 0; i < rows.length; i++){ %>
+                        <div class="col-3 item">
+                           <div class="item-image" style="margin-bottom:20px;">
+                               <a href="/catalog/product/<%= rows[i].slug %>">
+                                   <img src="<%= rows[i].thumbnail_photo%>" style="width: 100%;; visibility: visible;">
+                               </a>
+                           </div>
+                           <div class="item-rating" style="margin-bottom: 10px;">
+                               <i class="fa fa-star"></i>   
+                               <i class="fa fa-star"></i>
+                               <i class="fa fa-star"></i>
+                               <i class="fa fa-star"></i>
+                               <i class="fa fa-star"></i>
+                           </div>
+                           <div class="item-title"style="margin-bottom:5px;" >
+                               <a href="#"><%= rows[i].ProductName%></a>
+                           </div>
+                           <div class="item-price">$<%= rows[i].Price%></div>
+                        </div>
+                    <% } %>
+                </div>
             </div>
         </div>
     </div>
+    <script>
+        // Funtion for dropdown menu
+        const dropArray = document.querySelectorAll(".dropdown-item");
+        Array.from(dropArray).forEach(function(element) {
+            element.addEventListener('click', function() {
+                var affect = element.getAttribute("id");
+                // console.log(affect);
+                // , {
+                //             affect: affect,
+                //             url: window.location.href,
+                // }
+                axios.patch('/catalog/all?sort_by=' + affect, {
+                    affect: affect,
+                    url: window.location.href,
+                })
+                .then(function (response) {
+                    console.log(response);
+                    $("#product-area").children().hide();
+                    for (let i = 0; i < response.data.length; i++) {
+                        $("#product-area").append('<div class="col-3 list-inline-item filter-item" id="filter-item" style="padding:0 15px 20px; text-align:center; margin-right: 0"><div class="item-image" style="margin-bottom:20px;"><a href="/catalog/product"><img id="img-wrap" src="'+ response.data[i].thumbnail_photo +'" style="width: 100%;; visibility: visible;"></a></div><div class="item-rating" style="margin-bottom: 10px;"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><div class="item-title"style="margin-bottom:5px;"><a id="item-name" href="#" style="font-size: 16px; color:#fc846b; transition: 0.4s;">'+ response.data[i].ProductName +'</a></div><div id="item-price" class="item-price">$'+ response.data[i].Price +'</div></div>');
+                        document.getElementById("filter-item").setAttribute("id", ""+ response.data[i].Brand_name +"");
+                        $("#item-name").hover(function() {
+                            $(this).css({"text-decoration": "none", "color": "black"});
+                        }, function() {
+                            $(this).css("color", "#fc846b");
+                        })
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            })
+        })
+    </script>
     <!-- FOOTER -->
     <div class="footer">
         <div class="footer-content">
@@ -398,6 +434,6 @@
         </div>
     </div>
     <!-- FOOTER -->
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
 </html>
