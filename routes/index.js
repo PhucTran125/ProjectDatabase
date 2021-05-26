@@ -6,6 +6,11 @@ const cartRouter = require('./cart');
 const adminRouter = require('./admin-page');
 
 function route(app) {
+    app.use('/ex',(reg,res)=>{
+        res.render('ex');
+    })
+    
+    
     app.use('/admin-page', adminRouter)
 
     app.use('/my-cart', cartRouter);

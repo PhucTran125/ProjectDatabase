@@ -79,3 +79,46 @@ create table Cart(
 
 insert into Cart(CartID, UpdateAt, CreateAt) values ('1', '2021-05-04 12:45:56', '2021-05-04 12:45:56');
 insert into Product_Cart(CartID, ProductID, NumProduct) values ('1', '1', '1'), ('1', '3', '1');
+
+create table Product_Category(
+	ProductID int not null,
+    Category_id int not null,
+    primary key(ProductID, Category_id),
+    foreign key (ProductID) references Products(ProductID),
+    foreign key (Category_id) references Categories(Category_id)
+);
+
+insert into Product_Category(ProductID, Category_id) values ('1', '1'), ('1', '8'), ('2', '1'), ('2', '3'), ('3', '3'), ('4', '3'), ('4', '4'),
+('5', '2'), ('6', '1'), ('6', '8'), ('7', '1'), ('7', '4'), ('8', '3'), ('8', '5'), ('8', '7'), ('9', '7'), ('10', '1'), ('10', '3'), ('11', '6'), ('12', '1'), 
+('12', '8'), ('13', '1'), ('13', '3'), ('13', '4'), ('14', '3'), ('14', '4'), ('15', '2'), ('15', '5'), ('16', '5'), ('16', '7'), ('17', '3'), ('17', '7'), ('18', '3'), 
+('18', '7'), ('19', '3'), ('19', '5'), ('19', '7'), ('20', '1'), ('20', '3'), ('21', '2'), ('22', '3'); 
+
+create table ProductImage(
+	url varchar(1000) not null,
+    ProductID int not null,
+    foreign key (ProductID) references Products(ProductID)
+);
+
+insert into ProductImage(ProductID, url) values ('1', 'https://i.imgur.com/uOtwR2n.jpg|https://i.imgur.com/DoyIYlA.jpg|https://i.imgur.com/MU9kCLr.jpg|https://i.imgur.com/ksNqZSd.jpg|https://i.imgur.com/VFlYV3q.jpg|https://i.imgur.com/LDPhUnz.jpg|https://i.imgur.com/Cs5P4fU.jpg|https://i.imgur.com/yY2gsRo.jpg|https://i.imgur.com/eFvlxNp.jpg'),
+('2', 'https://i.imgur.com/U65xPva.jpg|https://i.imgur.com/We8dPMD.jpg|https://i.imgur.com/hyh8sLT.jpg|https://i.imgur.com/zTCQ2U9.jpg|https://i.imgur.com/5HR0ZZY.jpg|https://i.imgur.com/FIm6Nr0.jpg|https://i.imgur.com/LlXFvBA.jpg'),
+('3', 'https://i.imgur.com/6iMRSjI.jpg|https://i.imgur.com/FtnQrre.jpg|https://i.imgur.com/vp8ZYS2.jpg|https://i.imgur.com/OoDlMtN.jpg|https://i.imgur.com/plLvywh.jpg'),
+('4', 'https://i.imgur.com/XHe4o4g.jpg|https://i.imgur.com/j1xo1u8.jpg|https://i.imgur.com/nUOKrtX.jpg|https://i.imgur.com/P3Gkbz3.jpg|https://i.imgur.com/wECm6D3.jpg'),
+('5', 'https://i.imgur.com/UQhSWnI.jpg|https://i.imgur.com/bxFVTvw.jpg'),
+('6', 'https://i.imgur.com/hpUt71j.jpg|https://i.imgur.com/5nwNVbc.jpg|https://i.imgur.com/aWHsnmd.jpg|https://i.imgur.com/tFANcI2.jpg|https://i.imgur.com/IwL1Qa5.jpg'),
+('7', 'https://i.imgur.com/9vHrGnh.jpg|https://i.imgur.com/yxqOYEP.jpg|https://i.imgur.com/oAVbseq.jpg|https://i.imgur.com/usDhUmy.jpg|https://i.imgur.com/8JaUMeX.jpg'),
+('8', 'https://i.imgur.com/AJUt9TG.jpg|https://i.imgur.com/Ii7lHzM.jpg|https://i.imgur.com/ocoGJK1.jpg|https://i.imgur.com/zK59ik1.jpg|https://i.imgur.com/cCuqOvu.jpg|https://i.imgur.com/oF3w9kF.jpg|https://i.imgur.com/koAiQEh.jpg|https://i.imgur.com/7dIgP8f.jpg'),
+('9', 'https://i.imgur.com/Ebj9eC3.jpg|https://i.imgur.com/sRNYI1o.jpg|https://i.imgur.com/8mFqAsq.jpg|https://i.imgur.com/3cjjqyQ.jpg|https://i.imgur.com/ken4MFW.jpg'),
+('10', 'https://i.imgur.com/LPQHgDM.jpg|https://i.imgur.com/4D3Ts5R.jpg|https://i.imgur.com/Ro4PB0t.jpg|https://i.imgur.com/yGL7hjX.jpg|https://i.imgur.com/HVbIzXk.jpg|https://i.imgur.com/qKC2lxg.jpg'),
+('11', 'https://i.imgur.com/xxYraP8.jpg|https://i.imgur.com/Wxrb5eD.jpg|https://i.imgur.com/2IfccVt.jpg|https://i.imgur.com/UCvyYED.jpg|https://i.imgur.com/yl8IHQY.jpg'),
+('12', 'https://i.imgur.com/Ca5EU3p.jpg|https://i.imgur.com/QMBbdf1.jpg|https://i.imgur.com/U6WcAja.jpg|https://i.imgur.com/PmPnR2D.jpg|https://i.imgur.com/bJ365Ti.jpg'),
+('13', 'https://i.imgur.com/ak2wZmU.jpg|https://i.imgur.com/9mp7wQq.jpg|https://i.imgur.com/brH0UjF.jpg|https://i.imgur.com/QhTpPke.jpg|https://i.imgur.com/HAK5gct.jpg'),
+('14', 'https://i.imgur.com/uA2fbfN.jpg|https://i.imgur.com/r9W12jP.jpg|https://i.imgur.com/3FxbnPS.jpg|https://i.imgur.com/ak2wZmU.jpg'),
+('15', 'https://i.imgur.com/LjsOwyx.j|https://i.imgur.com/fv3OzdU.jpg|https://i.imgur.com/Fwgrfbe.jpg|https://i.imgur.com/z29XBXp.jpg'),
+('16', 'https://i.imgur.com/R9f6L95.jpg|https://i.imgur.com/j107qEE.jpg|https://i.imgur.com/yQeCFFf.jpg|https://i.imgur.com/77i6k7G.jpg|https://i.imgur.com/07x0i16.jpg'),	
+('17', 'https://i.imgur.com/ni8ykZE.png|https://i.imgur.com/Lr9h60l.jpg|https://i.imgur.com/8G8sL4S.jpg'),
+('18', 'https://i.imgur.com/nj4pyZv.jpg|https://i.imgur.com/3ziczvD.jpg|https://i.imgur.com/jcgZue3.jpg|https://i.imgur.com/tPO6Iy1.jpg|https://i.imgur.com/MDBrKVZ.jpg|https://i.imgur.com/4043A0p.jpg|https://i.imgur.com/3CJb5qv.jpg'),
+('19', 'https://i.imgur.com/MaBF75z.jpg|https://i.imgur.com/Zy7T4Wh.jpg|https://i.imgur.com/05st7Bo.jpg|https://i.imgur.com/5C4OfPY.jpg|https://i.imgur.com/o3CGJVC.jpg|https://i.imgur.com/We8dPMD.jpg'),
+('20', 'https://i.imgur.com/8TOkPWc.jpg|https://i.imgur.com/vVdCrZs.jpg|https://i.imgur.com/JGFVk3t.jpg|https://i.imgur.com/8U5HZnc.jpg|https://i.imgur.com/Nndvo9e.jpg|https://i.imgur.com/1iZPRqL.jpg'),
+('21', 'https://i.imgur.com/RS12CnA.jpg|https://i.imgur.com/md8VCY4.jpg|https://i.imgur.com/DO9E4IE.jpg|https://i.imgur.com/654Hku6.jpg|https://i.imgur.com/6zD82nA.jpg'),
+('22', 'https://i.imgur.com/vlek93Y.jpg|https://i.imgur.com/rDVASMs.jpg|https://i.imgur.com/35VnBRR.jpg|https://i.imgur.com/EhiIP8T.jpg|https://i.imgur.com/6sZoaL3.jpg|https://i.imgur.com/iu7LtBo.jpg|https://i.imgur.com/W0rApW1.jpg|https://i.imgur.com/OAJbRXM.jpg|https://i.imgur.com/3M5GrwV.jpg')
+

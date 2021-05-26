@@ -204,96 +204,16 @@
             <div class="widget brand">
                 <h4>Shop By Brand</h4>
                 <ul>
-                    <li>
-                        <label class="brand-name">Apple
-                            <input type="checkbox" name="brand" id="apple"  value="apple" onclick="brand()">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">Sony
-                            <input type="checkbox" name="brand" id="sony"  value="sony" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">AKG
-                            <input type="checkbox" name="brand" id="akg"  value="akg" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">Beats
-                            <input type="checkbox" name="brand" id="beats"  value="beats" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">Bose
-                            <input type="checkbox" name="brand" id="bose"  value="bose" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">JBL
-                            <input type="checkbox" name="brand" id="jbl"  value="jbl" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">Jabra
-                            <input type="checkbox" name="brand" id="jabra"  value="jabra" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">Marshall
-                            <input type="checkbox" name="brand" id="marshall"  value="marshall" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">Razer
-                            <input type="checkbox" name="brand" id="brazer"  value="brazer" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">Logitech
-                            <input type="checkbox" name="brand" id="logitech"  value="logitech" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">Master & Dynamic
-                            <input type="checkbox" name="brand" id="master-dynamic"  value="master-dynamic" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">HiFiMAN
-                            <input type="checkbox" name="brand" id="hifiman"  value="hifiman" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">Bowers & Wilkins
-                            <input type="checkbox" name="brand" id="bowers-wilkins"  value="bowers-wilkins" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">JVC
-                            <input type="checkbox" name="brand" id="jvc"  value="jvc" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="brand-name">Klipsch
-                            <input type="checkbox" name="brand" id="klipsch"  value="klipsch" onclick="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
+                    <% for(var i = 0; i < brands.length; i++) { %>
+                        <li>
+                            <label class="brand-name"><%=brands[i]%>
+                                <input type="checkbox" name="brand" class="byBrand" id="<%= brands[i]%>"  value="<%=brands[i]%>" onclick="filterSelection('<%=brands[i]%>')">
+                                <span class="checkmark"></span>
+                            </label>
+                        </li>
+                    
+                    <% } %>
+
                 </ul>
             </div>
         </div>
@@ -318,7 +238,7 @@
             </div>
             <div class="row product-collection">
                 <% for(var i = 0; i < rows.length; i++){ %>
-                    <div class="col-3 item">
+                    <div class="col-3 column <%=rows[i].Brand_name%>" >
                        <div class="item-image" style="margin-bottom:20px;">
                            <a href="/catalog/product/<%= rows[i].slug %>">
                                <img src="<%= rows[i].thumbnail_photo%>" style="width: 100%;; visibility: visible;">
@@ -398,6 +318,38 @@
         </div>
     </div>
     <!-- FOOTER -->
+     <script>
+     filterSelection("all")
+        function filterSelection(c) {
+            var x, i;
+            x = document.getElementsByClassName("column");
+            if (c == "all") c = "";
+            for (i = 0; i < x.length; i++) {
+                w3RemoveClass(x[i], "show");
+                if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+            }
+        }
 
+        function w3AddClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+            }
+        }
+
+        function w3RemoveClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                while (arr1.indexOf(arr2[i]) > -1) {
+                    arr1.splice(arr1.indexOf(arr2[i]), 1);     
+                }
+            }
+            element.className = arr1.join(" ");
+        }
+    </script>
 </body>
 </html>

@@ -1,0 +1,117 @@
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Owl Carousel 2 Custom Navigation Arrows Example</title>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  
+
+  <style>
+    .carousel-wrapper {
+      width: 1200px;
+      margin: auto;
+
+      text-align: center;
+      font-family: sans-serif;
+    }
+
+
+
+
+
+    .owl-carousel .item {
+      text-align: center;
+    }
+
+    .owl-carousel .nav-button {
+      height: 50px;
+      width: 50px;
+      cursor: pointer;
+      position: absolute;
+      top: 110px !important;
+    }
+
+    .owl-carousel .owl-prev.disabled,
+    .owl-carousel .owl-next.disabled {
+      pointer-events: none;
+      opacity: 0.25;
+    }
+
+    .owl-carousel .owl-prev {
+      left: -35px;
+    }
+
+    .owl-carousel .owl-next {
+      right: -35px;
+    }
+
+    .owl-theme .owl-nav [class*=owl-] {
+      color: #ffffff;
+      font-size: 39px;
+      background: #000000;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="carousel-wrapper">
+
+    <h2>Owl Carousel 2 Custom Navigation Arrows Example</h2>
+
+    <div class="owl-carousel owl-theme">
+      <div class="item">
+        <img src="https://via.placeholder.com/600/92c952" />
+      </div>
+      <div class="item">
+        <img src="https://via.placeholder.com/600/771796" />
+      </div>
+      <div class="item">
+        <img src="https://via.placeholder.com/600/24f355" />
+      </div>
+      <div class="item">
+        <img src="https://via.placeholder.com/600/d32776" />
+      </div>
+      <div class="item">
+        <img src="https://via.placeholder.com/600/f66b97" />
+      </div>
+      <div class="item">
+        <img src="https://via.placeholder.com/600/56a8c2" />
+      </div>
+      <div class="item">
+        <img src="https://via.placeholder.com/600/b0f7cc" />
+      </div>
+      <div class="item">
+        <img src="https://via.placeholder.com/600/54176f" />
+      </div>
+      <div class="item">
+        <img src="https://via.placeholder.com/600/51aa97" />
+      </div>
+      <div class="item">
+        <img src="https://via.placeholder.com/600/810b14" />
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <script>
+    $('.owl-carousel').owlCarousel({
+      margin: 15,
+      nav: true,
+      dots:false,
+      navText: ["<div class='nav-button owl-prev'>‹</div>", "<div class='nav-button owl-next'>›</div>"],
+    });
+  </script>
+</body>
+
+</html>
