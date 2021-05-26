@@ -11,7 +11,7 @@ var Product = {
         return db.connection.query('select * from Products where ProductID =?', [id], callback);
     },
     getProductBySlug:function(slug, callback){
-        return db.connection.query('select * from Products, Brands where Products.Brand_id = Brands.Brand_id and slug=?', [slug], callback);
+        return db.connection.query('select * from Products, Brands, Product_Category, Categories, ProductImage where Products.Brand_id = Brands.Brand_id and Products.ProductID = ProductImage.ProductID and Products.ProductID=Product_Category.ProductID and Product_Category.Category_id=Categories.Category_id and slug=?',[slug], callback);
     },
     sortProductByCostAsc:function(callback){
         return db.connection.query('select * from products order by Price asc', callback);
@@ -38,12 +38,6 @@ var Product = {
                 }
             }
         });
-    },
-    shopbyBrandApple:function(callback){
-        return db.connection.query('select * from products,brands where products.Brand_id=brands.Brand_id and brands.Brand_name like"Apple"',callback)
-    },
-    getProductByBrand:function(brandName, callback){
-        return db.connection.query('select * from Products, Brands where Products.Brand_id = Brands.Brand_id and Brands.Brand_name=?', [brandName], callback);
     },
     getProductByCategory:function(slug, callback){
         return db.connection.query('select * from Products, Categories, Product_Category where Products.ProductID = Product_Category.ProductID and Categories.Category_id = Product_Category.Category_id and lower(Categories.Category_name) = ?', [slug], callback);

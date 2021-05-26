@@ -104,4 +104,5 @@ ul.breadcrumb .active{
 }
 .price{
     font-weight:600;
+    text-align:right;
 }

@@ -1,3 +1,4 @@
+
 .header-content {
    
 }
@@ -91,10 +92,12 @@ nav {
 
 .main-content{
     margin:50px;
+    overflow:hidden;
 }
 .main-content .side-bar{
     width:25%;
     float:left;
+    padding-right:20px;
 }
 .widget{
     margin-bottom:40px;
@@ -114,7 +117,7 @@ h4{
 }
 .main-content .side-bar .widget ul li{
     padding:6px 0;
-    width:100%
+    width:100%;
 }
 .main-content .side-bar .widget ul li a,.widget ul li label{
     color:black;
@@ -263,17 +266,18 @@ input {
     width:100%;
     overflow:hidden;
 }
+.show{display:block;}
+.product-collection .column{
 
-.product-collection .item{
     padding:0 15px 20px;
     text-align:center;
 }
-.product-collection .item .item-title a{
+.product-collection .column .item-title a{
     font-size: 16px;
     color:#fc846b;
     transition: 0.4s;
 }
-.product-collection .item .item-title a:hover{
+.product-collection .column .item-title a:hover{
     text-decoration: none;
     color:black;
 }
