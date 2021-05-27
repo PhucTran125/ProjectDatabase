@@ -1,4 +1,5 @@
 /* Head-menubar */
+
 .head-menubar {
     padding-top: 35px;
     padding-bottom: 15px;
@@ -37,9 +38,6 @@
     height: 15px;
 }
 .header-icon ul li.cart {
-    margin-inline-end: 40px;
-}
-.header-icon ul li.user {
     margin-inline-end: 40px;
 }
 .header-icon ul li a {

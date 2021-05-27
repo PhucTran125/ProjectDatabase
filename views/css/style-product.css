@@ -1,7 +1,6 @@
-
-.header-content {
-   
-}
+/* .header-content-cart {
+    overflow: hidden;
+} */
 .head-menubar {
     padding-top: 35px;
     padding-bottom: 15px;
@@ -13,9 +12,6 @@
     float: left;
     width: 100%;
     padding: 0 4%;
-}
-nav {
-    /* z-index: 100; */
 }
 .navbar-nav {
     padding-left: 5px;
@@ -31,7 +27,7 @@ nav {
     letter-spacing: 0;
     padding: 0;
 }
-.navbar-nav .nav-item .current {
+.navbar-nav .nav-item .product {
     border-color: #fc846b;
     color: #fc846b;
 }
@@ -48,20 +44,7 @@ nav {
 .header-icon ul li a {
     color: black;
 }
-.bg-img {
-    z-index: 0;
-    position: relative;
-    max-width: 100%;
-}
-.bg-img img {
-    display: block;
-    margin: auto;
-    max-width: 100%;
-    height: auto;
-    
-}
 
-/* trsng cart */
 .header-content-cart{
     height:113.6px;
 }
@@ -75,7 +58,7 @@ nav {
     width: 100%;
     padding: 0 4%;
 }
-
+/* het header */
 .headphone-image{
     background-image:url("//cdn.shopify.com/s/files/1/0437/0454/9536/t/26/assets/breadcrumb_bg_image.jpg?v=4568109122593610553"); 
     background-repeat:no-repeat;

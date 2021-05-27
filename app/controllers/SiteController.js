@@ -8,17 +8,20 @@ class SiteController {
 
     //[GET] /blog
     blog(req, res) {
-        res.send('blog page');
+        const sess = req.session.userID;
+        res.send('blog page', {sess});
     }
 
     //[GET] /login-page
     login(req, res) {
-        res.render('login');
+        const sess = req.session.userID;
+        res.render('login', {sess});
     }
 
     //[GET] /page-info
     pages(req, res) {
-        res.send('page-info')
+        const sess = req.session.userID;
+        res.send('page-info', {sess})
     }
 }
 

@@ -6,6 +6,7 @@ class CartController{
     //     Cart:addProduct()
     // };
     showCart(req, res) {
+        const sess = req.session.userID;
         Cart.totalCost(function(err, rows){
             if(err) res.json(err);
             else {
@@ -16,17 +17,18 @@ class CartController{
                     subCost[i] = rows[i].Price * rows[i].NumProduct;
                     totalCost += subCost[i];
                 }
-                res.render('cart', {rows: rows, totalCost: totalCost, subCost: subCost});
+                res.render('cart', {rows: rows, totalCost: totalCost, subCost: subCost, sess: sess});
             }
         });
     };
     removeFromCart(req, res) {
+        const sess = req.session.userID;
         var x = () => {
             Cart.removeFromCart(function(err) {
                 if(err) res.json(err);
             });
         };
-        res.render('cart', {x})
+        res.render('cart', {x: x, sess: sess})
     };
     update(req, res) {
         const sess = req.session.userID;

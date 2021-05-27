@@ -20,6 +20,7 @@ Product.getAllProduct(function(err, rows){
 class CatalogController {
     //[GET] /catalog
     index(req, res, next) {
+        const sess = req.session.userID;
             Product.getAllProduct(function(err, rows){
                 if(err) res.json(err);
                 else {
@@ -32,7 +33,7 @@ class CatalogController {
                         }
                     }
                     newBrand.sort();
-                    res.render('product', {rows: rows, cate: cate, brand: newBrand});
+                    res.render('product', {rows: rows, cate: cate, brand: newBrand, sess: sess});
                 }
             });
         // }
@@ -163,10 +164,11 @@ class CatalogController {
     }
     //[GET] /catalog/apple
     brandApple(req, res){
+        const sess = req.session.userID;
         Product.shopbyBrandApple(function(err, rows){
             if(err) res.json(err);
             else {
-                res.render('product', {rows: rows, cate: cate});
+                res.render('product', {rows: rows, cate: cate, sess: sess});
             }
         });
     }
@@ -192,19 +194,30 @@ class CatalogController {
     }
     //[GET] /collections/:cate
     filterByCategory(req, res) {
+        const sess = req.session.userID;
         var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
         var slug = fullUrl.split("/").pop();
         slug = slug.split('-').join(' ');
         Product.getProductByCategory(slug, function(err, rows){
             if(err) res.json(err);
             else {
-                res.render('product', {rows: rows, cate: cate});
+                var brand = [];
+                var newBrand = [];
+                for (let i = 0; i < product.length; i++) {
+                    brand.push(product[i].Brand_name);
+                    if (newBrand.indexOf(brand[i]) == -1) {
+                        newBrand.push(brand[i]);
+                    }
+                }
+                newBrand.sort();
+                res.render('product', {rows: rows, cate: cate, brand: newBrand, sess: sess});
             }
         })
     }
 
     //[GET] /catalog/product/slug
     show(req, res) {
+        const sess = req.session.userID;
         var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
         var slug = fullUrl.split("/").pop();
         Product.getProductBySlug(slug, function(err, rows) {
@@ -230,7 +243,7 @@ class CatalogController {
                     });
                 }
                 ex(function(cate_arr){
-                    res.render('product-detail', {rows: rows, imageUrl: imageUrl,cate_arr:cate_arr, descript:descript});
+                    res.render('product-detail', {rows: rows, imageUrl: imageUrl,cate_arr:cate_arr, descript:descript, sess: sess});
                 });
  
             }
