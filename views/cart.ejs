@@ -240,6 +240,7 @@
     <!-- check if cart = 0 -->
     <script>
         var numOfProduct = <%= rows.length %>;
+        console.log(numOfProduct);
         if (numOfProduct == 0) {
             document.querySelector("#none-product").classList.remove("d-none");
             document.querySelector("#have-product").classList.add("d-none");
