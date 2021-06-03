@@ -262,10 +262,7 @@ input {
     font-weight:bold;
     position:absolute;
 }*/
-.main-content .product-section .product-collection .product-area {
-    width:100%;
-    overflow:hidden;
-}
+
 .show{display:block;}
 .product-collection .column{
 

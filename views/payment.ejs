@@ -18,68 +18,70 @@
             <li class="breadcrumb-item" ><a href="/shipping">Shipping</a></li>
             <li class="breadcrumb-item active" aria-current="page">Payment</li>
         </ul>
-
-        <div class="content">
-            <table>
-                <colgroup>
-                    <col span="1" style="width: 20%;">
-                    <col span="1" style="width: 75%;">
-                    <col span="1" style="width: 5%;">
-                </colgroup>
-                <tr>
-                    <td class="header">Contact</td>
-                    <td class="description">vtl1852000@gmail.com</td>
-                    <td><a href="#">Change</a></td>
-                </tr>
-                <tr class="lower-row">
-                    <td class="header">Shipping to</td>
-                    <td class="description">72A Nguyen Trai, Thuong Dinh, Thanh Xuan, Ha Noi</td>
-                    <td><a href="#">Change</a></td>
-                </tr>
-                <tr class="lower-row">
-                    <td class="header">Method</td>
-                    <td class="description">Standard - <span class="price">$20.00</span></td>
-                    <td><a href="#">Change</a></td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="Payment-method">
-            <h5>Payment method</h5>
-            <p style="margin-bottom:30px;">All transactions are secured and encrypted</p>
-
-            <div class="content-pay">
-                <table style="width:100%;">
+        <div class="tab">
+            <div class="content">
+                <table>
+                    <colgroup>
+                        <col span="1" style="width: 20%;">
+                        <col span="1" style="width: 75%;">
+                        <col span="1" style="width: 5%;">
+                    </colgroup>
                     <tr>
-                        <td>
-                            <label class="check">Pay by cash
-                                <input type="radio" checked="checked" name="option" id="cash" value="cash" onclick="myFunction()">
-                                <span class="checkmark"></span>
-                            </label>
-                        </td>
-                    </tr> 
-                    
-                    <tr class="lower-row">
-                        <td>
-                            <label class="check">Credit card
-                                <input type="radio" name="option" id="credit"  value="credit" onclick="myFunction()">
-                                <span class="checkmark"></span>
-                            </label>
-                        </td>
+                        <td class="header">Contact</td>
+                        <td class="description">vtl1852000@gmail.com</td>
+                        <td><a href="#">Change</a></td>
                     </tr>
-                    <tr class="lower-row format" id="credit_form">
-                        <td>
-                            <form class="form-info" action="" method="POST">
-                                <input type="number" name="card-number" id="card-number" class="form-control" placeholder="Card number" required>
-                                <input type="text" name="card-name" id="card-name" class="form-control" placeholder="Name on card" required>
-                                <input style="float: left; width:49%;" type="text" name="date" id="date" class="form-control" placeholder="Expiration date (MM/YY)" required>
-                                <input style="float: right; width:49%;"type="number" name="sec-code" id="sec-code" class="form-control" placeholder="Security code" required >
-                            </form>
-                        </td>
+                    <tr class="lower-row">
+                        <td class="header">Shipping to</td>
+                        <td class="description">72A Nguyen Trai, Thuong Dinh, Thanh Xuan, Ha Noi</td>
+                        <td><a href="#">Change</a></td>
+                    </tr>
+                    <tr class="lower-row">
+                        <td class="header">Method</td>
+                        <td class="description">Standard - <span class="price">$20.00</span></td>
+                        <td><a href="#">Change</a></td>
                     </tr>
                 </table>
             </div>
+    
+            <div class="Payment-method">
+                <h5>Payment method</h5>
+                <p style="margin-bottom:30px;">All transactions are secured and encrypted</p>
+    
+                <div class="content-pay">
+                    <table style="width:100%;">
+                        <tr>
+                            <td>
+                                <label class="check">Pay by cash
+                                    <input type="radio" checked="checked" name="option" id="cash" value="cash" onclick="myFunction()">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </td>
+                        </tr> 
+                        
+                        <tr class="lower-row">
+                            <td>
+                                <label class="check">Credit card
+                                    <input type="radio" name="option" id="credit"  value="credit" onclick="myFunction()">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr class="lower-row format" id="credit_form">
+                            <td>
+                                <form class="form-info" action="" method="POST">
+                                    <input type="number" name="card-number" id="card-number" class="form-control" placeholder="Card number" required>
+                                    <input type="text" name="card-name" id="card-name" class="form-control" placeholder="Name on card" required>
+                                    <input style="float: left; width:49%;" type="text" name="date" id="date" class="form-control" placeholder="Expiration date (MM/YY)" required>
+                                    <input style="float: right; width:49%;"type="number" name="sec-code" id="sec-code" class="form-control" placeholder="Security code" required >
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
+        
 
         <div class="checking">
             <button class="btn" type="submit">Pay now</button>

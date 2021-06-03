@@ -302,11 +302,15 @@
 
                     <h2><%= rows[0].ProductName %></h2>
                     <div class="item-rating" style="margin-bottom: 5px;">
-                        <i class="fa fa-star"></i>   
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
+                        <% for(var j=0; j< parseInt(rows[0].rating);j++){ %>
+                            <i class="fa fa-star"></i>
+                       <% } %>
+                       <% if(parseInt(rows[0].rating)< rows[0].rating){ %>
+                            <i class="fa fa-star-half-o"></i>
+                       <% } %>
+                       <% for(var j=0;j< parseInt(5-rows[0].rating);j++){ %>
+                        <i class="fa fa-star-o"></i>
+                       <% } %>
                     </div>
                     <table style="width:100%;margin-bottom:30px;">
                         <tr>
@@ -425,11 +429,15 @@
                             </a>
                         </div>
                         <div class="item-rating" style="margin-bottom: 5px;">
-                            <i class="fa fa-star"></i>   
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
+                            <% for(var j=0; j< parseInt(cate_arr[i].rating);j++){ %>
+                                <i class="fa fa-star"></i>
+                           <% } %>
+                           <% if(parseInt(cate_arr[i].rating)< cate_arr[i].rating){ %>
+                                <i class="fa fa-star-half-o"></i>
+                           <% } %>
+                           <% for(var j=0;j< parseInt(5-cate_arr[i].rating);j++){ %>
+                            <i class="fa fa-star-o"></i>
+                           <% } %>
                         </div>
                         <div class="item-title" style="margin-bottom:5px;" >
                             <a href="#"><%=cate_arr[i].ProductName%></a>
