@@ -331,11 +331,15 @@
                            </a>
                        </div>
                        <div class="item-rating" style="margin-bottom: 10px;">
-                           <i class="fa fa-star"></i>   
-                           <i class="fa fa-star"></i>
-                           <i class="fa fa-star"></i>
-                           <i class="fa fa-star"></i>
-                           <i class="fa fa-star"></i>
+                           <% for(var j=0; j< parseInt(rows[i].rating);j++){ %>
+                                <i class="fa fa-star"></i>
+                           <% } %>
+                           <% if(parseInt(rows[i].rating)< rows[i].rating){ %>
+                                <i class="fa fa-star-half-o"></i>
+                           <% } %>
+                           <% for(var j=0;j< parseInt(5-rows[i].rating);j++){ %>
+                            <i class="fa fa-star-o"></i>
+                           <% } %>
                        </div>
                        <div class="item-title"style="margin-bottom:5px;" >
                            <a href="#"><%= rows[i].ProductName%></a>
