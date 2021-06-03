@@ -4,8 +4,6 @@ const catalogController = require('../app/controllers/CatalogController');
 
 // catalogController.index
 router.get('/collections/:cate', catalogController.filterByCategory);
-router.patch('/byBrand', catalogController.searchByBrand);
-router.get('/apple',catalogController.brandApple);
 router.patch('/all', catalogController.sortBy);
 router.patch('/filter', catalogController.filterProduct);
 router.get('/product/:slug', catalogController.show);
