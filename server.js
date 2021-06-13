@@ -39,8 +39,8 @@ app.use(passport.initialize())
 // })
 
 // Set view
-app.use(expressLayouts)
-app.set('layout', './layout/layout');
+// app.use(expressLayouts)
+// app.set('layout', './layout/layout');
 app.set('view engine', 'ejs');
 
 // Connect to database

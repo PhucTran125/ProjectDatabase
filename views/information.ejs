@@ -10,178 +10,37 @@
     <link rel="stylesheet" type="text/css" href="/css/information.css">
 </head>
 <body>
-    <div class="info-detail">
+    <div class="information">
         <img src="https://cdn.shopify.com/s/files/1/0437/0454/9536/t/26/assets/logo.png?v=8319783983011445918" alt="Logo" srcset="">
         <ul class="breadcrumb">
             <li class="breadcrumb-item" id="-1"><a href="/my-cart">Cart</a></li>
-            <li class="breadcrumb-item" id="0" aria-current="page">Information</a></li>
+            <li class="breadcrumb-item active" id="0" aria-current="page">Information</a></li>
             <li class="breadcrumb-item" id="1"><span>Shipping</span></li>
             <li class="breadcrumb-item" id="2"><span>Payment</span></li>
         </ul>
         
         <!--INFORMATION-->
-        
-        <div class="tab">
-            <div class="information" >
-                <div class="contact-info">
-                    <h5 style="text-align: left; width:49%; display: inline-block;margin-bottom:10px;">Contact Information</h5>
-                    <p style="text-align: right; width:50%;  display: inline-block;margin-bottom:10px;">Already have an account? <span><a href="#">Log in</a></span></p>
-                    <form class="form-info" action="" method="POST">
-                        <input type="text" name="email-tel" id="email-tel" class="form-control" placeholder="Email or mobile phone number" required>
-                    </form>
-                </div>
-                
-                <div class="shipping-address" style="margin-top:40px;margin-bottom:30px;">
-                    <h5 style="margin-bottom:10px;">Shipping address</h5>
-                    <form class="form-info" action="" method="POST">
-                        <input style="float: left; width:49%;" type="text" name="firstName" id="firstname" class="form-control" placeholder="First name" required>
-                        <input style="float: right; width:49%;"type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name" required >
-                        <input type="text" name="address" id="adress" class="form-control" placeholder="Adress" required>
-                        <input type="text" name="apartment" id="apartment" class="form-control" placeholder="Apartment, suite, etc. (optional)">
-                        <input type="text" name="city" id="city" class="form-control" placeholder="City" required>
-                        
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!--SHIPPING-->
-
-        <div class="tab" >
-            <div class="shipping" >
-                <div class="content">
-                    <table>
-                        <colgroup>
-                            <col span="1" style="width: 20%;">
-                            <col span="1" style="width: 75%;">
-                            <col span="1" style="width: 5%;">
-                        </colgroup>
-                        <tr>
-                            <td class="header">Contact</td>
-                            <td class="description">vtl1852000@gmail.com</td>
-                            <td><a href="#">Change</a></td>
-                        </tr>
-                        <tr class="lower-row">
-                            <td class="header">Shipping to</td>
-                            <td class="description">72A Nguyen Trai, Thuong Dinh, Thanh Xuan, Ha Noi</td>
-                            <td><a href="#">Change</a></td>
-                        </tr>
-                    </table>
-                </div>
-        
-                <div class="shipping-method">
-                    <h5 style="margin-bottom:30px;">Shipping method</h5>
-        
-                    <div class="content">
-                        <table>
-                            <colgroup>
-                                <col span="1" style="width: 10%;">
-                                <col span="1" style="width: 85%;">
-                                <col span="1" style="width: 5%;">
-                            </colgroup>
-                            <tr>
-                                <td>
-                                    <label class="check">
-                                        <input type="radio"  name="ship-option" id="standard" value="20.00" onclick="ship(this.value)">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
-                                <td class="description">Standard</td>
-                                <td class="price">$20.00</td>
-                            </tr>
-
-        
-                            <tr class="lower-row">
-                                <td>
-                                    <label class="check">
-                                        <input type="radio" name="ship-option" id="express" value="30.00" onclick="ship(this.value)">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
-                                <td class="description">Express Delivery</td>
-                                <td class="price">$30.00</td>
-                            </tr>
-        
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--PAYMENT-->
-
-        <div class="tab" >
-            <div class="payment" >
-                <div class="content1">
-                    <table>
-                        <colgroup>
-                            <col span="1" style="width: 20%;">
-                            <col span="1" style="width: 75%;">
-                            <col span="1" style="width: 5%;">
-                        </colgroup>
-                        <tr>
-                            <td class="header">Contact</td>
-                            <td class="description">vtl1852000@gmail.com</td>
-                            <td><a href="#">Change</a></td>
-                        </tr>
-                        <tr class="lower-row">
-                            <td class="header">Shipping to</td>
-                            <td class="description">72A Nguyen Trai, Thuong Dinh, Thanh Xuan, Ha Noi</td>
-                            <td><a href="#">Change</a></td>
-                        </tr>
-                        <tr class="lower-row">
-                            <td class="header">Method</td>
-                            <td class="description">Standard - <span class="price">$20.00</span></td>
-                            <td><a href="#">Change</a></td>
-                        </tr>
-                    </table>
-                </div>
-        
-                <div class="Payment-method">
-                    <h5>Payment method</h5>
-                    <p style="margin-bottom:30px;">All transactions are secured and encrypted</p>
-        
-                    <div class="content-pay">
-                        <table style="width:100%;">
-                            <tr>
-                                <td>
-                                    <label class="check">Pay by cash
-                                        <input type="radio" checked="checked" name="option" id="cash" value="cash" onclick="myFunction()">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
-                            </tr> 
-                            
-                            <tr class="lower-row">
-                                <td>
-                                    <label class="check">Credit card
-                                        <input type="radio" name="option" id="credit"  value="credit" onclick="myFunction()">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
-                            </tr>
-                            <tr class="lower-row format" id="credit_form">
-                                <td>
-                                    <form class="form-info" action="" method="POST">
-                                        <input type="number" name="card-number" id="card-number" class="form-control" placeholder="Card number" required>
-                                        <input type="text" name="card-name" id="card-name" class="form-control" placeholder="Name on card" required>
-                                        <input style="float: left; width:49%;" type="text" name="date" id="date" class="form-control" placeholder="Expiration date (MM/YY)" required>
-                                        <input style="float: right; width:49%;"type="number" name="sec-code" id="sec-code" class="form-control" placeholder="Security code" required >
-                                    </form>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+        <form class="form-info" action="/shipping" method="GET">
+            <div class="contact-info">
+                <h5 style="text-align: left; width:49%; display: inline-block;margin-bottom:10px;">Contact Information</h5>
+                <p style="text-align: right; width:50%;  display: inline-block;margin-bottom:10px;">Already have an account? <span><a href="#">Log in</a></span></p>
+                    <input type="text" name="email-tel" id="email-tel" class="form-control" placeholder="Email or mobile phone number" required>   
             </div>
             
-        </div>
-
-        <div class="step">
-            <button class="next" id="next" type="submit"  onclick="nextprev(1)"></button>
-            <a class="prev" id="prev" href="#" onclick="nextprev(-1)"></a>
-        </div>
-
+            <div class="shipping-address" style="margin-top:40px;margin-bottom:30px;">
+                <h5 style="margin-bottom:10px;">Shipping address</h5>
+                    <input style="float: left; width:49%;" type="text" name="firstName" id="firstName" class="form-control" placeholder="First name" required>
+                    <input style="float: right; width:49%;"type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name" required >
+                    <input type="text" name="address" id="address" class="form-control" placeholder="Address" required>
+                    <input type="text" name="apartment" id="apartment" class="form-control" placeholder="Apartment, suite, etc. (optional)">
+                    <input type="text" name="city" id="city" class="form-control" placeholder="City" required>
+            </div>
+            <input type="submit" value="submit" onclick="next()">
+            <div class="checking">
+                <a class="btn" href="/shipping"  onclick="next()">Continue to Shipping</a>
+                <a class="return" href="/my-cart">Return to Cart</a>
+            </div>
+    </form>
     </div>
         
     <div class="side">
@@ -232,7 +91,7 @@
         </div>
         <div class="total">
             <div class="sub-title"style="text-align: left; width:49%; display: inline-block;">Total</div>
-            <div class="price" style="width:50%;display:inline-block;font-size:25px;">$<span id="total-price"></span></div>
+            <div class="price" style="width:50%;display:inline-block;font-size:25px;">$<span id="total-price">910</span></div>
         </div>
     </div>
 
@@ -249,45 +108,23 @@
             }
         }
     </script>
-
     <script>
-        var current=0;
-        var x=document.getElementsByClassName("tab");
-        var sub_total=parseFloat(document.getElementById("sub-total").innerHTML);
-        var total=sub_total;
-        
-        document.getElementById("total-price").innerHTML=total;
 
-        showTab(current);
+        document.getElementById("email-tel").value=sessionStorage.getItem("email-tel");
+        document.getElementById("address").value=sessionStorage.getItem("address");
+        document.getElementById("firstName").value=sessionStorage.getItem("firstName");
+        document.getElementById("lastName").value=sessionStorage.getItem("lastName");
+        document.getElementById("apartment").value=sessionStorage.getItem("apartment");
+        document.getElementById("city").value=sessionStorage.getItem("city");
+        function next(){
+            sessionStorage.setItem("email-tel",document.getElementById("email-tel").value);
+            sessionStorage.setItem("address",document.getElementById("address").value);
+            sessionStorage.setItem("firstName",document.getElementById("firstName").value);
+            sessionStorage.setItem("lastName",document.getElementById("lastName").value);
+            sessionStorage.setItem("city",document.getElementById("city").value);
+            sessionStorage.setItem("apartment",document.getElementById("apartment").value);
+        } 
 
-        function showTab(n){   
-            x[n].style.display="block";
-            document.getElementById(n).className += " active";
-            document.getElementById("prev").innerHTML = "Return to " + document.getElementById(n-1).innerHTML;
-            if(n==x.length-1){
-                document.getElementById("next").innerHTML="Pay now";
-            }else{
-                document.getElementById("next").innerHTML = "Continue to " + document.getElementById(n+1).innerHTML;
-            }
-        }
-
-        function nextprev(n){
-            if(n==-1 && current==0){
-                document.getElementById("prev").href="/my-cart";
-            }
-            x[current].style.display="none";
-            document.getElementById(current).className ="breadcrumb-item";
-            current += n; 
-            showTab(current);
-        }
-
-        function ship(s){
-            var ship=parseFloat(s);
-            total=sub_total+ship;
-            console.log(total);
-            document.getElementById("ship-fee").innerHTML=s;
-            document.getElementById("total-price").innerHTML=total;
-        }
     </script>
 
 </body>

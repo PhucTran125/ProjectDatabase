@@ -377,7 +377,7 @@
                             <td>Quantity</td>
                             <td style="display:flex;"> 
                                 <input type="button" value="-" class="button" onclick="minus()">
-                                <div class="quantity" data-id="1" id="1"style="padding-top:4px">1</div>
+                                <div class="quantity" data-id="1" id="number"style="padding-top:4px">1</div>
                                 <input type="button" value="+" class="button" onclick="plus(<%=rows[0].ProductStock%>)">
                             </td>
                         </tr>
@@ -387,14 +387,14 @@
                             <td style="color:#fc846B">$<span id="total"><%=rows[0].Price%></span></td>
                         </tr>
                         <script>
-                            var n = parseInt(document.getElementById("1").textContent);
+                            var n = parseInt(document.getElementById("number").textContent);
                             var price=parseInt(document.getElementById("price").textContent);
                             var total=0;
                             function minus(){
                                 if(n>1){
                                     n--;
                                     total=price*n;
-                                    document.getElementById("1").innerHTML=n;
+                                    document.getElementById("number").innerHTML=n;
                                     document.getElementById("total").innerHTML=total;
                                 }
                             }
@@ -402,19 +402,22 @@
                                 if(n<parseInt(stock)){
                                 n++;
                                 total=price*n;
-                                document.getElementById("1").innerHTML=n;
+                                document.getElementById("number").innerHTML=n;
                                 document.getElementById("total").innerHTML=total;
                                 }    
                             }
                         </script>
 
                     </table>
-                    <button type="submit" class="cart">Add to cart</button>
-                    <button type="submit" class="buy">Buy it now</button>
+                    <button type="submit" class="left" onclick="display()">Add to cart</button>
+                    <button type="submit" class="right">Buy it now</button>
+                    
                 </div>
-                
-     
             </div>
+
+            
+
+
             <h3 style="color:#fc846B;">Product description</h3>
             <div class="description">
                 <% for(var i=0;i < descript.length/2; i++){ %>
@@ -459,7 +462,40 @@
             </div>
         </div>   
     </div>
-   
+    <div class="confirm" id="confirm">
+        <div class="confirm-content ">
+            <span onclick="document.getElementById('confirm').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <div class="product">
+                <p style="margin-bottom:30px;">Product successfully added to your shopping cart</p>
+                <div class="product-photo">
+                    <img src="<%= rows[0].thumbnail_photo%>">  
+                </div>
+                <div class="product-descript">
+                    <h2 style="font-size:20px"><%= rows[0].ProductName %></h2>
+                    <p>$<span id="price"><%=rows[0].Price%></span></p>
+                    <p>Qty: <span id="quantity"></span></p>
+                </div>
+            </div>
+            <div class="cart-info">
+                <p>There are now 1 item(s) in your cart</p>
+                <h1 style="margin-bottom:30px;">$910.00 USD</h1>
+                <button  class="left" onclick="document.getElementById('confirm').style.display='none'">Continue Shopping</button>
+                <a class="btn" href="/my-cart">View Cart</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        var modal = document.getElementById("confirm");
+        function display(){
+            modal.style.display="block";
+            document.getElementById("quantity").innerHTML=document.getElementById("number").innerHTML;
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display="none";
+            }
+        }
+    </script>
     <script>
         $('.relate').owlCarousel({
         items:4,

@@ -70,17 +70,7 @@
 .bg-img .slider-content .slide_left .slider_inner_block .slide-text {
     margin: 10px 0 20px;
 }
-.bg-img .slider-content .slide_left .slider_inner_block a {
-    background: #373737;
-    color: #fc846b;
-    border-radius: 35px;
-    margin-top: 20px;
-    /* font-family: Poppins; */
-    font-weight: 700;
-    text-transform: capitalize;
-    font-size: 18px;
-    padding: 12px 50px;
-}
+
 /* .bg-img .slider-content .slide_left .slider_inner_block a:hover {
     background-color: #fc846b;
     color: #ffffff;
@@ -123,17 +113,7 @@
 .slider-content-2 .slide_left .slider_inner_block .slide-text {
     margin: 10px 0 20px;
 }
-.slider-content-2 .slide_left a {
-    background: #373737;
-    color: #fc846b;
-    border-radius: 35px;
-    margin-top: 20px;
-    /* font-family: Poppins; */
-    font-weight: 700;
-    text-transform: capitalize;
-    font-size: 18px;
-    padding: 12px 50px;
-}
+
 /* Ảnh 4 */
 .img4 {
     background: #fc846b;
@@ -182,17 +162,7 @@ color: #ffffff;
 font-weight: normal;
 margin-bottom: 0;
 }
-.img4 .container-fluid .grid-text .block-content a {
-    background: #373737;
-    color: #fc846b;
-    border-radius: 35px;
-    margin-top: 20px;
-    /* font-family: Poppins; */
-    font-weight: 700;
-    text-transform: capitalize;
-    font-size: 18px;
-    padding: 12px 50px;
-}
+
 /* Ảnh 5 */
 .img5 {
     /* overflow: hidden; */
@@ -331,7 +301,7 @@ margin-bottom: 0;
     margin: 0 0 15px;
     line-height: 1.5;
 }
-.article .article-description .article-btn a {
+a.btn {
     background: #373737;
     color: #fc846b;
     border-radius: 35px;
@@ -341,7 +311,18 @@ margin-bottom: 0;
     text-transform: capitalize;
     font-size: 19px;
     padding: 12px 50px;
+    transition:0.4s;
 }
+
+a.btn:hover{
+    background:#fc846b;
+    color:white;
+}
+.block-content a.btn:hover{
+    background:#ffffff;
+    color:#373737;
+}
+
 /* Footer */
 .footer {
     background-image: url(//cdn.shopify.com/s/files/1/0437/0454/9536/files/footer-bg_1920X.jpg?v=1596001099);

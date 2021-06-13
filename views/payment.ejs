@@ -28,18 +28,18 @@
                     </colgroup>
                     <tr>
                         <td class="header">Contact</td>
-                        <td class="description">vtl1852000@gmail.com</td>
-                        <td><a href="#">Change</a></td>
+                        <td class="description" id="contact"></td>
+                        <td><a href="/info">Change</a></td>
                     </tr>
                     <tr class="lower-row">
                         <td class="header">Shipping to</td>
-                        <td class="description">72A Nguyen Trai, Thuong Dinh, Thanh Xuan, Ha Noi</td>
-                        <td><a href="#">Change</a></td>
+                        <td class="description" id="address"></td>
+                        <td><a href="/info">Change</a></td>
                     </tr>
                     <tr class="lower-row">
                         <td class="header">Method</td>
-                        <td class="description">Standard - <span class="price">$20.00</span></td>
-                        <td><a href="#">Change</a></td>
+                        <td class="description"><span id="method"></span> - <span class="price" id="shipfee"></span></td>
+                        <td><a href="/shipping">Change</a></td>
                     </tr>
                 </table>
             </div>
@@ -85,7 +85,7 @@
 
         <div class="checking">
             <button class="btn" type="submit">Pay now</button>
-            <a class="return" href="/shipping">Return to shipping</a>
+            <a class="return" href="javascript:window.history.back()">Return to shipping</a>
         </div>
 
     </div>
@@ -142,6 +142,8 @@
         </div>
     </div>
     <script>
+        document.getElementById("contact").innerHTML=sessionStorage.getItem("email-tel");
+        document.getElementById("address").innerHTML=sessionStorage.getItem("address");
         function myFunction() {
             var cash = document.getElementById("cash")
             var credit = document.getElementById("credit");
@@ -154,5 +156,10 @@
             }
         }
     </script>
+    <script>
+        document.getElementById("shipfee").innerHTML=sessionStorage.getItem("fee");
+        document.getElementById("method").innerHTML=sessionStorage.getItem("method");
+    </script>
+
 </body>
 </html>
