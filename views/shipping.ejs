@@ -28,13 +28,13 @@
                     </colgroup>
                     <tr>
                         <td class="header">Contact</td>
-                        <td class="description">vtl1852000@gmail.com</td>
-                        <td><a href="#">Change</a></td>
+                        <td class="description" id="contact"></td>
+                        <td><a href="/info">Change</a></td>
                     </tr>
                     <tr class="lower-row">
                         <td class="header">Shipping to</td>
-                        <td class="description">72A Nguyen Trai, Thuong Dinh, Thanh Xuan, Ha Noi</td>
-                        <td><a href="#">Change</a></td>
+                        <td class="description" id="address"></td>
+                        <td><a href="/info">Change</a></td>
                     </tr>
                 </table>
             </div>
@@ -52,32 +52,21 @@
                         <tr>
                             <td>
                                 <label class="check">
-                                    <input type="radio" checked="checked" name="option" value="standard">
+                                    <input type="radio" checked="checked" name="option" id="standart" value="20" onclick="shipfee(this.value)">
                                     <span class="checkmark"></span>
                                 </label>
                             </td>
-                            <td class="description">Standard</td>
+                            <td class="description" id="20">Standard Delivery</td>
                             <td class="price">$20.00</td>
                         </tr>
                         <tr class="lower-row">
                             <td>
                                 <label class="check">
-                                    <input type="radio" name="option" value="slow">
+                                    <input type="radio" name="option" id="express" value="30" onclick="shipfee(this.value)">
                                     <span class="checkmark"></span>
                                 </label>
                             </td>
-                            <td class="description">Slow</td>
-                            <td class="price">$15.00</td>
-                        </tr>
-    
-                        <tr class="lower-row">
-                            <td>
-                                <label class="check">
-                                    <input type="radio" name="option" value="fast">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </td>
-                            <td class="description">Fast</td>
+                            <td class="description" id="30">Express Delivery</td>
                             <td class="price">$30.00</td>
                         </tr>
     
@@ -130,19 +119,39 @@
             <table style="width:100%">
                 <tr>
                   <td class="sub-title">Subtotal</td>
-                  <td class="price">$910.00</td>
+                  <td class="price">$<span id="subtotal">910</td>
                 </tr>
                 <tr>
                   <td class="sub-title">Shipping</td>
-                  <td class="price">$20.00</td>
+                  <td class="price">$<span id="shipfee">20</span></td>
                 </tr>
               </table> 
         </div>
         <div class="total">
             <div class="sub-title"style="text-align: left; width:49%; display: inline-block;">Total</div>
-            <div class="price" style="width:50%;display:inline-block;font-size:25px;">$930.00</div>
+            <div class="price" style="width:50%;display:inline-block;font-size:25px;">$<span id="total">930</span></div>
         </div>
     </div>
+    <script>
+        document.getElementById("contact").innerHTML=sessionStorage.getItem("email-tel");
+        document.getElementById("address").innerHTML=sessionStorage.getItem("address");
+    </script>
+    <script>
+        var subtotal=parseInt(document.getElementById("subtotal").innerHTML);
+        if(sessionStorage.getItem("fee")!=null){
+            var total=subtotal+parseInt(sessionStorage.getItem("fee"));
+            document.getElementById("shipfee").innerHTML=sessionStorage.getItem("fee");
+            document.getElementById("total").innerHTML=total;
+        }
+        function shipfee(s){
+            var ship=parseInt(s);
+            total=subtotal+ship;
+            document.getElementById("shipfee").innerHTML=s;
+            document.getElementById("total").innerHTML=total;
+            sessionStorage.setItem("fee",s);
+            sessionStorage.setItem("method",document.getElementById(s).innerHTML);
+        }
+    </script>
 
 </body>
 </html>
