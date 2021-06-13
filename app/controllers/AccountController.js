@@ -2,6 +2,7 @@ const db = require('../../config/db/database');
 const bcrypt = require('bcryptjs');
 const authenticate = require('../../config/auth/auth');
 const jwt = require('jsonwebtoken');
+const Cart = require('../models/Cart');
 
 class AccountController {
     //[POST] /login
@@ -42,21 +43,28 @@ class AccountController {
     register(req, res, next) {
         var {firstName, lastName, phone, email, password, passwordConfirm, city, country} = req.body;
 
-        db.connection.query('SELECT * FROM User_table WHERE Email = ?', [email], async function(error, results, fields){
+        db.connection.query('SELECT * FROM User_table', [email], async function(error, results, fields){
             if (error) {
                 console.log(error);
             }
-            
-            if (results.length > 0) {
-                return res.render('register', {message: 'That email is already use'});
-            } else if (password != passwordConfirm) {
+            for (let i = 0; i < results.length; i++) {
+                if (email.localeCompare(results[i].Email) == 0)
+                    return res.render('register', {message: 'That email is already use'});
+            }
+            if (password != passwordConfirm) {
                 return res.render('register', {message: 'Password do not match'});
             }
             else {
                 let hashedPassword = await bcrypt.hash(password, 8); 
                 // 8: how many time you want to hash password
                 console.log(hashedPassword);
-
+                // Create cart
+                var today = new Date();
+                var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                var dateTime = date+' '+time;
+                Cart.createCart(results.length+1, dateTime, dateTime, 'Cash, Internet Banking, Paypal, ViettelPay');
+                // Create user
                 db.connection.query('INSERT INTO User_table SET ?', {FirstName: firstName, LastName: lastName, Phone: phone, Email: email, Password: hashedPassword, City: city, Country: country, WishListID: results.length + 1, CartID: results.length + 1}, (error, results) => {
                     if (error) {
                         console.log(error);

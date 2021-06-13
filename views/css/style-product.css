@@ -58,6 +58,10 @@
     width: 100%;
     padding: 0 4%;
 }
+.navbar-nav .nav-item .product_page {
+    border-color: #fc846b;
+    color: #fc846b;
+}
 /* het header */
 .headphone-image{
     background-image:url("//cdn.shopify.com/s/files/1/0437/0454/9536/t/26/assets/breadcrumb_bg_image.jpg?v=4568109122593610553"); 
@@ -117,7 +121,7 @@ h4{
     color:#fc846b;
     text-decoration:none;
 }
-input {
+input.byColor, input.byBrand, input.byPrice {
     position: absolute;
     cursor:pointer;
     opacity:0;

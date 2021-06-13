@@ -8,7 +8,6 @@ const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const session = require('express-session');
 const axios = require('axios').default;
-const expressLayouts = require('express-ejs-layouts');
 
 // const  {
 //     SESS_NAME = 'semail',
@@ -39,8 +38,6 @@ app.use(passport.initialize())
 // })
 
 // Set view
-app.use(expressLayouts)
-app.set('layout', './layout/layout');
 app.set('view engine', 'ejs');
 
 // Connect to database

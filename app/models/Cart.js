@@ -1,17 +1,29 @@
 const db = require('../../config/db/database');
 
 var Cart = {
-    addProduct:function(id, callback){
-        return db.connection.query('INSERT INTO Product_Cart SET', [], callback)
+    createCart:function(cartID, createTime, updateTime, PaymentMethod){
+        return db.connection.query('Insert into Cart values(?, ?, ?, ?)', [cartID, createTime, updateTime, PaymentMethod]);
     },
-    totalCost:function(callback){
-        return db.connection.query('SELECT * FROM Products, Cart, Product_Cart WHERE Products.ProductID = Product_Cart.ProductID AND Product_Cart.CartID = Cart.CartID', callback);
+    getTupleByCartID:function(carID, productID, callback){
+        return db.connection.query('select * from Product_Cart where CartID = ? and ProductID = ?', [carID, productID], callback);
     },
-    removeFromCart:function(id, callback){
-        return db.connection.query('DELETE FROM Product_Cart WHERE  ProductID =? AND CartID = ?', [productID, cartID], callback); 
+    getProductByState:function(cartID, callback){
+        return db.connection.query('SELECT * FROM Products, Cart, Product_Cart WHERE Products.ProductID = Product_Cart.ProductID AND Product_Cart.CartID = Cart.CartID AND Product_Cart.CartID = ? AND CheckInCart = "N"', [cartID], callback);
     },
-    updateProduct:function(cartID, productID, value, callback){
-        return db.connection.query('update Product_Cart set NumProduct = ? where CartID = ? and ProductID = ?',[value, cartID, productID], callback);
+    addProduct:function(cartID, productID, quantity, Check, callback){
+        return db.connection.query('INSERT INTO Product_Cart values(?, ?, ?, ?)', [cartID, productID, quantity, Check], callback);
+    },
+    totalCost:function(cartid, callback){
+        return db.connection.query('SELECT * FROM Products, Cart, Product_Cart WHERE Products.ProductID = Product_Cart.ProductID AND Product_Cart.CartID = Cart.CartID AND Product_Cart.CartID = ?',[cartid] , callback);
+    },
+    removeFromCart:function(cartID, productID, callback){
+        return db.connection.query('DELETE FROM Product_Cart WHERE  CartID = ? AND ProductID = ?', [cartID, productID], callback); 
+    },
+    updateProduct:function(value, cartID, productID, callback){
+        return db.connection.query('update Product_Cart set NumProduct = ? where CartID = ? and ProductID = ?', [value, cartID, productID], callback);
+    },
+    updateProductState:function(state, cartID, productID, callback){
+        return db.connection.query('update Product_Cart set CheckInCart = ? where CartID = ? and ProductID = ?', [state, cartID, productID], callback);
     }
 };
 

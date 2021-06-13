@@ -83,6 +83,14 @@ insert into Products(UszProductID, ProductName, ProductSortDesc, ProductDesc, Pr
 ('2', 'Sony-WH-1000XM4', 'QUIETER. BETTER. FASTER. STRONGER.', 'How do you ensure betterment of the best? By continuing to do what you have been doing best whilst adding feature and ensuring there are no shortcoming, meet the worthy follow-up Sony-WH-1000XM4.', '24990', 'Black', 'Synthetic resins, leather', '18', 'In stock', 'https://i.imgur.com/A9v7r7B.jpg', 'sony-wh-1000mx4-headphone', '2', '3'),
 ('3', 'Beats by Dre - Powerbeats Pro', 'POWERFUL SOUND FOR POWER WORKOUTS', 'For an athlete, music is an important motivator. The Powerbeats Pro delivers a powerful and balanced sound. With its dynamic range and noise isolation, you can now listen and experience the best of your music.', '20490', 'Black', 'Synthetic resins', '28', 'In stock', 'https://i.imgur.com/oGRVGU2.jpg', 'beats-by-dre-powerbeats-pro', '4', '5');
 
-update Product_Cart set NumProduct = '1' where CartID = '1' and ProductID = '1';
+update Product_Cart set CheckInCart = 'N' where ProductID = '4';
 delete from Product_Cart where CartID = '1';
-update Products set Price = '399' where ProductID = '22'
+update Products set Price = '399' where ProductID = '22';
+
+delete from user_table where UserID = 2;
+delete from cart where CartID = 1;
+
+INSERT INTO Product_Cart values(1, 1, 2);
+
+SELECT * FROM Products, Cart, Product_Cart WHERE Products.ProductID = Product_Cart.ProductID AND Product_Cart.CartID = Cart.CartID AND Product_Cart.CartID = 1;
+alter table Product_Cart add column CheckInCart char(1);

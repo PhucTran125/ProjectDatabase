@@ -6,7 +6,7 @@ const siteController = require('../app/controllers/SiteController');
 router.get('/info',(req,res) =>{
     res.render('information');
 });
-router.get('/shipping',(req,res) =>{
+router.get('/shipping', (req,res) =>{
     res.render('shipping');
 });
 router.get('/payment',(req,res) =>{

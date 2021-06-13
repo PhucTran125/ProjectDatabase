@@ -1,3 +1,4 @@
+const Cart = require('../models/Cart');
 const Product = require('../models/Product');
 // Create global variable for category
 const cate = [];
@@ -169,12 +170,58 @@ class CatalogController {
                     });
                 }
                 ex(function(cate_arr){
-                    res.render('product-detail', {rows: rows, imageUrl: imageUrl,cate_arr:cate_arr, descript:descript, sess: sess});
+                    var checkSess;
+                    var userInfo = "none";
+                    var totalItem = 0;
+                    var totalCost = 0;
+                    if (typeof sess === 'undefined') {
+                        checkSess = "no_user";
+                        // res.render('product-detail', {rows: rows, imageUrl: imageUrl,cate_arr:cate_arr, descript:descript, sess: sess_no_user, checkUser: checkSess});
+                    }
+                    else {
+                        checkSess = "have_user";
+                        userInfo = sess;
+                        Cart.totalCost(userInfo.cartid, function(err, results){
+                            if (err) res.json(err);
+                            else {
+                                for (let i = 0; i < results.length; i++) {
+                                    totalItem += results[i].NumProduct;
+                                    totalCost += results[i].Price * results[i].NumProduct;
+                                }
+                            }
+                        })
+                    }
+                    setTimeout(function o(){
+                        res.render('product-detail', {rows: rows, imageUrl: imageUrl,cate_arr: cate_arr, descript: descript, sess: sess, checkUser: checkSess, userInfo: userInfo, totalCost: totalCost, totalItem: totalItem});
+                    }, 100);
                 });
  
             }
         })
     };
+
+    // [PATCH] /catalog/product/add-to-cart
+    addToCart(req, res) {
+        var cartID = req.body.cartID;
+        var productID = req.body.productID;
+        var quantity = req.body.quantity;
+        Cart.getTupleByCartID(cartID, productID, function(err, results){
+            if(err) res.json(err);
+            else {
+                if(results.length == 0) {
+                    Cart.addProduct(cartID, productID, quantity, 'Y', function(err2){
+                        if (err2) console.log(err2);
+                    });
+                }
+                else {
+                    quantity += results[0].NumProduct;
+                    Cart.updateProduct(cartID, productID, quantity, function(err){
+                        if (err) console.log(err);
+                    });
+                }
+            }
+        })
+    }
 
 };
 

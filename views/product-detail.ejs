@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -18,56 +19,10 @@
     </style>
 </head>
 <body>
-    <!-- HEADER -->
-    <div class="header-content-cart">
-        <div class="head-menubar-cart d-flex align-items-center">
-            <div class="container-bg">
-                <div class="row">
-                    <div class="col-2">
-                        <img src="https://cdn.shopify.com/s/files/1/0437/0454/9536/t/26/assets/logo.png?v=8319783983011445918" alt="Logo" srcset="">
-                    </div>
-                    <div class="col-8">
-                        <div class="sidemenu-holder">
-                            <nav class="navbar navbar-expand-lg">
-                                <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                                    <ul class="navbar-nav">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/">Home</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link product" href="/catalog">Catalog</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Blog</a>
-                                        </li>
-                                        <li class="nav-item blog">
-                                            <a class="nav-link" href="#">Pages</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </nav>
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        <div class="header-icon">
-                            <ul class="list-inline d-flex justify-content-end">
-                                <li class="list-inline-item cart">
-                                    <a href="/my-cart"><i class="fas fa-shopping-cart fa-lg"></i></a></li>
-                                <li class="list-inline-item user" style="margin-inline-end: 40px;">
-                                    <a href="/account/login" title="Resister"><i class="far fa-user fa-lg"></i></a>
-                                </li>
-                                <% if(sess) {%>
-                                    <li class="list-inline-item logout">
-                                        <a href="/account/logout"><i class="fas fa-sign-out-alt fa-lg"></i></a>
-                                    </li>
-                                <% } %>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <header>
+        <%- include('./partials/header') %> 
+    </header>
+    <!--MAIN CONTENT-->
     <div class="headphone-image">
         <div class="shopping-cart">
            <h1 style="font-family: 'Times New Roman', Times, serif;">COMFORT EARPHONE</h1>
@@ -79,9 +34,6 @@
            </p>
         </div>
     </div>
-    <!-- HEADER -->
-
-    <!--MAIN CONTENT-->
     <div class="main-content">
         <div class="side-bar">
             <div class="widget category">
@@ -377,8 +329,8 @@
                             <td>Quantity</td>
                             <td style="display:flex;"> 
                                 <input type="button" value="-" class="button" onclick="minus()">
-                                <div class="quantity" data-id="1" id="1"style="padding-top:4px">1</div>
-                                <input type="button" value="+" class="button" onclick="plus(<%=rows[0].ProductStock%>)">
+                                <div class="quantity" id="1"style="padding-top:4px">1</div>
+                                <input type="button" value="+" class="button" onclick="plus('<%=rows[0].ProductStock%>')">
                             </td>
                         </tr>
 
@@ -409,11 +361,9 @@
                         </script>
 
                     </table>
-                    <button type="submit" class="cart">Add to cart</button>
-                    <button type="submit" class="buy">Buy it now</button>
+                    <button type="submit" id="addToCartBtn" class="left">Add to cart</button>
+                    <button type="submit" class="right">Buy it now</button>
                 </div>
-                
-     
             </div>
             <h3 style="color:#fc846B;">Product description</h3>
             <div class="description">
@@ -435,7 +385,7 @@
                 <% for(let i=0;i < cate_arr.length; i++){%>
                     <div class="item">
                         <div class="item-image" style="margin-bottom:20px;">
-                            <a href="#">
+                            <a href="/catalog/product/<%= cate_arr[i].slug %>">
                                 <img style="width: 100%;; visibility: visible;"src="<%=cate_arr[i].thumbnail_photo%>"  >               
                             </a>
                         </div>
@@ -451,7 +401,7 @@
                            <% } %>
                         </div>
                         <div class="item-title" style="margin-bottom:5px;" >
-                            <a href="#"><%=cate_arr[i].ProductName%></a>
+                            <a href="/catalog/product/<%= cate_arr[i].slug %>"><%=cate_arr[i].ProductName%></a>
                         </div>
                         <div class="item-price"><%=cate_arr[i].Price%></div>
                     </div>
@@ -459,7 +409,30 @@
             </div>
         </div>   
     </div>
-   
+    <!-- Confirm windows -->
+    <div class="confirm" id="confirm">
+        <div class="confirm-content ">
+            <span onclick="document.getElementById('confirm').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <div class="product">
+                <p style="margin-bottom:30px;">Product successfully added to your shopping cart</p>
+                <div class="product-photo">
+                    <img src="<%= rows[0].thumbnail_photo%>">  
+                </div>
+                <div class="product-descript">
+                    <h2 style="font-size:20px"><%= rows[0].ProductName %></h2>
+                    <p>Price: $<span id="price"><%=rows[0].Price%></span></p>
+                    <p>Qty: <span id="quantity"></span></p>
+                </div>
+            </div>
+            <div class="cart-info">
+                <p>There are now <%= totalItem %> item(s) in your cart</p>
+                <h1 style="margin-bottom:30px;">$<%= totalCost %>.00 USD</h1>
+                <button  class="left" onclick="document.getElementById('confirm').style.display='none'">Continue Shopping</button>
+                <a class="btn" href="/my-cart">View Cart</a>
+            </div>
+        </div>
+    </div>
+    <!-- carousel funtion -->
     <script>
         $('.relate').owlCarousel({
         items:4,
@@ -478,5 +451,41 @@
         navText: ["<div class='nav-button owl-prev'>‹</div>", "<div class='nav-button owl-next'>›</div>"],
     })
     </script>
+    <!-- Add to cart function -->
+    <script>
+        var modal = document.getElementById("confirm");
+        document.getElementById("addToCartBtn").onclick = function() {
+            var check = '<%= checkUser %>';
+            if (check.localeCompare("have_user") == 0) {
+                modal.style.display= "block";
+                document.getElementById("quantity").innerHTML = document.getElementById("1").innerHTML;
+                let quantity = parseInt(document.getElementById("1").textContent);
+                let productID = parseInt('<%= rows[0].ProductID %>');
+                axios.patch('/catalog/product/add-to-cart', {
+                    productID: productID,
+                    quantity: quantity,
+                    cartID: parseInt('<%= userInfo.cartid %>')
+                })
+                .then(function(response) {
+                    console.log("successfully")
+                })
+                .catch(function(error) {
+                    console.log(error);
+                })
+            } 
+            if (check.localeCompare("no_user") == 0) {
+                alert("You need to login to add to cart!")
+            }
+        }
+        window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display="none";
+                }
+        }
+    </script>
+    <!-- Add to cart function -->
+    <footer>
+        <%- include('./partials/footer') %> 
+    </footer>
 </body>
 </html>

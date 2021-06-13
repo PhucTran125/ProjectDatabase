@@ -1,13 +1,16 @@
-const { addProduct } = require('../models/Cart');
 const Cart = require('../models/Cart');
 
 class CartController{
-    // addProduct(){
-    //     Cart:addProduct()
-    // };
     showCart(req, res) {
         const sess = req.session.userID;
-        Cart.totalCost(function(err, rows){
+        var userInfo = {id: 0, email: '0@0.com', cartid: 0};
+        var checkSess = 'have_user';
+        var userInfo = "none";
+        if (typeof sess === 'undefined') {
+            checkSess = 'no_user';
+        }
+        else userInfo = sess;
+        Cart.totalCost(userInfo.cartid, function(err, rows){
             if(err) res.json(err);
             else {
                 var totalCost = 0;
@@ -15,9 +18,11 @@ class CartController{
                 for (var i = 0; i < rows.length; i++) {
                     // totalCost += rows[i].Price;
                     subCost[i] = rows[i].Price * rows[i].NumProduct;
-                    totalCost += subCost[i];
+                    if (rows[i].CheckInCart.localeCompare('Y') == 0) {
+                        totalCost += subCost[i];
+                    }
                 }
-                res.render('cart', {rows: rows, totalCost: totalCost, subCost: subCost, sess: sess});
+                res.render('cart', {rows: rows, totalCost: totalCost, subCost: subCost, sess: sess, checkUser: checkSess, userInfo: userInfo}); 
             }
         });
     };
@@ -31,17 +36,25 @@ class CartController{
         res.render('cart', {x: x, sess: sess})
     };
     update(req, res) {
-        const sess = req.session.userID;
-        Cart.updateProduct(sess.cartid, req.body.id, req.body.quantity, function(err) {
+        Cart.updateProduct(req.body.quantity, req.body.cartID, req.body.id, function(err) {
             if(err) res.json(err);
         });
-        // console.log(req.body.id);
-        // console.log(req.body.quantity);
     }
     delete(req, res) {
-        const sess = req.session.userID;
-        Cart.removeFromCart(req.body.id, sess.cartid, function (err) {
+        const carID = req.body.cartID;
+        const productID = req.body.productID;
+        Cart.removeFromCart(carID, productID, function (err) {
             if(err) res.json(err);
+        })
+    }
+    // [PATCH] /my-cart/update-state
+    updateState(req, res) {
+        const cartID = req.body.cartID;
+        const productID = req.body.productID;
+        const state = req.body.state;
+        Cart.updateProductState(state, cartID, productID, function (err) {
+            if(err) res.json(err);
+            return res.end();
         })
     }
 };

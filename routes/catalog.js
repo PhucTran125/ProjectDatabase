@@ -6,6 +6,7 @@ const catalogController = require('../app/controllers/CatalogController');
 router.get('/collections/:cate', catalogController.filterByCategory);
 router.patch('/all', catalogController.sortBy);
 router.patch('/filter', catalogController.filterProduct);
+router.patch('/product/add-to-cart', catalogController.addToCart);
 router.get('/product/:slug', catalogController.show);
 router.get('/', catalogController.index);
 
