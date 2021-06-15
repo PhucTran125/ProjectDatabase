@@ -20,24 +20,26 @@
         </ul>
         
         <!--INFORMATION-->
-        <form class="form-info" action="/shipping" method="GET">
-            <div class="contact-info">
-                <h5 style="text-align: left; width:49%; display: inline-block;margin-bottom:10px;">Contact Information</h5>
-                <p style="text-align: right; width:50%;  display: inline-block;margin-bottom:10px;">Already have an account? <span><a href="#">Log in</a></span></p>
-                    <input type="text" name="email-tel" id="email-tel" class="form-control" placeholder="Email or mobile phone number" required>   
+        <form class="form-info" action="/shipping" method="POST">
+            <div class="info-input">
+                <div class="contact-info">
+                    <h5 style="text-align: left; width:49%; display: inline-block;margin-bottom:10px;">Contact Information</h5>
+                    <p style="text-align: right; width:50%;  display: inline-block;margin-bottom:10px;">Already have an account? <span><a href="#">Log in</a></span></p>
+                        <input type="text" name="email-tel" id="email-tel" class="form-control" placeholder="Email or mobile phone number" required pattern="([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$)|(0+[0-9]{9})">   
+                </div>
+                
+                <div class="shipping-address" style="margin-top:40px;margin-bottom:30px;">
+                    <h5 style="margin-bottom:10px;">Shipping address</h5>
+                        <input style="float: left; width:49%;" type="text" name="firstName" id="firstName" class="form-control" placeholder="First name" required>
+                        <input style="float: right; width:49%;"type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name" required >
+                        <input type="text" name="address" id="address" class="form-control" placeholder="Address" required>
+                        <input type="text" name="apartment" id="apartment" class="form-control" placeholder="Apartment, suite, etc. (optional)">
+                        <input type="text" name="city" id="city" class="form-control" placeholder="City" required>
+                </div>
             </div>
             
-            <div class="shipping-address" style="margin-top:40px;margin-bottom:30px;">
-                <h5 style="margin-bottom:10px;">Shipping address</h5>
-                    <input style="float: left; width:49%;" type="text" name="firstName" id="firstName" class="form-control" placeholder="First name" required>
-                    <input style="float: right; width:49%;"type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name" required >
-                    <input type="text" name="address" id="address" class="form-control" placeholder="Address" required>
-                    <input type="text" name="apartment" id="apartment" class="form-control" placeholder="Apartment, suite, etc. (optional)">
-                    <input type="text" name="city" id="city" class="form-control" placeholder="City" required>
-            </div>
-            <input type="submit" value="submit" onclick="next()">
             <div class="checking">
-                <a class="btn" href="/shipping"  onclick="next()">Continue to Shipping</a>
+                <input class="btn" type="submit" value="Continue to shipping"onclick="next()">
                 <a class="return" href="/my-cart">Return to Cart</a>
             </div>
     </form>
@@ -81,21 +83,22 @@
             <table style="width:100%">
                 <tr>
                   <td class="sub-title">Subtotal</td>
-                  <td class="price">$<span id="sub-total">910.00</span></td>
+                  <td class="price">$<span id="subtotal">910</span></td>
                 </tr>
                 <tr>
                   <td class="sub-title">Shipping</td>
-                  <td class="price"><span id="ship-fee">calculated at next step</span></td>
+                  <td class="price"><span id="shipfee">calculated at next step</span></td>
                 </tr>
               </table> 
         </div>
         <div class="total">
             <div class="sub-title"style="text-align: left; width:49%; display: inline-block;">Total</div>
-            <div class="price" style="width:50%;display:inline-block;font-size:25px;">$<span id="total-price">910</span></div>
+            <div class="price" style="width:50%;display:inline-block;font-size:25px;">$<span id="total"></span></div>
         </div>
     </div>
 
     <script>
+        document.getElementById("total").innerHTML=document.getElementById("subtotal").innerHTML;
         function myFunction() {
             var cash = document.getElementById("cash");
             var credit = document.getElementById("credit");
@@ -109,13 +112,13 @@
         }
     </script>
     <script>
-
         document.getElementById("email-tel").value=sessionStorage.getItem("email-tel");
         document.getElementById("address").value=sessionStorage.getItem("address");
         document.getElementById("firstName").value=sessionStorage.getItem("firstName");
         document.getElementById("lastName").value=sessionStorage.getItem("lastName");
         document.getElementById("apartment").value=sessionStorage.getItem("apartment");
         document.getElementById("city").value=sessionStorage.getItem("city");
+        
         function next(){
             sessionStorage.setItem("email-tel",document.getElementById("email-tel").value);
             sessionStorage.setItem("address",document.getElementById("address").value);
@@ -123,8 +126,7 @@
             sessionStorage.setItem("lastName",document.getElementById("lastName").value);
             sessionStorage.setItem("city",document.getElementById("city").value);
             sessionStorage.setItem("apartment",document.getElementById("apartment").value);
-        } 
-
+        }
     </script>
 
 </body>

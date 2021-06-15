@@ -2,7 +2,10 @@
     width: 20%;
     float: left;
     background-color: #fc846b;
-    padding: 10px;
+    padding: 20px;
+    height: 700px;
+    border-radius: 0.2rem;
+    margin: 0px;
     
 }
 h4{
@@ -37,4 +40,31 @@ h4{
 .main-content .side-bar label:hover{
     color:#fc846b;
     text-decoration:none;
+}
+.content{
+    width: 75%;
+    float: right;
+    background-color: white;
+    padding: 10px;
+    height: 720px;
+    border-width: 0.2rem; 
+    border-radius: 0.2rem;
+    text-align: center;
+    margin:0 auto;
+    padding: 0px;
+}
+
+button{
+    width: 220px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: #373737;
+    color: #fc846b;
+}
+table{
+   display: inline;
+}
+table input{
+    border-radius: 2px;
 }
