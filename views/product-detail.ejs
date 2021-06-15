@@ -329,8 +329,8 @@
                             <td>Quantity</td>
                             <td style="display:flex;"> 
                                 <input type="button" value="-" class="button" onclick="minus()">
-                                <div class="quantity" id="1"style="padding-top:4px">1</div>
-                                <input type="button" value="+" class="button" onclick="plus('<%=rows[0].ProductStock%>')">
+                                <div class="quantity" data-id="1" id="number"style="padding-top:4px">1</div>
+                                <input type="button" value="+" class="button" onclick="plus(<%=rows[0].ProductStock%>)">
                             </td>
                         </tr>
 
@@ -339,14 +339,14 @@
                             <td style="color:#fc846B">$<span id="total"><%=rows[0].Price%></span></td>
                         </tr>
                         <script>
-                            var n = parseInt(document.getElementById("1").textContent);
+                            var n = parseInt(document.getElementById("number").textContent);
                             var price=parseInt(document.getElementById("price").textContent);
                             var total=0;
                             function minus(){
                                 if(n>1){
                                     n--;
                                     total=price*n;
-                                    document.getElementById("1").innerHTML=n;
+                                    document.getElementById("number").innerHTML=n;
                                     document.getElementById("total").innerHTML=total;
                                 }
                             }
@@ -354,17 +354,22 @@
                                 if(n<parseInt(stock)){
                                 n++;
                                 total=price*n;
-                                document.getElementById("1").innerHTML=n;
+                                document.getElementById("number").innerHTML=n;
                                 document.getElementById("total").innerHTML=total;
                                 }    
                             }
                         </script>
 
                     </table>
-                    <button type="submit" id="addToCartBtn" class="left">Add to cart</button>
+                    <button type="submit" class="left" onclick="display()">Add to cart</button>
                     <button type="submit" class="right">Buy it now</button>
+                    
                 </div>
             </div>
+
+            
+
+
             <h3 style="color:#fc846B;">Product description</h3>
             <div class="description">
                 <% for(var i=0;i < descript.length/2; i++){ %>
