@@ -38,196 +38,207 @@
             </div>
         </div>
     </div>
+    
     <div class="product-list" id="have-product">
-        <div class="cart-table">
-            <table>
-                <colgroup>
-                    <col span="1" style="width: 10%;">
-                    <col span="1" style="width: 40%;">
-                    <col span="1" style="width: 20%;">
-                    <col span="1" style="width: 20%;">
-                    <col span="1" stlye="width: 10%;">
-                 </colgroup>
-                </colgroup>
-                <tr>
-                    <th>Select</th>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Subtotal</th>
-                    <th>Remove</th>
-                </tr>
-
-                <script>
-                    var count;
-                    var value;
-                    var totalCost = parseInt('<%= totalCost%>');
-                    function plus(id, price){
-                        let tmpCost = parseInt(document.getElementById("totalCost").textContent.slice(1));
-                        count = ++document.getElementById(id).textContent;
-                        value = "$" + count*price;
-                        document.getElementById(id + 100).innerHTML = value;
-                        tmpCost += price;
-                        if (checked(id) == true) {
-                            // id + 100 is subtoTal
-                            // id + 200 is remove
-                            // id + 300 is checkbox
-                            document.getElementById("totalCost").innerHTML = "$" + tmpCost;
-                            // let nowTotalCost = totalCost - parseInt(document.getElementById(id + 100).textContent.slice(1));
-                            // document.getElementById("totalCost").innerHTML = "$" + nowTotalCost;
-                        }
-                        // update in database
-                        const idProduct = document.getElementsByClassName("quantity")[id].getAttribute("data-id");
-                        const countProduct = document.getElementsByClassName("quantity")[id].textContent;
-                        axios.patch('/my-cart/update', {
-                                cartID: parseInt('<%= userInfo.cartid %>'),
-                                id: idProduct,
-                                quantity: countProduct,
-                        })
-                        .then(function (response) {
-                            console.log(response);
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                        alert("Update successfully!");
-                    }
-                    function minus(id, price){
-                        if (document.getElementById(id).textContent > 1) {
-                            let tmpCost = parseInt(document.getElementById("totalCost").textContent.slice(1));
-                            count = --document.getElementById(id).textContent;
-                            value = "$" + count*price;
-                            document.getElementById(id + 100).innerHTML = value;
-                            tmpCost -= price;
-                            if (checked(id) == true) {
-                                // id + 100 is subtoTal
-                                // id + 200 is remove
-                                // id + 300 is checkbox
-                                document.getElementById("totalCost").innerHTML = "$" + tmpCost;
-                                // var nowTotalCost = totalCost - parseInt(document.getElementById(id + 100).textContent.slice(1));
-                                // document.getElementById("totalCost").innerHTML = "$" + nowTotalCost;
-                            }
-                            // update in database
-                            const idProduct = document.getElementsByClassName("quantity")[id].getAttribute("data-id");
-                            const countProduct = document.getElementsByClassName("quantity")[id].textContent;
-                            axios.patch('/my-cart/update', {
-                                cartID: parseInt('<%= userInfo.cartid %>'),
-                                id: idProduct,
-                                quantity: countProduct,
-                            })
-                            .then(function (response) {
-                                console.log(response);
-                            })
-                            .catch(function (error) {
-                                console.log(error);
-                            });
-                            alert("Update successfully!");
-                        }   
-                    }
-                    function del(id) {
-                        console.log(id);
-                        document.getElementById(id + 200).classList.add("d-none");
-                        const idProduct = document.getElementsByClassName("quantity")[id].getAttribute("data-id");
-                        const cartID = parseInt('<%= userInfo.cartid %>');
-                        // const countProduct = document.getElementsByClassName("quantity")[id].textContent;
-                        axios.patch('/my-cart/delete', {
-                                cartID: cartID,
-                                productID: idProduct
-                        })
-                        .then(function (response) {
-                            console.log(response);
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                        alert("Delete successfully!");
-                    }
-                    function checked(id) {
-                        var d = document.getElementById(id + 300) ;
-                        if (d.checked) {
-                            return true;
-                        }
-                        return false;
-                    }
-                    function checkFunc(id) {
-                        let tmpCost = parseInt(document.getElementById("totalCost").textContent.slice(1));
-                        let state = 'Y';
-                        let productSubCost = parseInt(document.getElementById(id + 100).textContent.slice(1));
-                        console.log(productSubCost)
-                        const idProduct = document.getElementsByClassName("quantity")[id].getAttribute("data-id");
-                        if (document.getElementById(id + 300).checked == true) {
-                            console.log("True");
-                            var nowCost = tmpCost + productSubCost;
-                            document.getElementById("totalCost").innerHTML = "$" + nowCost;
-                        }
-                        if (document.getElementById(id + 300).checked == false) {
-                            state = 'N';
-                            var nowCost = tmpCost - productSubCost;
-                            document.getElementById("totalCost").innerHTML = "$" + nowCost;
-                        }
-                        axios.patch('/my-cart/update-state', {
-                                cartID: parseInt('<%= userInfo.cartid %>'),
-                                productID: idProduct,
-                                state: state
-                        })
-                        .then(function(response){
-                            console.log(response);
-                        })
-                        .catch(function(error){
-                            console.log(error);
-                        })
-                        alert("Update successfully!");
-                    }
-                </script>
-                <% for (let i = 0; i < rows.length; i++){ %>
-                    <tr align="center" id="<%= i + 200%>">
-                        <% if (rows[i].CheckInCart == 'Y') { %> 
-                            <td><input type="checkbox" class="checkbox" id="<%= i + 300 %>" onclick="checkFunc(<%= i %>)" checked></td>
-                        <% } else {%> 
-                            <td><input type="checkbox" class="checkbox" id="<%= i + 300 %>" onclick="checkFunc(<%= i %>)" ></td>
-                        <% } %> 
-                            <td>
-                            <div class="cart-info">
-                                <a href="#" class="cart-image">
-                                    <img src="<%= rows[i].thumbnail_photo%>">
-                                </a>
-                                <div class="cart-title">
-                                    <a href="" class="product-name h6"><%= rows[i].ProductName %></a>
-                                    <br>
-                                    <small><%= rows[i].Color %> / <%= rows[i].Material %></small>
-                                    <br>
-                                    <p>Price: $<%= rows[i].Price %></p>
+        <form action="/info" method="post">
+            <div class="cart-table">
+                <table>
+                    <colgroup>
+                        <col span="1" style="width: 10%;">
+                        <col span="1" style="width: 40%;">
+                        <col span="1" style="width: 20%;">
+                        <col span="1" style="width: 20%;">
+                        <col span="1" stlye="width: 10%;">
+                    </colgroup>
+                    </colgroup>
+                    <tr>
+                        <th>Select</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                        <th>Remove</th>
+                    </tr>
+                    <% for (let i = 0; i < rows.length; i++){ %>
+                        <tr align="center" id="<%= i + 200%>">
+                            <% if (rows[i].CheckInCart == 'Y') { %> 
+                                <td><input type="checkbox" class="checkbox" id="<%= i + 300 %>" onclick="checkFunc(<%= i %>)" checked></td>
+                            <% } else {%> 
+                                <td><input type="checkbox" class="checkbox" id="<%= i + 300 %>" onclick="checkFunc(<%= i %>)" ></td>
+                            <% } %> 
+                                <td>
+                                <div class="cart-info">
+                                    <a href="#" class="cart-image">
+                                        <img src="<%= rows[i].thumbnail_photo%>">
+                                    </a>
+                                    <div class="cart-title">
+                                        <a href="" class="product-name h6"><%= rows[i].ProductName %></a>
+                                        <br>
+                                        <small><%= rows[i].Color %> / <%= rows[i].Material %></small>
+                                        <br>
+                                        <p>Price: $<%= rows[i].Price %></p>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td>
-                            <!-- cái này đúng ko sai đâu đừng xóa -->
-                            <input type="button" value="-" class="button" onclick="minus(<%= i%>, <%= rows[i].Price%>)">
-                            <!-- <input type="text" value="1" class="quantity" data-id="<%= rows[i].ProductID%>" id="<%= i%>"> -->
-                            <div class="quantity" data-id="<%= rows[i].ProductID%>" id="<%= i%>"><%= rows[i].NumProduct %></div>
-                            <input type="button" value="+" class="button" onclick="plus(<%= i%>, <%= rows[i].Price%>)">
-                        </td>
-                        <td><span id="<%= i + 100%>">$<%= subCost[i]%></span></td>
-                        <td><a href="/my-cart" onclick="del(<%= i %>)" style="color: black;"><i class="fa fa-trash"></i></a></td>
-                    </tr> 
-                <% } %>
-            </table>
-            <div class="btn-action">
-                <a class="btn" href="/catalog">Continue shopping</a>
+                            </td>
+                            <td>
+                                <!-- cái này đúng ko sai đâu đừng xóa -->
+                                <input type="button" value="-" class="button" onclick="minus(<%= i%>, <%= rows[i].Price%>)">
+                                <input type="text" value="" name="quantityll" class="quantity" data-id="<%= rows[i].ProductID%>" id="<%= i%>" aria-readonly="true">
+                                <script>
+                                    document.getElementById(<%= i%>).value = parseInt('<%= rows[i].NumProduct %>');
+                                </script>
+                                <!-- <div name="quantity" class="quantity" data-id="<%= rows[i].ProductID%>" id="<%= i%>"><%= rows[i].NumProduct %></div> -->
+                                <input type="button" value="+" class="button" onclick="plus(<%= i%>, <%= rows[i].Price%>)">
+                            </td>
+                            <td><span id="<%= i + 100%>">$<%= subCost[i]%></span></td>
+                            <td><a href="/my-cart" onclick="del(<%= i %>)" style="color: black;"><i class="fa fa-trash"></i></a></td>
+                        </tr> 
+                    <% } %>
+                </table>
+                <div class="btn-action">
+                    <a class="btn" href="/catalog">Continue shopping</a>
+                </div>
             </div>
-        </div>
-        
-        <div class="order-summary">
-            <p class="title">Order summary</p>
-            <p class="price">
-                <span class="sub-title h6">Subtotal:</span>
-                <span class="sub-total-money h6" id="totalCost">$<%= totalCost %></span>
-            </p>
-            <div class="btn-action">
-                <a class="btn" href="/info">Proceed to checkout</a>
+            <div class="order-summary">
+                <p class="title">Order summary</p>
+                <p class="price">
+                    <span class="sub-title h6">Subtotal:</span>
+                    <span class="sub-total-money h6" id="totalCost">$<%= totalCost %></span>
+                </p>
+                <div class="cart-note">
+                    <label for="CartSpecialInstructions" style="font-size: 17px;">Special instructions for seller</label>
+                    <textarea name="note" class="input-note" id="CartSpecialInstructions"></textarea>
+                </div>
+                <p class="note">Shipping, taxes, and discounts will be calculated at checkout.</p>
+                <div class="btn-action">
+                    <!-- <a class="btn" href="/info">Proceed to checkout</a> -->
+                    <input type="submit" class="btn" value="Proceed to checkout">
+                </div>
             </div>
-            
-        </div>
+        </form>
     </div>
+    <!-- Btn function -->
+    <script>
+        var count;
+        var value;
+        var totalCost = parseInt('<%= totalCost%>');
+        function plus(id, price){
+            let tmpCost = parseInt(document.getElementById("totalCost").textContent.slice(1));
+            count = ++document.getElementById(id).value;
+            value = "$" + count*price;
+            document.getElementById(id + 100).innerHTML = value;
+            tmpCost += price;
+            if (checked(id) == true) {
+                // id + 100 is subtoTal
+                // id + 200 is remove
+                // id + 300 is checkbox
+                document.getElementById("totalCost").innerHTML = "$" + tmpCost;
+                // let nowTotalCost = totalCost - parseInt(document.getElementById(id + 100).textContent.slice(1));
+                // document.getElementById("totalCost").innerHTML = "$" + nowTotalCost;
+            }
+            // update in database
+            const idProduct = document.getElementsByClassName("quantity")[id].getAttribute("data-id");
+            const countProduct = document.getElementsByClassName("quantity")[id].value;
+            axios.patch('/my-cart/update', {
+                    cartID: parseInt('<%= userInfo.cartid %>'),
+                    id: idProduct,
+                    quantity: countProduct,
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+            alert("Update successfully!");
+        }
+        function minus(id, price){
+            if (document.getElementById(id).value > 1) {
+                let tmpCost = parseInt(document.getElementById("totalCost").textContent.slice(1));
+                count = --document.getElementById(id).value;
+                value = "$" + count*price;
+                document.getElementById(id + 100).innerHTML = value;
+                tmpCost -= price;
+                if (checked(id) == true) {
+                    // id + 100 is subtoTal
+                    // id + 200 is remove
+                    // id + 300 is checkbox
+                    document.getElementById("totalCost").innerHTML = "$" + tmpCost;
+                    // var nowTotalCost = totalCost - parseInt(document.getElementById(id + 100).textContent.slice(1));
+                    // document.getElementById("totalCost").innerHTML = "$" + nowTotalCost;
+                }
+                // update in database
+                const idProduct = document.getElementsByClassName("quantity")[id].getAttribute("data-id");
+                const countProduct = document.getElementsByClassName("quantity")[id].value;
+                axios.patch('/my-cart/update', {
+                    cartID: parseInt('<%= userInfo.cartid %>'),
+                    id: idProduct,
+                    quantity: countProduct,
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+                alert("Update successfully!");
+            }   
+        }
+        function del(id) {
+            console.log(id);
+            document.getElementById(id + 200).classList.add("d-none");
+            const idProduct = document.getElementsByClassName("quantity")[id].getAttribute("data-id");
+            const cartID = parseInt('<%= userInfo.cartid %>');
+            // const countProduct = document.getElementsByClassName("quantity")[id].textContent;
+            axios.patch('/my-cart/delete', {
+                    cartID: cartID,
+                    productID: idProduct
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+            alert("Delete successfully!");
+        }
+        function checked(id) {
+            var d = document.getElementById(id + 300) ;
+            if (d.checked) {
+                return true;
+            }
+            return false;
+        }
+        function checkFunc(id) {
+            let tmpCost = parseInt(document.getElementById("totalCost").textContent.slice(1));
+            let state = 'Y';
+            let productSubCost = parseInt(document.getElementById(id + 100).textContent.slice(1));
+            console.log(productSubCost)
+            const idProduct = document.getElementsByClassName("quantity")[id].getAttribute("data-id");
+            if (document.getElementById(id + 300).checked == true) {
+                console.log("True");
+                var nowCost = tmpCost + productSubCost;
+                document.getElementById("totalCost").innerHTML = "$" + nowCost;
+            }
+            if (document.getElementById(id + 300).checked == false) {
+                state = 'N';
+                var nowCost = tmpCost - productSubCost;
+                document.getElementById("totalCost").innerHTML = "$" + nowCost;
+            }
+            axios.patch('/my-cart/update-state', {
+                    cartID: parseInt('<%= userInfo.cartid %>'),
+                    productID: idProduct,
+                    state: state
+            })
+            .then(function(response){
+                console.log(response);
+            })
+            .catch(function(error){
+                console.log(error);
+            })
+            alert("Update successfully!");
+        }
+    </script>
+    <!-- Btn function -->
     <!-- check if cart = 0 -->
     <script>
         var numOfProduct = parseInt('<%= rows.length %>');

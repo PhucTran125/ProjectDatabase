@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const authenticate = require('../../config/auth/auth');
 const jwt = require('jsonwebtoken');
 const Cart = require('../models/Cart');
+const Wishlist = require('../models/Wishlist');
 
 class AccountController {
     //[POST] /login
@@ -58,14 +59,15 @@ class AccountController {
                 let hashedPassword = await bcrypt.hash(password, 8); 
                 // 8: how many time you want to hash password
                 console.log(hashedPassword);
-                // Create cart
+                // Create cart + wishlist
                 var today = new Date();
                 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
                 var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
                 var dateTime = date+' '+time;
                 Cart.createCart(results.length+1, dateTime, dateTime, 'Cash, Internet Banking, Paypal, ViettelPay');
+                Wishlist.createWishlist(results.length+1, dateTime, dateTime);
                 // Create user
-                db.connection.query('INSERT INTO User_table SET ?', {FirstName: firstName, LastName: lastName, Phone: phone, Email: email, Password: hashedPassword, City: city, Country: country, WishListID: results.length + 1, CartID: results.length + 1}, (error, results) => {
+                db.connection.query('INSERT INTO User_table SET ?', {UserID: results.length+1, FirstName: firstName, LastName: lastName, Phone: phone, Email: email, Password: hashedPassword, City: city, Country: country, WishListID: results.length + 1, CartID: results.length + 1}, (error, results) => {
                     if (error) {
                         console.log(error);
                     } else {

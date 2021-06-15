@@ -57,6 +57,13 @@ class CartController{
             return res.end();
         })
     }
+    // [POST] /my-cart
+    checkout(req, res) {
+        var {quantityll, note} = req.body;
+        console.log(note);
+        console.log(quantityll)
+        res.redirect('/')
+    }
 };
 
 module.exports = new CartController;

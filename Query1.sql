@@ -56,7 +56,7 @@ create table Cart(
 );
 
 create table User_table(
-	UserID int not null primary key auto_increment,
+	UserID int not null primary key,
     FirstName varchar(15) not null,
     LastName varchar(15) not null,
     Phone char(11) not null,
@@ -88,9 +88,10 @@ delete from Product_Cart where CartID = '1';
 update Products set Price = '399' where ProductID = '22';
 
 delete from user_table where UserID = 2;
-delete from cart where CartID = 1;
+delete from cart where CartID = 2;
 
 INSERT INTO Product_Cart values(1, 1, 2);
+alter table Cart add column PaymenMethod char(45);
 
 SELECT * FROM Products, Cart, Product_Cart WHERE Products.ProductID = Product_Cart.ProductID AND Product_Cart.CartID = Cart.CartID AND Product_Cart.CartID = 1;
 alter table Product_Cart add column CheckInCart char(1);

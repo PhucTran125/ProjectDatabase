@@ -130,6 +130,23 @@ nav {
 .product-list .order-summary .sub-total-money{
     float:right;
 }
+.product-list .order-summary .cart-note textarea{
+    width: 100%;
+    min-height: 150px;
+    border-radius: 30px;
+    padding: 12px 15px;
+    line-height: 1.42;
+    border: 1px solid #b3b1b1;
+    resize: none;
+}
+.product-list .order-summary .cart-note textarea:focus{
+    outline: none;
+    border: 1px solid #555555;
+}
+.product-list .order-summary .note{
+    font-size: 17px;
+    font-style: italic;
+}
 .product-list .cart-table table{
     width:100%;
 }
@@ -179,8 +196,7 @@ nav {
 }
 
 .product-list .quantity{
-    border-radius: 0px;
-    border-color: #f5f5f5;
+    border: none;
     text-align: center;
     display: inline-block;
     width: 60px;

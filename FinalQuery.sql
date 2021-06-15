@@ -73,12 +73,12 @@ create table PaymentMethod(
 insert into PaymentMethod(PaymentMethodID, PaymentMethodName) values ('1', 'Cash'), ('2', 'Internet Banking'), ('3', 'Paypal'), ('4', 'ViettelPay');
 
 create table Cart(
-	CartID int not null auto_increment primary key,
+	CartID int not null primary key,
     UpdateAt datetime not null,
     CreateAt datetime not null
 );
 
-insert into Cart(CartID, UpdateAt, CreateAt) values cart('1', '2021-05-04 12:45:56', '2021-05-04 12:45:56');
+insert into Cart(CartID, UpdateAt, CreateAt) values ('1', '2021-05-04 12:45:56', '2021-05-04 12:45:56');
 insert into Product_Cart(CartID, ProductID, NumProduct) values ('1', '1', '1'), ('1', '3', '1');
 
 create table Product_Category(
@@ -121,5 +121,19 @@ insert into ProductImage(ProductID, url) values ('1', 'https://i.imgur.com/uOtwR
 ('19', 'https://i.imgur.com/MaBF75z.jpg|https://i.imgur.com/Zy7T4Wh.jpg|https://i.imgur.com/05st7Bo.jpg|https://i.imgur.com/5C4OfPY.jpg|https://i.imgur.com/o3CGJVC.jpg|https://i.imgur.com/We8dPMD.jpg'),
 ('20', 'https://i.imgur.com/8TOkPWc.jpg|https://i.imgur.com/vVdCrZs.jpg|https://i.imgur.com/JGFVk3t.jpg|https://i.imgur.com/8U5HZnc.jpg|https://i.imgur.com/Nndvo9e.jpg|https://i.imgur.com/1iZPRqL.jpg'),
 ('21', 'https://i.imgur.com/RS12CnA.jpg|https://i.imgur.com/md8VCY4.jpg|https://i.imgur.com/DO9E4IE.jpg|https://i.imgur.com/654Hku6.jpg|https://i.imgur.com/6zD82nA.jpg'),
-('22', 'https://i.imgur.com/vlek93Y.jpg|https://i.imgur.com/rDVASMs.jpg|https://i.imgur.com/35VnBRR.jpg|https://i.imgur.com/EhiIP8T.jpg|https://i.imgur.com/6sZoaL3.jpg|https://i.imgur.com/iu7LtBo.jpg|https://i.imgur.com/W0rApW1.jpg|https://i.imgur.com/OAJbRXM.jpg|https://i.imgur.com/3M5GrwV.jpg')
+('22', 'https://i.imgur.com/vlek93Y.jpg|https://i.imgur.com/rDVASMs.jpg|https://i.imgur.com/35VnBRR.jpg|https://i.imgur.com/EhiIP8T.jpg|https://i.imgur.com/6sZoaL3.jpg|https://i.imgur.com/iu7LtBo.jpg|https://i.imgur.com/W0rApW1.jpg|https://i.imgur.com/OAJbRXM.jpg|https://i.imgur.com/3M5GrwV.jpg');
 
+create table WishList(
+	WishlistID int not null primary key,
+    CreatedAt datetime not null,
+    UpdateAt datetime not null
+);
+
+create table orderItem(
+	OrderID char(5) not null,
+    ProductID int not null,
+    Quantity int not null
+    primary key (OrderID, ProductID),
+    foreign key (OrderID) references Ordered(OrderID),
+    foreign key (ProductID) references Products(ProductID)
+);
