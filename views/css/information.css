@@ -40,7 +40,7 @@ ul.breadcrumb .active{
 }   
 
 
-.form-info input{
+.form-info .info-input input{
     padding: 13px 11px;
     border-radius: 5px;
     margin:15px 0;

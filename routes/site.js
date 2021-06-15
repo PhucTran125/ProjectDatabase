@@ -12,6 +12,12 @@ router.get('/shipping', (req,res) =>{
 router.get('/payment',(req,res) =>{
     res.render('payment');
 });
+router.post('/shipping', (req,res) =>{
+    res.render('shipping');
+});
+router.post('/payment',(req,res) =>{
+    res.render('payment');
+});
 router.get('/detail', (req, res) => {
     res.render('product-detail');
 });

@@ -18,27 +18,27 @@
             <li class="breadcrumb-item active"aria-curent="page" >Shipping</li>
             <li class="breadcrumb-item"><span>Payment</span></li>
         </ul>
-        <div class="tab">
-            <div class="content">
-                <table>
-                    <colgroup>
-                        <col span="1" style="width: 20%;">
-                        <col span="1" style="width: 75%;">
-                        <col span="1" style="width: 5%;">
-                    </colgroup>
-                    <tr>
-                        <td class="header">Contact</td>
-                        <td class="description" id="contact"></td>
-                        <td><a href="/info">Change</a></td>
-                    </tr>
-                    <tr class="lower-row">
-                        <td class="header">Shipping to</td>
-                        <td class="description" id="address"></td>
-                        <td><a href="/info">Change</a></td>
-                    </tr>
-                </table>
-            </div>
-    
+        
+        <div class="content">
+            <table>
+                <colgroup>
+                    <col span="1" style="width: 20%;">
+                    <col span="1" style="width: 75%;">
+                    <col span="1" style="width: 5%;">
+                </colgroup>
+                <tr>
+                    <td class="header">Contact</td>
+                    <td class="description" id="contact"></td>
+                    <td><a href="/info">Change</a></td>
+                </tr>
+                <tr class="lower-row">
+                    <td class="header">Shipping to</td>
+                    <td class="description"><span id="apartment"></span>, <span id="address"></span>, <span id="city"></span></td>
+                    <td><a href="/info">Change</a></td>
+                </tr>
+            </table>
+        </div>
+        <form action="/payment" method="POST">
             <div class="shipping-method">
                 <h5 style="margin-bottom:30px;">Shipping method</h5>
     
@@ -52,7 +52,7 @@
                         <tr>
                             <td>
                                 <label class="check">
-                                    <input type="radio" checked="checked" name="option" id="standart" value="20" onclick="shipfee(this.value)">
+                                    <input type="radio"  checked="checked" name="option" id="Standard" value="20" onclick="shipfee(this)">
                                     <span class="checkmark"></span>
                                 </label>
                             </td>
@@ -62,7 +62,7 @@
                         <tr class="lower-row">
                             <td>
                                 <label class="check">
-                                    <input type="radio" name="option" id="express" value="30" onclick="shipfee(this.value)">
+                                    <input type="radio"  name="option" id="Express" value="30" onclick="shipfee(this)">
                                     <span class="checkmark"></span>
                                 </label>
                             </td>
@@ -73,12 +73,11 @@
                     </table>
                 </div>
             </div>
-        </div>
-        <div class="checking">
-            <a class="btn" type="submit" href="/payment">Continue to Payment</a>
-            <a class="return" href="/info">Return to Information</a>
-        </div>
-
+            <div class="checking">
+                <input class="btn" type="submit" value="Continue to Payment">
+                <a class="return" href="/info">Return to Information</a>
+            </div>
+        </form>
     </div>
         
     <div class="side">
@@ -123,33 +122,38 @@
                 </tr>
                 <tr>
                   <td class="sub-title">Shipping</td>
-                  <td class="price">$<span id="shipfee">20</span></td>
+                  <td class="price">$<span id="shipfee"></span></td>
                 </tr>
               </table> 
         </div>
         <div class="total">
             <div class="sub-title"style="text-align: left; width:49%; display: inline-block;">Total</div>
-            <div class="price" style="width:50%;display:inline-block;font-size:25px;">$<span id="total">930</span></div>
+            <div class="price" style="width:50%;display:inline-block;font-size:25px;">$<span id="total"></span></div>
         </div>
     </div>
     <script>
         document.getElementById("contact").innerHTML=sessionStorage.getItem("email-tel");
+        document.getElementById("apartment").innerHTML=sessionStorage.getItem("apartment");
         document.getElementById("address").innerHTML=sessionStorage.getItem("address");
+        document.getElementById("city").innerHTML=sessionStorage.getItem("city");
     </script>
     <script>
         var subtotal=parseInt(document.getElementById("subtotal").innerHTML);
-        if(sessionStorage.getItem("fee")!=null){
-            var total=subtotal+parseInt(sessionStorage.getItem("fee"));
-            document.getElementById("shipfee").innerHTML=sessionStorage.getItem("fee");
+        sessionStorage.setItem("fee",20);
+        sessionStorage.setItem("method","Standard");
+        document.getElementById("shipfee").innerHTML=sessionStorage.getItem("fee");
+        var total=subtotal+parseInt(sessionStorage.getItem("fee"));
+        sessionStorage.setItem("total",total);
+        document.getElementById("total").innerHTML=sessionStorage.getItem("total");
+        
+        function shipfee(e){
+            var ship=parseInt(e.value);
+            var total=subtotal+ship;
+            document.getElementById("shipfee").innerHTML=ship;
             document.getElementById("total").innerHTML=total;
-        }
-        function shipfee(s){
-            var ship=parseInt(s);
-            total=subtotal+ship;
-            document.getElementById("shipfee").innerHTML=s;
-            document.getElementById("total").innerHTML=total;
-            sessionStorage.setItem("fee",s);
-            sessionStorage.setItem("method",document.getElementById(s).innerHTML);
+            sessionStorage.setItem("fee",ship);
+            sessionStorage.setItem("total",total);
+            sessionStorage.setItem("method",e.id);
         }
     </script>
 
