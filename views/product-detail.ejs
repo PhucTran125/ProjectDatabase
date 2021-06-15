@@ -361,7 +361,7 @@
                         </script>
 
                     </table>
-                    <button type="submit" class="left" onclick="display()">Add to cart</button>
+                    <button type="submit" class="left"id="addToCartBtn" onclick="display()">Add to cart</button>
                     <button type="submit" class="right">Buy it now</button>
                     
                 </div>
@@ -430,8 +430,8 @@
                 </div>
             </div>
             <div class="cart-info">
-                <p>There are now <%= totalItem %> item(s) in your cart</p>
-                <h1 style="margin-bottom:30px;">$<%= totalCost %>.00 USD</h1>
+                <p>There are now <span id="totalItem"></span> item(s) in your cart</p>
+                <h1 style="margin-bottom:30px;">$<span id="totalCost"></span>.00 USD</h1>
                 <button  class="left" onclick="document.getElementById('confirm').style.display='none'">Continue Shopping</button>
                 <a class="btn" href="/my-cart">View Cart</a>
             </div>
@@ -459,13 +459,19 @@
     <!-- Add to cart function -->
     <script>
         var modal = document.getElementById("confirm");
+        var Item = parseInt('<%= totalItem%>');
+        var Cost = parseInt('<%= totalCost%>');
         document.getElementById("addToCartBtn").onclick = function() {
             var check = '<%= checkUser %>';
             if (check.localeCompare("have_user") == 0) {
                 modal.style.display= "block";
-                document.getElementById("quantity").innerHTML = document.getElementById("1").innerHTML;
-                let quantity = parseInt(document.getElementById("1").textContent);
+                document.getElementById("quantity").innerHTML = document.getElementById("number").innerHTML;
+                let quantity = parseInt(document.getElementById("number").textContent);
                 let productID = parseInt('<%= rows[0].ProductID %>');
+                Item += quantity;
+                document.getElementById("totalItem").innerHTML = Item;
+                Cost += quantity * parseInt('<%= rows[0].Price %>');
+                document.getElementById("totalCost").innerHTML = Cost;
                 axios.patch('/catalog/product/add-to-cart', {
                     productID: productID,
                     quantity: quantity,

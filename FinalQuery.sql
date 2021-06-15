@@ -73,12 +73,13 @@ create table PaymentMethod(
 insert into PaymentMethod(PaymentMethodID, PaymentMethodName) values ('1', 'Cash'), ('2', 'Internet Banking'), ('3', 'Paypal'), ('4', 'ViettelPay');
 
 create table Cart(
-	CartID int not null auto_increment primary key,
+	CartID int not null primary key,
     UpdateAt datetime not null,
-    CreateAt datetime not null
+    CreateAt datetime not null,
+    PaymenMethod char(45)
 );
 
-insert into Cart(CartID, UpdateAt, CreateAt) values cart('1', '2021-05-04 12:45:56', '2021-05-04 12:45:56');
+insert into Cart(CartID, UpdateAt, CreateAt) values ('1', '2021-05-04 12:45:56', '2021-05-04 12:45:56');
 insert into Product_Cart(CartID, ProductID, NumProduct) values ('1', '1', '1'), ('1', '3', '1');
 
 create table Product_Category(

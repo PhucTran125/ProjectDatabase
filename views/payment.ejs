@@ -18,32 +18,32 @@
             <li class="breadcrumb-item" ><a href="/shipping">Shipping</a></li>
             <li class="breadcrumb-item active" aria-current="page">Payment</li>
         </ul>
-        <div class="tab">
-            <div class="content">
-                <table>
-                    <colgroup>
-                        <col span="1" style="width: 20%;">
-                        <col span="1" style="width: 75%;">
-                        <col span="1" style="width: 5%;">
-                    </colgroup>
-                    <tr>
-                        <td class="header">Contact</td>
-                        <td class="description" id="contact"></td>
-                        <td><a href="/info">Change</a></td>
-                    </tr>
-                    <tr class="lower-row">
-                        <td class="header">Shipping to</td>
-                        <td class="description" id="address"></td>
-                        <td><a href="/info">Change</a></td>
-                    </tr>
-                    <tr class="lower-row">
-                        <td class="header">Method</td>
-                        <td class="description"><span id="method"></span> - <span class="price" id="shipfee"></span></td>
-                        <td><a href="/shipping">Change</a></td>
-                    </tr>
-                </table>
-            </div>
-    
+        
+        <div class="content">
+            <table>
+                <colgroup>
+                    <col span="1" style="width: 20%;">
+                    <col span="1" style="width: 75%;">
+                    <col span="1" style="width: 5%;">
+                </colgroup>
+                <tr>
+                    <td class="header">Contact</td>
+                    <td class="description" id="contact"></td>
+                    <td><a href="/info">Change</a></td>
+                </tr>
+                <tr class="lower-row">
+                    <td class="header">Shipping to</td>
+                    <td class="description"><span id="apartment"></span>, <span id="address"></span>, <span id="city"></span></td>
+                    <td><a href="/info">Change</a></td>
+                </tr>
+                <tr class="lower-row">
+                    <td class="header">Method</td>
+                    <td class="description"><span id="method"></span> - <span class="price">$<span id="fee"></span></span></td>
+                    <td><a href="/shipping">Change</a></td>
+                </tr>
+            </table>
+        </div>
+        <form class="form-info" action="">
             <div class="Payment-method">
                 <h5>Payment method</h5>
                 <p style="margin-bottom:30px;">All transactions are secured and encrypted</p>
@@ -69,25 +69,20 @@
                         </tr>
                         <tr class="lower-row format" id="credit_form">
                             <td>
-                                <form class="form-info" action="" method="POST">
-                                    <input type="number" name="card-number" id="card-number" class="form-control" placeholder="Card number" required>
-                                    <input type="text" name="card-name" id="card-name" class="form-control" placeholder="Name on card" required>
-                                    <input style="float: left; width:49%;" type="text" name="date" id="date" class="form-control" placeholder="Expiration date (MM/YY)" required>
-                                    <input style="float: right; width:49%;"type="number" name="sec-code" id="sec-code" class="form-control" placeholder="Security code" required >
-                                </form>
+                                <input type="text" name="card-number" id="card-number" class="form-control" placeholder="Card number" required pattern="[0-9]{16}|[0-9]{19}">
+                                <input type="text" name="card-name" id="card-name" class="form-control" placeholder="Name on card" required>
+                                <input style="float: left; width:49%;" type="text" name="date" id="date" class="form-control" placeholder="Expiration date (MM/YY)" required pattern="(?:0[1-9]|1[0-2])/[0-9]{2}">
+                                <input style="float: right; width:49%;"type="text" name="sec-code" id="sec-code" class="form-control" placeholder="Security code" required pattern="[0-9]{3}|[0-9]{4}">
                             </td>
                         </tr>
                     </table>
                 </div>
             </div>
-        </div>
-        
-
-        <div class="checking">
-            <button class="btn" type="submit">Pay now</button>
-            <a class="return" href="javascript:window.history.back()">Return to shipping</a>
-        </div>
-
+            <div class="checking">
+                <input class="btn" type="submit" value="Pay now">
+                <a class="return" href="/shipping">Return to shipping</a>
+            </div>
+        </form>
     </div>
         
     <div class="side">
@@ -128,22 +123,24 @@
             <table style="width:100%">
                 <tr>
                   <td class="sub-title">Subtotal</td>
-                  <td class="price">$910.00</td>
+                  <td class="price">$<span id="subtotal">910</span></td>
                 </tr>
                 <tr>
                   <td class="sub-title">Shipping</td>
-                  <td class="price">$20.00</td>
+                  <td class="price">$<span id="shipfee"></span></td>
                 </tr>
               </table> 
         </div>
         <div class="total">
             <div class="sub-title"style="text-align: left; width:49%; display: inline-block;">Total</div>
-            <div class="price" style="width:50%;display:inline-block;font-size:25px;">$930.00</div>
+            <div class="price" style="width:50%;display:inline-block;font-size:25px;">$<span id="total"></span></div>
         </div>
     </div>
     <script>
         document.getElementById("contact").innerHTML=sessionStorage.getItem("email-tel");
+        document.getElementById("apartment").innerHTML=sessionStorage.getItem("apartment");
         document.getElementById("address").innerHTML=sessionStorage.getItem("address");
+        document.getElementById("city").innerHTML=sessionStorage.getItem("city");
         function myFunction() {
             var cash = document.getElementById("cash")
             var credit = document.getElementById("credit");
@@ -157,8 +154,10 @@
         }
     </script>
     <script>
-        document.getElementById("shipfee").innerHTML=sessionStorage.getItem("fee");
+        document.getElementById("fee").innerHTML=sessionStorage.getItem("fee");
         document.getElementById("method").innerHTML=sessionStorage.getItem("method");
+        document.getElementById("shipfee").innerHTML=sessionStorage.getItem("fee");
+        document.getElementById("total").innerHTML=sessionStorage.getItem("total");
     </script>
 
 </body>
