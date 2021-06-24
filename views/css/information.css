@@ -48,6 +48,7 @@ ul.breadcrumb .active{
     height: 100%;
     font-size: 14px;
     transition:0.2s;
+    
 }
 .form-info input:focus{
     border-color:#fc4c4b;

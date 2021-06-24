@@ -10,39 +10,42 @@
            <h4>ADMIN PAGE</h4>
            <ul>
             <li>
-                <a href="/admin-page/search">Search</a>
+                <a href="/admin-page">Create</a>
             </li>
             <li>
-                <a href="/admin-page">Add New Product</a>
+                <a href="/admin-page/update" target="_self">Update</a>
             </li>
             <li>
-                <a href="/admin-page/update" target="_self">Update Product</a>
-            </li>
-            <li>
-                <a href="/admin-page/remove">Remove Product</a>
+                <a href="/admin-page/remove">Remove</a>
             </li>
         </ul>
        </div>
        <div class="content">
+            <form class="form-info">
+                <h2>Remove Product</h2>
+
+                <table>
+                    <colgroup>
+                        <col span="1" style="width: 30%;">
+                        <col span="1" style="width: 70%;">
+                    </colgroup>
+                    <tr> 
+                        <td>Product ID</td>
+                
+                        <td><input type="text" class="form-control" required placeholder="Enter Product ID"></td>
+                    </tr>
+                    <tr>
+                        <td>Product Name</td>
+                
+                        <td><input type="text" class="form-control"  required placeholder="Enter Product Name"></td>
+                    </tr>
+                </table>
+                <div class="add-button">
+                    <input class="btn" type="submit" value="REMOVE  PRODUCT">
+                </div>
+           </form>
         
-            <h2>Remove Product</h2>
-         <table>
-           <tr> 
-           <td><p>Product ID</p></td>
-            
-            <td><input type="text" placeholder="Enter Product ID"></td>
-        </tr>
-           <tr>
-               <td><p>Product Name</p></td>
-            
-            <td><input type="text" placeholder="Enter Product Name"></td>
-        </tr>
-          
-        </table>
-              <br>
-              <br>
-              
-            <button>REMOVE</button>
+
             
            
        

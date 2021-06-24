@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const siteController = require('../app/controllers/SiteController');
-
+router.get('/account',(req,res) =>{
+    res.render('account-detail');
+});
 // siteController.home
 router.get('/info',(req,res) =>{
     res.render('information');
