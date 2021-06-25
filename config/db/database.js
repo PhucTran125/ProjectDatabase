@@ -3,11 +3,7 @@ const mysql = require('mysql2');
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-<<<<<<< HEAD
-    password: 'datelf99',
-=======
     password: 'lambacky',
->>>>>>> lamyeuchuc
     database: 'dbproject'
 });
 
@@ -21,7 +17,7 @@ function connect() {
 function all() {
     return new Promise((resolve, reject) => {
         connection.query(`SELECT * FROM products`, (err, results) => {
-            if(err) {
+            if(err) {   
                 return reject(err);
             }
             else {
