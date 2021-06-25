@@ -1,26 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const siteController = require('../app/controllers/SiteController');
+const orderController = require('../app/controllers/OrderController')
 
 // siteController.home
-router.get('/info',(req,res) =>{
-    res.render('information');
-});
-router.get('/shipping', (req,res) =>{
-    res.render('shipping');
-});
-router.get('/payment',(req,res) =>{
-    res.render('payment');
-});
-router.post('/shipping', (req,res) =>{
-    res.render('shipping');
-});
-router.post('/payment',(req,res) =>{
-    res.render('payment');
-});
-router.get('/detail', (req, res) => {
-    res.render('product-detail');
-});
+router.patch('/orderFinish', orderController.completeOrder);
+router.get('/info', orderController.createOrder, orderController.fillInfoPage);
+router.get('/shipping', orderController.fillShippingPage);
+router.get('/payment', orderController.fillPaymentPage);
+router.post('/shipping', orderController.fillShippingPage);
+router.post('/payment', orderController.fillPaymentPage);
+// router.get('/detail', (req, res) => {
+//     res.render('product-detail');
+// });
 router.get('/pages-info', siteController.pages);
 router.get('/blog', siteController.blog);
 router.get('/login', siteController.login);

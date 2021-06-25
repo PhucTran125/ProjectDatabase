@@ -22,7 +22,7 @@ var afteMultiFiter = []; // array of object after filter by brand || price || co
 
 class CatalogController {
     //[GET] /catalog
-    index(req, res, next) {
+    index(req, res) {
         const sess = req.session.userID;
             Product.getAllProduct(function(err, rows){
                 if(err) res.json(err);

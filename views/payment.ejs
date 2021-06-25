@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/payment.css">
@@ -53,7 +54,7 @@
                         <tr>
                             <td>
                                 <label class="check">Pay by cash
-                                    <input type="radio" checked="checked" name="option" id="cash" value="cash" onclick="myFunction()">
+                                    <input type="radio" class="radioBtn" checked="checked" name="option" id="cash" value="Cash" onclick="myFunction()">
                                     <span class="checkmark"></span>
                                 </label>
                             </td>
@@ -62,7 +63,7 @@
                         <tr class="lower-row">
                             <td>
                                 <label class="check">Credit card
-                                    <input type="radio" name="option" id="credit"  value="credit" onclick="myFunction()">
+                                    <input type="radio" class="radioBtn" name="option" id="credit"  value="Credit" onclick="myFunction()">
                                     <span class="checkmark"></span>
                                 </label>
                             </td>
@@ -79,63 +80,66 @@
                 </div>
             </div>
             <div class="checking">
-                <input class="btn" type="submit" value="Pay now">
+                <button class="btn" type="submit" id="submitBtn">Pay now</button>
                 <a class="return" href="/shipping">Return to shipping</a>
             </div>
         </form>
     </div>
         
-    <div class="side">
-        <div class="product-table" style="width:100%;">
-            <table>
-                <colgroup>
-                    <col span="1" style="width: 15%;">
-                    <col span="1" style="width: 55%;">
-                    <col span="1" style="width: 10%;">
-                    <col span="1" style="width: 20%;">
-                </colgroup>
-                <tr>
-                    <td>
-                        <img src="//cdn.shopify.com/s/files/1/0437/0454/9536/products/shop-5_87c12970-4390-44ce-b87d-bb3f3bef7833_medium.jpg?v=1596620955">
-                    </td>
-                    
-                    <td class="info" style="padding-left:10px;">
-                        <span class="product-name" style="font-weight:600;">Comfort Earphone</span>
-                        <br>
-                        <span class="product-description" style="font-size:12px" >2.5 mm / Black / Silicon</span>
-                    </td>
-                    
-                    <td class="quantity" style="text-align:center;">1</td>
-                    
-                    <td class="price">$910.00</td>
-                </tr>
-            </table>
-        </div>
-        
-        <div class="discount">
-            <form class="form-info" action="" method="POST">
-                <input style="float:left; width:75%;margin:0;" type="text" name="discount-code" id="discount-code" class="form-control" placeholder="discount-code">
-                <button  class="btn" type="submit">Apply</button>
-            </form>    
-        </div>
-        
-        <div class="sub-money" style="width:100%;">
-            <table style="width:100%">
-                <tr>
-                  <td class="sub-title">Subtotal</td>
-                  <td class="price">$<span id="subtotal">910</span></td>
-                </tr>
-                <tr>
-                  <td class="sub-title">Shipping</td>
-                  <td class="price">$<span id="shipfee"></span></td>
-                </tr>
-              </table> 
-        </div>
-        <div class="total">
-            <div class="sub-title"style="text-align: left; width:49%; display: inline-block;">Total</div>
-            <div class="price" style="width:50%;display:inline-block;font-size:25px;">$<span id="total"></span></div>
+    <%- include('./partials/cost-discount') %>
+
+    <!-- Confirm windows -->
+    <div class="successfully" id="successfully">
+        <div class="successfully-content">
+            <p style="font-size: 18px; padding-left: 20px;">Your order successfully created!</p>
+            <div class="order-info" style="padding-left: 20px;">
+                <h4>Order details:</h4>
+                <p id="fullName">Name:</p>
+                <p id="displayAddress">Address:</p>
+                <p id="shippingMethod">Shipping method: </p>
+                <p id="totalCost">Total cost: </p>
+                <h3>Thanks for buying!</h3>
+            </div>
+            <div class="confirmBtn" style="text-align: center; margin-top: 30px; font-size: 18px;">
+                <a class="btn confirm left" href="#">View order's details</a>
+                <a class="btn confirm right" href="/">Continue shopping</a>
+            </div>
         </div>
     </div>
+    <!-- Pay now function -->
+    <script>
+        document.getElementById("submitBtn").onclick = function() {
+            document.getElementById("fullName").innerHTML = "Name: " + sessionStorage.getItem("firstName") + " " + sessionStorage.getItem("lastName");
+            document.getElementById("displayAddress").innerHTML = "Address: " + sessionStorage.getItem("apartment") + ", " +sessionStorage.getItem("address") + ", " + sessionStorage.getItem("city");
+            document.getElementById("shippingMethod").innerHTML = "Shipping method: " + sessionStorage.getItem("method") + " Delivery";
+            document.getElementById("totalCost").innerHTML = "Total cost: $" + sessionStorage.getItem("total") + ".00";
+            document.getElementById("successfully").style.display = "inline-block";
+            var radioBtn = document.getElementsByClassName("radioBtn");
+            var choice = "";
+            Array.from(radioBtn).forEach(function(element) {
+                if (element.checked == true) {
+                    choice = element.value;
+                }
+            })
+            console.log(sessionStorage.getItem("totalCost"))
+            axios.patch('/orderFinish', {
+                contact: sessionStorage.getItem("email-tel"),
+                addr: sessionStorage.getItem("address"),
+                addrDetail: sessionStorage.getItem("apartment"),
+                city: sessionStorage.getItem("city"),
+                shipMeth: sessionStorage.getItem("method"),
+                payMeth: choice,
+                totalCost: sessionStorage.getItem("total")
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        }
+    </script>
+    <!-- Pay now function -->
     <script>
         document.getElementById("contact").innerHTML=sessionStorage.getItem("email-tel");
         document.getElementById("apartment").innerHTML=sessionStorage.getItem("apartment");
