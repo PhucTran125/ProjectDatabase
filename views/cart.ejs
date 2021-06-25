@@ -40,7 +40,7 @@
     </div>
     
     <div class="product-list" id="have-product">
-        <form action="/info" method="post">
+        <!-- <form action="" method="post"> -->
             <div class="cart-table">
                 <table>
                     <colgroup>
@@ -82,9 +82,12 @@
                             <td>
                                 <!-- cái này đúng ko sai đâu đừng xóa -->
                                 <input type="button" value="-" class="button" onclick="minus(<%= i%>, <%= rows[i].Price%>)">
-                                <input type="text" value="" name="quantityll" class="quantity" data-id="<%= rows[i].ProductID%>" id="<%= i%>" aria-readonly="true">
+                                <input type="text" value="" name="quantityll" class="quantity" data-id="<%= rows[i].ProductID%>" id="<%= i%>" readonly="true">
                                 <script>
                                     document.getElementById(<%= i%>).value = parseInt('<%= rows[i].NumProduct %>');
+                                    if (document.getElementById(<%= i%> + 300).checked == false) {
+                                        document.getElementById(<%= i%>).disabled = true;
+                                    }
                                 </script>
                                 <!-- <div name="quantity" class="quantity" data-id="<%= rows[i].ProductID%>" id="<%= i%>"><%= rows[i].NumProduct %></div> -->
                                 <input type="button" value="+" class="button" onclick="plus(<%= i%>, <%= rows[i].Price%>)">
@@ -110,11 +113,11 @@
                 </div>
                 <p class="note">Shipping, taxes, and discounts will be calculated at checkout.</p>
                 <div class="btn-action">
-                    <!-- <a class="btn" href="/info">Proceed to checkout</a> -->
-                    <input type="submit" class="btn" value="Proceed to checkout">
+                    <a class="btn" href="/info">Proceed to checkout</a>
+                    <!-- <input type="submit" class="btn" value="Proceed to checkout"> -->
                 </div>
             </div>
-        </form>
+        <!-- </form> -->
     </div>
     <!-- Btn function -->
     <script>
@@ -204,9 +207,12 @@
         function checked(id) {
             var d = document.getElementById(id + 300) ;
             if (d.checked) {
+                document.getElementById(id).disabled = false;
                 return true;
+            } else {
+                document.getElementById(id).disabled = true;
+                return false;
             }
-            return false;
         }
         function checkFunc(id) {
             let tmpCost = parseInt(document.getElementById("totalCost").textContent.slice(1));
@@ -214,12 +220,12 @@
             let productSubCost = parseInt(document.getElementById(id + 100).textContent.slice(1));
             console.log(productSubCost)
             const idProduct = document.getElementsByClassName("quantity")[id].getAttribute("data-id");
-            if (document.getElementById(id + 300).checked == true) {
+            if (checked(id) == true) {
                 console.log("True");
                 var nowCost = tmpCost + productSubCost;
                 document.getElementById("totalCost").innerHTML = "$" + nowCost;
             }
-            if (document.getElementById(id + 300).checked == false) {
+            if (checked(id) == false) {
                 state = 'N';
                 var nowCost = tmpCost - productSubCost;
                 document.getElementById("totalCost").innerHTML = "$" + nowCost;

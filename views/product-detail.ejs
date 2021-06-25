@@ -249,13 +249,13 @@
                         <% } %>
                     </div>
                     <script>
-                        function image(id, element){
+                        function image(id, newSrc){
                             var classname = document.getElementsByClassName("other-img");
                             Array.from(classname).forEach(function(element) {
                                 element.style.cssText = null
                             })
                             document.getElementById(id).style.border = "1px solid silver"
-                            document.getElementById("big").src=element;
+                            document.getElementById("big").src = newSrc;
                         }
                     </script>
 
@@ -361,7 +361,7 @@
                         </script>
 
                     </table>
-                    <button type="submit" class="left" id="addToCartBtn" onclick="display()">Add to cart</button>
+                    <button type="submit" class="left" id="addToCartBtn">Add to cart</button>
                     <button type="submit" class="right">Buy it now</button>
                     
                 </div>

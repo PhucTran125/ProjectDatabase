@@ -75,8 +75,7 @@ insert into PaymentMethod(PaymentMethodID, PaymentMethodName) values ('1', 'Cash
 create table Cart(
 	CartID int not null primary key,
     UpdateAt datetime not null,
-    CreateAt datetime not null,
-    PaymenMethod char(45)
+    CreateAt datetime not null
 );
 
 insert into Cart(CartID, UpdateAt, CreateAt) values ('1', '2021-05-04 12:45:56', '2021-05-04 12:45:56');
@@ -130,10 +129,25 @@ create table WishList(
     UpdateAt datetime not null
 );
 
+create table Ordered(
+	OrderID char(5) not null primary key,
+    OrderContact varchar(30),
+    OrderShippingAddr varchar(150),
+    OrderAddrDetail varchar(100),
+    OrderDescription varchar(500),
+    OrderDate datetime,
+    OrderState varchar(20) not null,
+    ShippingMethod varchar(20),
+    PaymenMethod varchar(20),
+    TotalCost double,
+    UserID int not null,
+    foreign key (UserID) references User_table(UserID)
+);
+
 create table orderItem(
 	OrderID char(5) not null,
     ProductID int not null,
-    Quantity int not null
+    Quantity int not null,
     primary key (OrderID, ProductID),
     foreign key (OrderID) references Ordered(OrderID),
     foreign key (ProductID) references Products(ProductID)

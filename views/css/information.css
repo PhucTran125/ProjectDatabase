@@ -106,7 +106,7 @@ ul.breadcrumb .active{
 .total{
     padding:30px 0;
 }
-.price{
+.price, .product-price{
     font-weight:600;
     text-align:right;
 }

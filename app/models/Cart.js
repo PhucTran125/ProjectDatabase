@@ -7,8 +7,8 @@ var Cart = {
     getTupleByCartID:function(carID, productID, callback){
         return db.connection.query('select * from Product_Cart where CartID = ? and ProductID = ?', [carID, productID], callback);
     },
-    getProductByState:function(cartID, callback){
-        return db.connection.query('SELECT * FROM Products, Cart, Product_Cart WHERE Products.ProductID = Product_Cart.ProductID AND Product_Cart.CartID = Cart.CartID AND Product_Cart.CartID = ? AND CheckInCart = "N"', [cartID], callback);
+    getProductOrdered:function(cartID, callback){
+        return db.connection.query('SELECT * FROM Products, Cart, Product_Cart WHERE Products.ProductID = Product_Cart.ProductID AND Product_Cart.CartID = Cart.CartID AND Product_Cart.CartID = ? AND CheckInCart = "Y"', [cartID], callback);
     },
     addProduct:function(cartID, productID, quantity, Check, callback){
         return db.connection.query('INSERT INTO Product_Cart values(?, ?, ?, ?)', [cartID, productID, quantity, Check], callback);
