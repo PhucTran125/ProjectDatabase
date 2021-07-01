@@ -9,19 +9,22 @@
        <div class="side-bar">
            <h4>ADMIN PAGE</h4>
            <ul>
-            <li>
-                <a href="/admin-page">Create</a>
-            </li>
-            <li>
-                <a href="/admin-page/update" target="_self">Update</a>
-            </li>
-            <li>
-                <a href="/admin-page/remove">Remove</a>
-            </li>
+                <li>
+                    <a href="/admin-page">Create</a>
+                </li>
+                <li>
+                    <a href="/admin-page/update" target="_self">Update</a>
+                </li>
+                <li>
+                    <a href="/admin-page/remove">Remove</a>
+                </li>
+                <li>
+                    <a href="/account/logout">Logout</a>
+                </li>
         </ul>
        </div>
        <div class="content">
-            <form class="form-info">
+            <form class="form-info" method="POST">
                 <h2>Add New Product</h2>
                 <table>
                     <colgroup>
@@ -64,9 +67,14 @@
                         <td> <input type="text" class="form-control"  required placeholder="Enter State"></td>
                     </tr>
                     <tr>
+                        <td>Category ID</td>
+
+                        <td><input type="text" class="form-control" required placeholder="Enter Category ID"></td>
+                    </tr>
+                    <tr>
                         <td>Brand ID</td>
                 
-                        <td><input type="text" class="form-control"  required placeholder="Enter BrandID"></td>
+                        <td><input type="text" class="form-control"  required placeholder="Enter Brand ID"></td>
                     </tr>
                 </table>
                 <div class="add-button">

@@ -2,10 +2,9 @@ const express = require('express');
 const router = express.Router();
 const siteController = require('../app/controllers/SiteController');
 const orderController = require('../app/controllers/OrderController');
+const accountController = require('../app/controllers/AccountController')
 
-router.get('/account',(req,res) =>{
-    res.render('account-detail');
-});
+router.get('/user-profile', accountController.showProfile);
 // siteController.home
 router.patch('/orderFinish', orderController.completeOrder);
 router.get('/info', orderController.createOrder, orderController.fillInfoPage);

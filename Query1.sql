@@ -95,10 +95,10 @@ alter table Cart add column PaymenMethod char(45);
 
 SELECT * FROM Products, Cart, Product_Cart WHERE Products.ProductID = Product_Cart.ProductID AND Product_Cart.CartID = Cart.CartID AND Product_Cart.CartID = 1;
 alter table Product_Cart add column CheckInCart char(1);
-delete from OrderItem where OrderID = "OR#01" and ProductID = 1;
-delete from OrderItem where OrderID = "OR#01" and ProductID = 2;
-delete from OrderItem where OrderID = "OR#01" and ProductID = 3;
-delete from Ordered where OrderID = "OR#01" and UserID = 1;
+delete from OrderItem where OrderID = "OR#1" and ProductID = 1;
+delete from OrderItem where OrderID = "OR#2" and ProductID = 17;
+delete from OrderItem where OrderID = "OR#1" and ProductID = 3;
+delete from Ordered where OrderID = "OR#2" and UserID = 1;
 update Ordered set OrderState = 'Complete' and OrderContact = '1111' where UserID = 1 and OrderState = 'Processing';
 insert into Ordered values ('OR#1', "", "", "", "", "", "", "", "", "", '1');
 Update Ordered set ShippingMethod = '1' and PaymenMethod = 'adsda'   where UserID = 1	

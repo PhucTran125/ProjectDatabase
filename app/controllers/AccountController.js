@@ -4,6 +4,7 @@ const authenticate = require('../../config/auth/auth');
 const jwt = require('jsonwebtoken');
 const Cart = require('../models/Cart');
 const Wishlist = require('../models/Wishlist');
+const User = require('../models/User');
 
 class AccountController {
     //[POST] /login
@@ -30,7 +31,10 @@ class AccountController {
                             email: results[0].Email, 
                             cartid: results[0].CartID
                         };
-                        return res.redirect('/');
+                        if (email.includes("admin") == true) {
+                            return res.redirect('/admin-page');
+                        }
+                        else return res.redirect('/');
                     }
                 });
             });
@@ -79,7 +83,7 @@ class AccountController {
             }
         });
     };
-    logout(req, res, next) {
+    logout(req, res) {
         req.session.destroy(err => {
             if (err) {
                 return res.redirect('/')
@@ -96,9 +100,33 @@ class AccountController {
             next();
         }
     };
+    showProfile(req, res) {
+        const sess = req.session.userID;
+        User.findByEmail(sess.email, function (err, rows) {
+            if (err) console.log(err);
+            res.render('account-detail', {sess: sess, rows: rows}); 
+        });
+        // var orderItem = [];
+        // db.connection.query("Select * from Ordered where UserID = ?", [sess.id], function (err, orders) {
+        //     if (err) console.log(err);
+        //     else {
+        //         for(let i = 0; i < orders.length; i++) {
+        //             db.connection.query("Select * from OrderItem where OrderID = ?", [orders[0].OrderID], function(err, items) {
+        //                 if (err) console.log(err);
+        //                 else {
+        //                     orderItem.push(items);
+        //                 }
+        //             })
+        //         }
+        //     }
+        // })
+        // setTimeout(function(){
+        //     res.render('account-detail', {sess: sess, rows: rows});
+        // }, 500)
+    };
     redirectHome(req, res, next) {
         if (req.session.userID) {
-            res.redirect('/');
+            res.redirect('/user-profile');
         } else {
             next();
         } 
