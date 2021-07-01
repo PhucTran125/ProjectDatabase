@@ -1,3 +1,4 @@
+create database dbProject;
 use dbProject;
 
 create table Brands(
@@ -56,6 +57,28 @@ create table Categories(
 
 insert into Categories(Category_id, Category_name) values ('1', 'Wireless Headphone'), ('2', 'Wireless Earphone'), ('3', 'Noise Cancellation'), ('4', 'Gaming'), ('5', 'Sports'), ('6', 'True Wireless Earbuds'), ('7', 'In-Ear'), ('8', 'DJ Headphone');
 
+CREATE TABLE Cart (
+    CartID INT NOT NULL PRIMARY KEY,
+    UpdateAt DATETIME NOT NULL,
+    CreateAt DATETIME NOT NULL
+);
+alter table Cart add column PaymenMethod char(45);
+
+create table User_table(
+	UserID int not null primary key,
+    FirstName varchar(15) not null,
+    LastName varchar(15) not null,
+    Phone char(11) not null,
+    Email varchar(50) not null,
+    Password varchar(500) not null,
+    City varchar(80) not null, 
+    Country varchar(20) not null,
+    WishListID int not null,
+    CartID int not null,
+    constraint WishList_fk foreign key (WishListID) references WishList(WishListID),
+	constraint Cart_fk foreign key (CartID) references Cart(CartID)
+);
+
 create table Product_Cart(
 	CartID int not null,
     ProductID int not null,
@@ -64,22 +87,6 @@ create table Product_Cart(
     constraint CartEnroll_fk  foreign key (CartID) references Cart(CartID),
     constraint ProductEnroll_fk foreign key (ProductID) references Products(ProductID)
 );
-
-create table PaymentMethod(
-	PaymentMethodID int not null auto_increment primary key,
-    PaymentMethodName varchar(30)
-);
-
-insert into PaymentMethod(PaymentMethodID, PaymentMethodName) values ('1', 'Cash'), ('2', 'Internet Banking'), ('3', 'Paypal'), ('4', 'ViettelPay');
-
-create table Cart(
-	CartID int not null primary key,
-    UpdateAt datetime not null,
-    CreateAt datetime not null
-);
-
-insert into Cart(CartID, UpdateAt, CreateAt) values ('1', '2021-05-04 12:45:56', '2021-05-04 12:45:56');
-insert into Product_Cart(CartID, ProductID, NumProduct) values ('1', '1', '1'), ('1', '3', '1');
 
 create table Product_Category(
 	ProductID int not null,
