@@ -128,6 +128,19 @@ class OrderController {
             }
         })
     };
+    showSuccessfulPayment(req, res) {
+        const sess = req.session.userID;
+        db.connection.query('Select * from Ordered, OrderItem, Products where Ordered.OrderID = OrderItem.OrderID and OrderItem.ProductID = Products.ProductID and Ordered.UserID = ?', [sess.id], function (err, results) {
+            if (err) console.log(err);
+            else {
+                var subTotal = 0;
+                    for(let i = 0; i < results.length; i++) {
+                        subTotal += results[i].Quantity * results[i].Price;
+                    }
+                res.render('successful-payment', { rows: results, subTotal: subTotal });
+            }
+        })
+    }
 }
 
 module.exports = new OrderController;
