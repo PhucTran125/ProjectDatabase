@@ -56,9 +56,9 @@
                 </tr>
             </table>
             <span class="d-block mt-2" style="font-weight: 600;">Shipping method</span>
-            <span id="shippingMethod" style="display: inline-block;">Standard Delivery</span>
+            <span id="shippingMethod" style="display: inline-block;"><%= rows[0].ShippingMethod %></span>
             <span class="d-block mt-2" style="font-weight: 600;">Payment method</span>
-            <span id="paymentMethod" style="display: inline-block;">Cash on Delivery (COD)</span>
+            <span id="paymentMethod" style="display: inline-block;"><%= rows[0].PaymenMethod %></span>
             
         </div>
         <div>
@@ -71,13 +71,12 @@
     <%- include('./partials/cost-discount') %>
 
     <script>
-        document.getElementById("contact").innerHTML=sessionStorage.getItem("email-tel");
+        document.getElementById("fullName").innerHTML = sessionStorage.getItem("firstName") + " " + sessionStorage.getItem("lastName");
+        document.getElementById("shippingMethod").innerHTML = sessionStorage.getItem("method");
+        document.getElementById("emailTel").innerHTML=sessionStorage.getItem("email-tel");
         document.getElementById("apartment").innerHTML=sessionStorage.getItem("apartment");
         document.getElementById("address").innerHTML=sessionStorage.getItem("address");
         document.getElementById("city").innerHTML=sessionStorage.getItem("city");
-        document.getElementById("fee").innerHTML=sessionStorage.getItem("fee");
-        document.getElementById("method").innerHTML=sessionStorage.getItem("method");
-        document.getElementById("shipfee").innerHTML=sessionStorage.getItem("fee");
         document.getElementById("total").innerHTML=sessionStorage.getItem("total");
     </script>
 

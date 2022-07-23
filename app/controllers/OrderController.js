@@ -116,7 +116,6 @@ class OrderController {
                     db.connection.query('Update Ordered set TotalCost = ? where OrderID = ?', [req.body.totalCost, "OR#"+countOrdered]);
                     db.connection.query('Update Ordered set OrderState = ? where OrderID = ? and OrderState = ?', ["Complete", "OR#"+countOrdered, "Processing"], function(error) {
                         if (error) console.log(error);
-                        else console.log("ok2")
                     })
                     for (let i = 0; i < rows.length; i++) {
                         db.connection.query('Insert into OrderItem values (?, ?, ?)', ["OR#" + countOrdered, rows[i].ProductID, rows[i].NumProduct], function (error) {
@@ -124,13 +123,15 @@ class OrderController {
                         })
                     }
                 })
-                
+                let orderID = "OR#" + countOrdered;
+                res.json({orderID: orderID});
             }
         })
     };
     showSuccessfulPayment(req, res) {
         const sess = req.session.userID;
-        db.connection.query('Select * from Ordered, OrderItem, Products where Ordered.OrderID = OrderItem.OrderID and OrderItem.ProductID = Products.ProductID and Ordered.UserID = ?', [sess.id], function (err, results) {
+        const orderID = req.params.orderID;
+        db.connection.query('Select * from Ordered, OrderItem, Products where Ordered.OrderID = OrderItem.OrderID and OrderItem.ProductID = Products.ProductID and Ordered.OrderID = ?', [orderID], function (err, results) {
             if (err) console.log(err);
             else {
                 var subTotal = 0;
