@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const bodyParser = require('body-parser');
-const encoder = bodyParser.urlencoded();
+// const bodyParser = require('body-parser');
+// const encoder = bodyParser.urlencoded();
 const accountController = require('../app/controllers/AccountController');
 const authenticateUser = require('../config/auth/auth');
 const jwt = require('jsonwebtoken');

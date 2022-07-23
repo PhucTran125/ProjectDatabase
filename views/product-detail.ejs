@@ -362,8 +362,11 @@
 
                     </table>
                     <button type="submit" class="left" id="addToCartBtn">Add to cart</button>
-                    <button type="submit" class="right">Buy it now</button>
-                    
+                    <% if(sess) {%>
+                        <a class="btn right buy-it-now" id="buyItNow" href="/my-cart">Buy it now</a>
+                    <% } else { %>
+                        <button type="submit" class="right" id="buyItNow">Buy it now</button>
+                    <% } %>  
                 </div>
             </div>
 
@@ -492,6 +495,28 @@
                 if (event.target == modal) {
                     modal.style.display="none";
                 }
+        }
+        document.getElementById("buyItNow").onclick = function () {
+            var check = '<%= checkUser %>';
+            console.log(check)
+            if (check.localeCompare("have_user") == 0) {
+                let quantity = parseInt(document.getElementById("number").textContent);
+                let productID = parseInt('<%= rows[0].ProductID %>');
+                axios.patch('/catalog/product/add-to-cart', {
+                    productID: productID,
+                    quantity: quantity,
+                    cartID: parseInt('<%= userInfo.cartid %>')
+                })
+                .then(function(response) {
+                    console.log("successfully")
+                })
+                .catch(function(error) {
+                    console.log(error);
+                })
+            } 
+            if (check.localeCompare("no_user") == 0) {
+                alert("You need to login to add to cart!")
+            }
         }
     </script>
     <!-- Add to cart function -->

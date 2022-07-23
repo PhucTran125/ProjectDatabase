@@ -1,31 +1,128 @@
 create database dbProject;
 use dbProject;
+CREATE TABLE `brands` (
+  `Brand_id` int NOT NULL,
+  `Brand_name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`Brand_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-create table Brands(
-	Brand_id int not null primary key,
-    Brand_name varchar(20)
-);
+CREATE TABLE `products` (
+  `ProductID` int NOT NULL,
+  `ProductName` varchar(50) NOT NULL,
+  `ProductSortDesc` varchar(500) NOT NULL,
+  `ProductDesc` varchar(5000) NOT NULL,
+  `Price` double NOT NULL,
+  `Color` varchar(30) NOT NULL,
+  `Material` varchar(50) NOT NULL,
+  `ProductStock` int NOT NULL,
+  `ProductState` varchar(15) NOT NULL,
+  `rating` float NOT NULL,
+  `thumbnail_photo` varchar(150) NOT NULL,
+  `slug` varchar(30) NOT NULL,
+  `Brand_id` int NOT NULL,
+  PRIMARY KEY (`ProductID`),
+  KEY `ProducBrand_fk` (`Brand_id`),
+  CONSTRAINT `ProducBrand_fk` FOREIGN KEY (`Brand_id`) REFERENCES `brands` (`Brand_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `categories` (
+  `Category_id` int NOT NULL,
+  `Category_name` varchar(25) NOT NULL,
+  PRIMARY KEY (`Category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `product_category` (
+  `ProductID` int NOT NULL,
+  `Category_id` int NOT NULL,
+  PRIMARY KEY (`ProductID`,`Category_id`),
+  KEY `Category_id` (`Category_id`),
+  CONSTRAINT `product_category_ibfk_1` FOREIGN KEY (`ProductID`) REFERENCES `products` (`ProductID`),
+  CONSTRAINT `product_category_ibfk_2` FOREIGN KEY (`Category_id`) REFERENCES `categories` (`Category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `productimage` (
+  `url` varchar(1000) NOT NULL,
+  `ProductID` int NOT NULL,
+  KEY `ProductID` (`ProductID`),
+  CONSTRAINT `productimage_ibfk_1` FOREIGN KEY (`ProductID`) REFERENCES `products` (`ProductID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `cart` (
+  `CartID` int NOT NULL,
+  `UpdateAt` datetime NOT NULL,
+  `CreateAt` datetime NOT NULL,
+  `PaymenMethod` char(45) DEFAULT NULL,
+  PRIMARY KEY (`CartID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `wishlist` (
+  `WishListID` int NOT NULL,
+  `CreatedAt` datetime NOT NULL,
+  `UpdateAt` datetime NOT NULL,
+  PRIMARY KEY (`WishListID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `product_cart` (
+  `CartID` int NOT NULL,
+  `ProductID` int NOT NULL,
+  `NumProduct` int NOT NULL,
+  `CheckInCart` char(1) DEFAULT NULL,
+  PRIMARY KEY (`CartID`,`ProductID`),
+  KEY `ProductEnroll_fk` (`ProductID`),
+  CONSTRAINT `CartEnroll_fk` FOREIGN KEY (`CartID`) REFERENCES `cart` (`CartID`),
+  CONSTRAINT `ProductEnroll_fk` FOREIGN KEY (`ProductID`) REFERENCES `products` (`ProductID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `user_table` (
+  `UserID` int NOT NULL,
+  `FirstName` varchar(15) NOT NULL,
+  `LastName` varchar(15) NOT NULL,
+  `Phone` char(11) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `Password` varchar(500) NOT NULL,
+  `City` varchar(80) NOT NULL,
+  `Country` varchar(20) NOT NULL,
+  `WishListID` int NOT NULL,
+  `CartID` int NOT NULL,
+  PRIMARY KEY (`UserID`),
+  KEY `WishList_fk` (`WishListID`),
+  KEY `Cart_fk` (`CartID`),
+  CONSTRAINT `Cart_fk` FOREIGN KEY (`CartID`) REFERENCES `cart` (`CartID`),
+  CONSTRAINT `WishList_fk` FOREIGN KEY (`WishListID`) REFERENCES `wishlist` (`WishListID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `ordered` (
+  `OrderID` char(5) NOT NULL,
+  `OrderContact` varchar(30) DEFAULT NULL,
+  `OrderShippingAddr` varchar(150) DEFAULT NULL,
+  `OrderAddrDetail` varchar(100) DEFAULT NULL,
+  `OrderDescription` varchar(500) DEFAULT NULL,
+  `OrderDate` datetime DEFAULT NULL,
+  `OrderState` varchar(20) NOT NULL,
+  `ShippingMethod` varchar(20) DEFAULT NULL,
+  `PaymenMethod` varchar(20) DEFAULT NULL,
+  `TotalCost` double DEFAULT NULL,
+  `UserID` int NOT NULL,
+  PRIMARY KEY (`OrderID`),
+  KEY `UserID` (`UserID`),
+  CONSTRAINT `ordered_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `user_table` (`UserID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `orderitem` (
+  `OrderID` char(5) NOT NULL,
+  `ProductID` int NOT NULL,
+  `Quantity` int NOT NULL,
+  PRIMARY KEY (`OrderID`,`ProductID`),
+  KEY `ProductID` (`ProductID`),
+  CONSTRAINT `orderitem_ibfk_1` FOREIGN KEY (`OrderID`) REFERENCES `ordered` (`OrderID`),
+  CONSTRAINT `orderitem_ibfk_2` FOREIGN KEY (`ProductID`) REFERENCES `products` (`ProductID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Generate data for some table --
+-- Generate data for table Brands -- 
 insert into Brands(Brand_id, Brand_name) values ('1', 'Apple'), ('2', 'Sony'), ('3', 'AKG'), ('4', 'Beats'), ('5', 'Bose'), 
-('6', 'JBL'), ('7', 'Jabra'), ('8', 'Marshall'), ('9', 'Razer'), ('10', 'Logitech'), ('11', 'Master & Dynamic'), ('12', 'HiFiMAN'), ('13', 'Bowers & Wilkins'), ('14', 'JVC'), ('15', 'Klipsch'); 
-
-create table Products(
-	ProductID int not null primary key,
-	ProductName varchar(50) not null,
-    ProductSortDesc varchar(500) not null,
-    ProductDesc varchar(5000) not null,
-    Price double not null,
-    Color varchar(30) not null,
-    Material varchar(50) not null,
-    ProductStock int not null,
-    ProductState varchar(15) not null,
-    rating float not null,
-    thumbnail_photo varchar(150) not null,
-    slug varchar(30) not null,
-    Brand_id int not null,
-    constraint ProducBrand_fk foreign key (Brand_id) references
-    Brands(Brand_id)
-);
-
+('6', 'JBL'), ('7', 'Jabra'), ('8', 'Marshall'), ('9', 'Razer'), ('10', 'Logitech'), ('11', 'Master & Dynamic'), ('12', 'HiFiMAN'), ('13', 'Bowers & Wilkins'), ('14', 'JVC'), ('15', 'Klipsch');
+-- Generate data for table Products -- 
 insert into Products(ProductID, ProductName, ProductSortDesc, ProductDesc, Price, Color, Material, ProductStock, ProductState, rating, thumbnail_photo, slug, Brand_id) values 
 ('1', 'Sony-WH-CH510', '30MM DYNAMIC DRIVERS FOR SUPREME SOUND', '30MM DYNAMIC DRIVERS FOR SUPREME SOUND|Thanks to 30mm Dynamic Dome Drivers that come with the Sony - WH-CH510, you can now listen to your music with an amazing vocal clarity. It delivers the crowd-pleasing warm sound, with an enjoyable amount of bass and treble alike.|AAC CODEC FOR HIGH QUALITY WIRELESS PLAYBACK|Play your favorite tracks and tunes by pairing your smart phones using the Bluetooth wireless technology. Using this technology you can now enjoy your music without any losses. AAC codec works with Apple and Android devices alike.|SEAMLESS HANDS-FREE EXPERIENCE|The built-in microphone lets you have your conversations on your smartphones enabling easy hands-free calling. Now, you can take calls anytime, anywhere without taking your phone out of your pocket. Use the in-built buttons to play, stop or skip through your favorite tracks and adjust the volume accordingly.|COMPACT. DURABLE. ERGONOMIC. FOLDABLE.|The CH510 is built to be your go-to buddy wherever you go. A lightweight design for easy travel and listening on the go. You can now take these Sony Bluetooth Headphones anywhere along with you as they are lightweight and compact. Also, the swivel earcups enable you to pack them safely in your bag.', '299', 'Black', 'Synthetic resins, leather', '20', 'In stock', '4', 'https://i.imgur.com/uOtwR2n.jpg', 'sony-ch-510-headphone', '2'),
 ('2', 'Sony-WH-1000XM4', 'QUIETER. BETTER. FASTER. STRONGER.', 'QUIETER. BETTER. FASTER. STRONGER.|How do you ensure betterment of the best? By continuing to do what you have been doing best whilst adding feature and ensuring there are no shortcoming, meet the worthy follow-up Sony WH-1000XM4.|THERE IS NO IMPROVEMENT WITHOUT CHANGE|Although the predecessor, Sony WH-1000XM3s still do a great job, you just cannot get past the new features that are provided by the WH-1000XM4. From the enhanced noise cancellation to improved audio quality and the wear detection sensor, the WH-1000XM4 packs some key features WH-1000XM3 lacks out on.|REDEFINING THE BENCHMARK FOR NOISE CANCELLATION HEADPHONES|Say goodbye to noise and experience the industry’s best noise cancellation technology with the Sony WH-1000XM4. The powerful HD Noise-Cancelling Processor, further-improved QN1 blocks out not only vehicular noise but also voice and other background sounds. Enjoy your music without getting interrupted. It did subdue the sound of a mechanical keyboard too, according to Marques MKBHD Brownlee.|30 HOURS OF MUSIC ON WIRELESS, UNLIMITED ON WIRED MODE|The Sony WH-1000XM4 has a 30-hour battery life that’s enough to last for more than a day. When the battery goes down, you can either quickly charge it! Get 5 hours worth of battery life with only 10 minutes charge or plug-in the detachable cable and use it as a wired headphone.|LOSSLESS UNCOMPRESSING WITH DSEE EXTREME|The WH-1000XM4 uses Edge-AI (Artificial Intelligence) co-developed with Sony Music Studios, DSEE Extreme™ (Digital Sound Enhancement Engine) upscales compressed digital music files in real time. It restores the high-range sound lost in compression for a richer, more complete listening experience.', '2499', 'Black', 'Synthetic resins, leather', '18', 'In stock', '5', 'https://i.imgur.com/A9v7r7B.jpg', 'sony-wh-1000mx4-headphone', '2'),
@@ -49,64 +146,14 @@ insert into Products(ProductID, ProductName, ProductSortDesc, ProductDesc, Price
 ('20', 'Sony-WH-XB700', 'BRING THE PARTY HOME WITH EXTRA BASS™ HEADPHONES', 'BRING THE PARTY HOME WITH EXTRA BASS™ HEADPHONES|If you are obsessed with deep and punchy sound, then you must get the all-new Sony WH-XB700. This on-ear has an excellent bass effect, long battery life and built-in mic. It has a comfortable sleek design for prolonged listening.|A HEADPHONE SMARTER THAN MOST OF ITS PEERS|This EXTRA BASS™ headphone is compatible with Alexa and Google Assistant making your life easier. The new Sony headphone can be connected to your smartphone through Siri, Alexa and Google Voice assistant. Also, listen to your favorite tracks, get information and notifications, set reminders and much more.|30 HOURS OF MUSIC AND QUICK CHARGE FEATURE|The Sony WH-XB700 headphone has approximately playtime of 30 hours on a full charge with only 4 hours of charging time. Also, get a 10-minute quick charge that plays upto 90 minutes. Now, enjoy your music without any interruptions.|NFC FOR FASTER CONNECTIVITY|Connecting your Sony Bluetooth Headphones is easy with Near Field Communication (NFC) and Bluetooth technology. Simply with the touch of NFC - enabled device to the headphones will let you stream your music collection instantly.|TAKE COMPLETE CONTROL OF YOUR HEADPHONES WITH THE SONY HEADPHONES CONNECT APP|Sony`s Headphone Connect App can help to set the perfect sound for every song. This innovative app will let you customize your bass levels and give you presets to recreate club, hall, arena or outdoor listening environments. Read more about the customization and controls on Sony Headphones Connect App.', '7799', 'Black, blue', 'Synthetic resins, leather', '21', 'In stock', '4', 'https://i.imgur.com/MaftQLr.jpg', 'sony-wh-xb700', '2'),
 ('21', 'Sony-WI-C400', '9MM DYNAMIC DRIVERS FOR CRISP SOUND WITH A PUNCHY BASS', '9MM DYNAMIC DRIVERS FOR CRISP SOUND WITH A PUNCHY BASS|Experience detailed bass and mids with the Sony WI-C400 Bluetooth Earphones. Its 9-mm driver units play clear, punchy sound with smooth highs that come without any harshness or sibilance.|20 HOURS OF BATTERY LIFE|No worries about the battery, Sony - WI-C400 Bluetooth Earphones are backed with a 20 hr battery to keep your good times going on. It has a standby of a whopping 200 hours. Enough to last the day and even beyond!|STURDY NECKBAND DESIGN WITH VIBRATION ALERT AND TANGLE-FREE CABLE MANAGEMENT|The WI-C400 is designed keeping in mind user-comfort. Neckband design keeps stability and wireless function lets you move freely. Never miss an update from your smartphone by a vibrating notification. Whenever you get an update, the neckband will simply vibrate and notify you whenever you get a call or a text. A special design keeps your cable clipped neatly out of the way in your neckband with the adjuster and stopper. No more adjusting the cable if it gets in your way and you just concentrate on your activity.|HASSLE-FREE HANDS-FREE EXPERIENCE|High functionality buttons gives convenience to your fingertips and lets you have full control. Activate your smartphone`s voice assistance for hands free experience just by a press.|FASTER, RELIABLE CONNECTIVITY|Compatibility was never this easy before. The WI-C400 pairs effortlessly wireless. It also offers NFC. Simply tap your device on the NFC logo and get connected to stream effortlessly.', '3399', 'Black, red, blue, white', 'Synthetic resins', '26', 'In stock', '4.5', 'https://i.imgur.com/qQdt6f8.jpg', 'sony-wi-c400', '2'),
 ('22', 'Sony-MDR-XB550AP', 'FATIGUE-FREE SOUND AND DESIGN', 'FATIGUE-FREE SOUND AND DESIGN|Sony has paid particular attention to the comfort and touch of these headphones. Listen to music for long and continuous and you will still not feel fatigue. The adjustable headband and elegant design make the Sony MDR-XB550AP a great headphone.|ALL ABOUT THAT BASS, NO TREBLE|The Sony MDR-XB550AP is all about the bass. Let your ears experience luscious bass with good detail. The headphones enhance your music to sound entertaining and fun.|THE BEST OF SOUND AND STYLE|The Sony MDR-XB550AP sports a sleek and flaunt-worthy built and design. Put these headphones on and let the world stare, while you drown into your boosted music. The XB550AP comes in a host of colours like Black, Blue, Red and Olive. Pick what suits your style the most!|UNIVERSAL IN-LINE REMOTE AND MIC|The XB550AP features a mic and remote that lets you take calls and change the volume of your music. The push of the button is all it takes for convenient functionality.|SMARTAPP FOR CONTROL CUSTOMIZATION|Customise your functions with the free SmartKey App. The App lets you customise the control of your in-line remote through your Smartphone. A personalised experience is what you enjoy with the Sony MDR-XB550AP.', '3999', 'Black, red blue, green', 'Synthetic resins, leather', '45', 'In stock', '4.5', 'https://i.imgur.com/ZiiVRnZ.jpg', 'sony-mdr-xb550ap', '2');
-
-create table Categories(
-	Category_id int not null primary key,
-    Category_name varchar(25) not null
-);
-
+-- Generate data for table Categories -- 
 insert into Categories(Category_id, Category_name) values ('1', 'Wireless Headphone'), ('2', 'Wireless Earphone'), ('3', 'Noise Cancellation'), ('4', 'Gaming'), ('5', 'Sports'), ('6', 'True Wireless Earbuds'), ('7', 'In-Ear'), ('8', 'DJ Headphone');
-
-CREATE TABLE Cart (
-    CartID INT NOT NULL PRIMARY KEY,
-    UpdateAt DATETIME NOT NULL,
-    CreateAt DATETIME NOT NULL
-);
-alter table Cart add column PaymenMethod char(45);
-
-create table User_table(
-	UserID int not null primary key,
-    FirstName varchar(15) not null,
-    LastName varchar(15) not null,
-    Phone char(11) not null,
-    Email varchar(50) not null,
-    Password varchar(500) not null,
-    City varchar(80) not null, 
-    Country varchar(20) not null,
-    WishListID int not null,
-    CartID int not null,
-    constraint WishList_fk foreign key (WishListID) references WishList(WishListID),
-	constraint Cart_fk foreign key (CartID) references Cart(CartID)
-);
-
-create table Product_Cart(
-	CartID int not null,
-    ProductID int not null,
-    NumProduct int not null,
-    primary key(CartID, ProductID),
-    constraint CartEnroll_fk  foreign key (CartID) references Cart(CartID),
-    constraint ProductEnroll_fk foreign key (ProductID) references Products(ProductID)
-);
-
-create table Product_Category(
-	ProductID int not null,
-    Category_id int not null,
-    primary key(ProductID, Category_id),
-    foreign key (ProductID) references Products(ProductID),
-    foreign key (Category_id) references Categories(Category_id)
-);
-
+-- Generate data for table Product_category -- 
 insert into Product_Category(ProductID, Category_id) values ('1', '1'), ('1', '8'), ('2', '1'), ('2', '3'), ('3', '3'), ('4', '3'), ('4', '4'),
 ('5', '2'), ('6', '1'), ('6', '8'), ('7', '1'), ('7', '4'), ('8', '3'), ('8', '5'), ('8', '7'), ('9', '7'), ('10', '1'), ('10', '3'), ('11', '6'), ('12', '1'), 
 ('12', '8'), ('13', '1'), ('13', '3'), ('13', '4'), ('14', '3'), ('14', '4'), ('15', '2'), ('15', '5'), ('16', '5'), ('16', '7'), ('17', '3'), ('17', '7'), ('18', '3'), 
-('18', '7'), ('19', '3'), ('19', '5'), ('19', '7'), ('20', '1'), ('20', '3'), ('21', '2'), ('22', '3'); 
-
-create table ProductImage(
-	url varchar(1000) not null,
-    ProductID int not null,
-    foreign key (ProductID) references Products(ProductID)
-);
-
+('18', '7'), ('19', '3'), ('19', '5'), ('19', '7'), ('20', '1'), ('20', '3'), ('21', '2'), ('22', '3');
+-- Generate data for table ProductImage --
 insert into ProductImage(ProductID, url) values ('1', 'https://i.imgur.com/uOtwR2n.jpg|https://i.imgur.com/DoyIYlA.jpg|https://i.imgur.com/MU9kCLr.jpg|https://i.imgur.com/ksNqZSd.jpg|https://i.imgur.com/VFlYV3q.jpg|https://i.imgur.com/LDPhUnz.jpg|https://i.imgur.com/Cs5P4fU.jpg|https://i.imgur.com/yY2gsRo.jpg|https://i.imgur.com/eFvlxNp.jpg'),
 ('2', 'https://i.imgur.com/U65xPva.jpg|https://i.imgur.com/We8dPMD.jpg|https://i.imgur.com/hyh8sLT.jpg|https://i.imgur.com/zTCQ2U9.jpg|https://i.imgur.com/5HR0ZZY.jpg|https://i.imgur.com/FIm6Nr0.jpg|https://i.imgur.com/LlXFvBA.jpg'),
 ('3', 'https://i.imgur.com/6iMRSjI.jpg|https://i.imgur.com/FtnQrre.jpg|https://i.imgur.com/vp8ZYS2.jpg|https://i.imgur.com/OoDlMtN.jpg|https://i.imgur.com/plLvywh.jpg'),
@@ -129,33 +176,3 @@ insert into ProductImage(ProductID, url) values ('1', 'https://i.imgur.com/uOtwR
 ('20', 'https://i.imgur.com/8TOkPWc.jpg|https://i.imgur.com/vVdCrZs.jpg|https://i.imgur.com/JGFVk3t.jpg|https://i.imgur.com/8U5HZnc.jpg|https://i.imgur.com/Nndvo9e.jpg|https://i.imgur.com/1iZPRqL.jpg'),
 ('21', 'https://i.imgur.com/RS12CnA.jpg|https://i.imgur.com/md8VCY4.jpg|https://i.imgur.com/DO9E4IE.jpg|https://i.imgur.com/654Hku6.jpg|https://i.imgur.com/6zD82nA.jpg'),
 ('22', 'https://i.imgur.com/vlek93Y.jpg|https://i.imgur.com/rDVASMs.jpg|https://i.imgur.com/35VnBRR.jpg|https://i.imgur.com/EhiIP8T.jpg|https://i.imgur.com/6sZoaL3.jpg|https://i.imgur.com/iu7LtBo.jpg|https://i.imgur.com/W0rApW1.jpg|https://i.imgur.com/OAJbRXM.jpg|https://i.imgur.com/3M5GrwV.jpg');
-
-create table WishList(
-	WishlistID int not null primary key,
-    CreatedAt datetime not null,
-    UpdateAt datetime not null
-);
-
-create table Ordered(
-	OrderID char(5) not null primary key,
-    OrderContact varchar(30),
-    OrderShippingAddr varchar(150),
-    OrderAddrDetail varchar(100),
-    OrderDescription varchar(500),
-    OrderDate datetime,
-    OrderState varchar(20) not null,
-    ShippingMethod varchar(20),
-    PaymenMethod varchar(20),
-    TotalCost double,
-    UserID int not null,
-    foreign key (UserID) references User_table(UserID)
-);
-
-create table orderItem(
-	OrderID char(5) not null,
-    ProductID int not null,
-    Quantity int not null,
-    primary key (OrderID, ProductID),
-    foreign key (OrderID) references Ordered(OrderID),
-    foreign key (ProductID) references Products(ProductID)
-);

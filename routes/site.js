@@ -10,6 +10,8 @@ router.patch('/orderFinish', orderController.completeOrder);
 router.get('/info', orderController.createOrder, orderController.fillInfoPage);
 router.get('/shipping', orderController.fillShippingPage);
 router.get('/payment', orderController.fillPaymentPage);
+router.get('/successful-payment', orderController.showSuccessfulPayment);
+
 router.post('/shipping', orderController.fillShippingPage);
 router.post('/payment', orderController.fillPaymentPage);
 // router.get('/detail', (req, res) => {

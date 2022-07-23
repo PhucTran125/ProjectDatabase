@@ -61,7 +61,7 @@ body{
 
 .headphone-image{
     height:175.8px;
-    background-image:url("//cdn.shopify.com/s/files/1/0437/0454/9536/t/26/assets/breadcrumb_bg_image.jpg?v=4568109122593610553"); 
+    background-image:url("https://i.imgur.com/GyxjoDB.jpg?1"); 
     background-repeat:no-repeat;
     background-size:cover;
     background-position:center;
@@ -217,6 +217,15 @@ button.left{
 button.right{
     background-color: white;
     float:right;
+}
+a.buy-it-now{
+    background-color: white !important;
+    float: right;
+    color: #000000 !important;
+}
+a.buy-it-now:hover{
+    background-color:#fC846B !important;
+    color:white !important;
 }
 button:hover,a.btn:hover{
     background-color:#fC846B;
